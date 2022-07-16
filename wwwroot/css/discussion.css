@@ -1,0 +1,63 @@
+﻿.navigation {
+    grid-column: 1 / end;
+}
+
+main {
+    display: grid;
+    grid-template-rows: max-content auto;
+    grid-template-columns: 90%;
+    grid-row-gap: 10px;
+    margin-inline: 20px;
+    justify-content: center;
+}
+
+.main-block {
+    grid-row: 2;
+    display: grid;
+    grid-template-rows: repeat(auto-fit, max-content);
+    grid-template-columns: minmax(250px, 10vw) minmax(550px, 70vw);
+    grid-row-gap: 20px;
+    justify-content: space-between;
+}
+
+.user-block {
+    grid-row: auto;
+    grid-column: 1;
+    margin-right: 20px;
+}
+
+.user-block > span {
+    color: #DBDBDB;
+}
+
+.answer-block {
+    grid-row: auto;
+    grid-column: 2;
+}
+
+.disc-buttons {
+    grid-row: auto;
+    grid-column: 1 / end;
+    justify-self: center;
+    min-width: 35%;
+}
+
+.add-answer {
+    flex-basis: max-content;
+    margin-right: 10px;
+}
+
+.create-disc {
+    flex-basis: max-content;
+    margin-left: 10px;
+}
+
+.btn-answer-create {
+    font-size: 1.2rem;
+}
+
+
+
+
+
+

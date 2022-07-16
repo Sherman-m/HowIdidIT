@@ -1,0 +1,46 @@
+﻿main {
+    display: grid;
+    grid-template-rows: max-content minmax(75vh, max-content);
+    grid-template-columns: minmax(35vw, max-content);
+    justify-content: center;
+    grid-row-gap: 10px;
+}
+
+.registration-block {
+    grid-row: 2;
+    grid-column: 1;
+}
+
+.box-registration {
+    flex-basis: max-content;
+    font-size: 0.8rem;
+    margin-bottom: 30px;
+}
+
+.form-email {
+    max-height: 25%;
+    margin-bottom: 20px;
+}
+
+.form-passwd {
+    max-height: 25%;
+    margin-bottom: 20px;
+}
+
+label[for^=floating] {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.open-part .hidden-part {
+    max-height: 30%;
+}
+
+.btn-register {
+    max-height: max-content;
+}
+
+.warning {
+    margin-top: 10px;
+    color: #ea1530;
+}

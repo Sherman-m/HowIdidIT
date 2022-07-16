@@ -1,0 +1,33 @@
+﻿main {
+    display: grid;
+    grid-template-rows: max-content minmax(30vh, max-content);
+    grid-template-columns: minmax(35vw, max-content);
+    justify-content: center;
+    grid-row-gap: 10px;
+}
+
+.email-block {
+    grid-row: 2;
+    grid-column: 1;
+}
+
+.form-email {
+    max-height: max-content;
+    margin-bottom: 20px;
+    
+}
+
+label[for^=floating] {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.btn-send {
+    max-height: max-content;
+    margin-bottom: 20px;
+}
+
+.shipped {
+    max-height: max-content;
+}
+

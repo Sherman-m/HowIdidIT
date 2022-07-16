@@ -1,0 +1,62 @@
+﻿main {
+    display: grid;
+    grid-template-rows: max-content minmax(45vh, max-content);
+    grid-template-columns: minmax(35vw, max-content);
+    justify-content: center;
+    grid-row-gap: 10px;
+}
+
+.login-block {
+    grid-row: 2;
+    grid-column: 1;
+}
+
+.box-login {
+    flex-basis: max-content;
+    font-size: 0.8rem;
+    margin-bottom: 30px;
+}
+
+label[for^=floating] {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.form-email {
+    max-height: 40%;
+    margin-bottom: 35px;
+}
+
+.form-passwd {
+    max-height: 50%;
+    margin-bottom: 10px;
+}
+
+.forget-passwd {
+    font-size: 0.7rem;
+    color: #DBDBDBE8;
+    font-style: normal;
+    margin-top: 10px;
+}
+
+.box-accept {
+    flex-basis: max-content;
+    margin-bottom: 30px;
+}
+
+.form-check {
+    font-size: 0.9rem;
+}
+
+input[id=RemebmerMe] {
+    margin: 3px;
+}
+
+.warning {
+    flex-basis: max-content;
+    color: #ea1530;
+    align-self: center;
+}
+
+
+

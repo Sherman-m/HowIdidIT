@@ -1,0 +1,49 @@
+﻿main {
+    display: grid;
+    grid-template-rows: max-content auto;
+    grid-template-columns: 75%;
+    grid-row-gap: 10px;
+    justify-content: center;
+}
+
+.first-column {
+    grid-row: 2;
+    display: grid;
+    grid-template-rows: minmax(30vh, max-content) minmax(20vh, max-content);
+    grid-row-gap: 30px;
+    flex-basis: 25%;
+}
+
+.user-avatar {
+    grid-row: 1;
+}
+
+.user-avatar > img {
+    margin-bottom: 30px;
+}
+
+.user-property {
+    grid-row: 2;
+}
+
+.user-property > form {
+    margin-bottom: 20px;
+}
+
+.second-column {
+    grid-row: 2;
+    display: grid;
+    grid-template-rows: minmax(20vh, max-content) minmax(20vh, max-content);
+    grid-row-gap: 40px;
+    flex-basis: 65%;
+}
+
+.user-data {
+    grid-row: 1;
+}
+
+.user-desc {
+    grid-row: 2;
+}
+
+

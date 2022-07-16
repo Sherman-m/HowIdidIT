@@ -1,0 +1,33 @@
+﻿main {
+    display: grid;
+    grid-template-rows: max-content auto;
+    grid-template-columns: 90%;
+    grid-row-gap: 10px;
+    margin-inline: 20px;
+    justify-content: center;
+}
+
+.main-block {
+    grid-row: 2;
+    display: grid;
+    grid-template-rows: minmax(20vh, max-content) 30px minmax(20vh, max-content);
+    grid-template-columns: minmax(600px, 50vw);
+    grid-row-gap: 5px;
+}
+
+.content {
+    font-size: 0.8rem;
+    grid-row: 1;
+    grid-column: 1;
+}
+
+.news {
+    font-size: 0.8rem;
+    grid-row: 3;
+    grid-column: 1;
+}
+
+
+
+
+
