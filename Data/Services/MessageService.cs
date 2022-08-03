@@ -6,7 +6,7 @@ namespace HowIdidIT.Data.Services;
 
 public class MessageService
 {
-    private EducationContext _context;
+    private ForumContext _context;
     
     public async Task<Message?> AddMessage(MessageDTO messageDto)
     {

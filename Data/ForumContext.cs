@@ -3,7 +3,7 @@ using HowIdidIT.Data.Models;
 
 namespace HowIdidIT.Data;
 
-public class EducationContext : DbContext
+public class ForumContext : DbContext
 {
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

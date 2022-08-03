@@ -6,7 +6,7 @@ namespace HowIdidIT.Data.Services;
 
 public class DiscussionService
 {
-    private EducationContext _context;
+    private ForumContext _context;
     
     public async Task<Discussion?> AddDiscussion(DiscussionDTO discussionDto)
     {

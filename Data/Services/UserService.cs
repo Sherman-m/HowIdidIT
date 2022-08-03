@@ -6,9 +6,9 @@ namespace HowIdidIT.Data.Services;
 
 public class UserService
 {
-    private EducationContext _context;
+    private ForumContext _context;
 
-    public UserService(EducationContext context)
+    public UserService(ForumContext context)
     {
         _context = context;
     }

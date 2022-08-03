@@ -5,7 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<EducationContext>();
+builder.Services.AddDbContext<ForumContext>();
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddTransient<UserService>();
 builder.Services.AddTransient<MessageService>();
