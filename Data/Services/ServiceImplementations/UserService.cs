@@ -23,10 +23,10 @@ public class UserService : IUserService
             Nickname = userDto.Nickname,
             Password = userDto.Password,
         };
-        var result = _context.Users.Add(user);
-        
+
         try 
         {
+            var result = _context.Users.Add(user);
             await _context.SaveChangesAsync();
             return await Task.FromResult(result.Entity);
         }

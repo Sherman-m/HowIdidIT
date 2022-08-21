@@ -22,10 +22,10 @@ public class TopicService : ITopicService
             Name = topicDto.Name,
             Description = topicDto.Description
         };
-        var result = _context.Topics.Add(topic);
 
         try
         {
+            var result = _context.Topics.Add(topic);
             await _context.SaveChangesAsync();
             return await Task.FromResult(result.Entity);
         }
