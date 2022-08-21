@@ -12,8 +12,8 @@ public class Message
     public string Text { get; set; }
     public int UserId { get; set; }
     public int DiscussionId { get; set; }
-    public DateTime? DateOfPublication { get; set; }
-    public DateTime? LastModification { get; set; }
+    public DateTime DateOfPublication { get; set; }
+    public DateTime LastModification { get; set; }
     public ICollection<Picture> Pictures { get; set; }
     
 }

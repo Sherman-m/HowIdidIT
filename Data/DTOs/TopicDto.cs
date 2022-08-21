@@ -1,7 +1,8 @@
 ﻿namespace HowIdidIT.Data.DTOs;
 
-public class DiscussionDTO
+public class TopicDto
 {
     public string Name { get; set; }
-    public int TopicID { get; set; }
+    public string Description { get; set; }
+
 }

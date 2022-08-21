@@ -12,8 +12,8 @@ public class Discussion
     public string Name { get; set; }
     public int TopicId { get; set; }
     public int UserId { get; set; }
-    public int? CountOfMessages { get; set; }
-    public DateTime? DateOfCreating { get; set; }
-    public DateTime? LastModification { get; set; }
+    public int CountOfMessages { get; set; }
+    public DateTime DateOfCreating { get; set; }
+    public DateTime LastModification { get; set; }
     public ICollection<Message> Messages { get; set; }
 }

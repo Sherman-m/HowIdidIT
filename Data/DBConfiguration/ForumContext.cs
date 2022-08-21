@@ -1,7 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using HowIdidIT.Data.DBConfiguration.ModelConfigurations;
 using HowIdidIT.Data.Models;
+using Microsoft.EntityFrameworkCore;
 
-namespace HowIdidIT.Data;
+namespace HowIdidIT.Data.DBConfiguration;
 
 public class ForumContext : DbContext
 {
@@ -16,15 +17,12 @@ public class ForumContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Discussion>().Property(d => d.DiscussionId).ValueGeneratedOnAdd();
-        modelBuilder.Entity<Message>().Property(m => m.MessageId).ValueGeneratedOnAdd();
-        modelBuilder.Entity<Picture>().Property(p => p.PictureId).ValueGeneratedOnAdd();
-        modelBuilder.Entity<Topic>().Property(t => t.TopicId).ValueGeneratedOnAdd();
-        modelBuilder.Entity<TypeOfUser>().Property(t => t.TypeOfUserId).ValueGeneratedOnAdd();
-        modelBuilder.Entity<TypeOfUser>().HasIndex(t => t.Name).IsUnique(true);
-        modelBuilder.Entity<User>().Property(u => u.UserId).ValueGeneratedOnAdd();
-        modelBuilder.Entity<User>().HasIndex(u => u.Nickname).IsUnique(true);
-        modelBuilder.Entity<User>().HasIndex(u => u.Email).IsUnique(true);
+        modelBuilder.ApplyConfiguration(new DiscussionConfiguration());
+        modelBuilder.ApplyConfiguration(new MessageConfiguration());
+        modelBuilder.ApplyConfiguration(new PictureConfiguration());
+        modelBuilder.ApplyConfiguration(new TopicConfiguration());
+        modelBuilder.ApplyConfiguration(new TypeOfUserConfiguration());
+        modelBuilder.ApplyConfiguration(new UserConfiguration());
     }
 
     public DbSet<Discussion> Discussions { get; set;}
