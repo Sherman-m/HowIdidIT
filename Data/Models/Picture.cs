@@ -11,5 +11,6 @@ public class Picture
     public int PictureId { get; set; }
     public byte[] Image { get; set; }
     public User User { get; set; }
+    
     public ICollection<Message> Messages { get; set; }
 }

@@ -11,5 +11,6 @@ public class TypeOfUser
     public int TypeOfUserId { get; set; }
     [Column(TypeName = "varchar")]
     public string Name { get; set; }
+    
     public ICollection<User> Users { get; set; }
 }

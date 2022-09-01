@@ -10,10 +10,16 @@ public class Message
     [Column(Order = 1)]
     public int MessageId { get; set; }
     public string Text { get; set; }
+    
     public int UserId { get; set; }
+    public User User { get; set; }
+    
     public int DiscussionId { get; set; }
+    public Discussion Discussion { get; set; }
+    
     public DateTime DateOfPublication { get; set; }
     public DateTime LastModification { get; set; }
+    
     public ICollection<Picture> Pictures { get; set; }
     
 }

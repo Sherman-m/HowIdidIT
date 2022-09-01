@@ -14,5 +14,6 @@ public class Topic
     public string Description { get; set; }
     public DateTime DateOfCreating { get; set; }
     public DateTime LastModification { get; set; }
+    
     public ICollection<Discussion> Discussions { get; set; }
 }

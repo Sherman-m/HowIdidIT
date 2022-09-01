@@ -37,13 +37,17 @@ public class TopicService : ITopicService
 
     public async Task<List<Topic>> GetTopics()
     {
-        var result = await _context.Topics.ToListAsync();
+        var result = await _context.Topics
+            .Include(d => d.Discussions)
+            .ToListAsync();
         return await Task.FromResult(result);
     }
 
     public async Task<Topic?> GetTopic(int id)
     {
-        var result = await _context.Topics.FirstOrDefaultAsync(tid => tid.TopicId == id);
+        var result = await _context.Topics
+            .Include(d => d.Discussions)
+            .FirstOrDefaultAsync(tid => tid.TopicId == id);
         return await Task.FromResult(result);
     }
 

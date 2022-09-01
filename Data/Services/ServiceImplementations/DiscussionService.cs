@@ -38,15 +38,21 @@ public class DiscussionService : IDiscussionService
 
     public async Task<List<Discussion>> GetDiscussions()
     {
-        var result = await _context.Discussions.Include(m => m.Messages).
-            ToListAsync();
+        var result = await _context.Discussions
+            .Include(t => t.Topic)
+            .Include(u => u.User)
+            .Include(m => m.Messages)
+            .ToListAsync();
         return await Task.FromResult(result);
     }
 
     public async Task<Discussion?> GetDiscussion(int id)
     {
-        var result = await _context.Discussions.Include(m => m.Messages).
-            FirstOrDefaultAsync(mid => mid.DiscussionId == id);
+        var result = await _context.Discussions
+            .Include(t => t.Topic)
+            .Include(u => u.User)
+            .Include(m => m.Messages)
+            .FirstOrDefaultAsync(mid => mid.DiscussionId == id);
         return await Task.FromResult(result);
     }
 

@@ -38,13 +38,19 @@ public class MessageService : IMessageService
 
     public async Task<List<Message>> GetMessages()
     {
-        var result = await _context.Messages.ToListAsync();
+        var result = await _context.Messages
+            .Include(u => u.User)
+            .Include(d => d.Discussion)
+            .ToListAsync();
         return await Task.FromResult(result);
     }
 
     public async Task<Message?> GetMessage(int id)
     {
-        var result = await _context.Messages.FirstOrDefaultAsync(mid => mid.MessageId == id);
+        var result = await _context.Messages
+            .Include(u => u.User)
+            .Include(d => d.Discussion)
+            .FirstOrDefaultAsync(mid => mid.MessageId == id);
         return await Task.FromResult(result);
     }
 
