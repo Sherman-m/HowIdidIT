@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Авторизация</title>
+    <link href="../wwwroot/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../wwwroot/css/for_all_pages.css" rel="stylesheet">
+    <link href="../wwwroot/css/login.css" rel="stylesheet">
+</head>
+<body class="background text-font">
+<header class="d-flex flex-wrap justify-content-between">
+    <div class="d-flex flex-wrap my-nav-bar1 align-items-center justify-content-around">
+        <a href="../Views/index.html" class="logo">HowIdidIT</a>
+        <a href="../Views/index.html" class="pages">Главная</a>
+        <a href="../Views/sections.html" class="pages">Разделы</a>
+    </div>
+    <div class="d-flex flex-wrap my-nav-bar2 align-items-center justify-content-around">
+        <form class="form-search">
+            <input type="search" class="form-control form-control-dark" placeholder="Поиск..." aria-label="Search">
+        </form>
+        <form>
+            <button type="button" formaction="../Views/login.html" formmethod="get" class="btn btn-dark">Авторизация</button>
+        </form>
+        <form>
+            <button type="button" formaction="../Views/registration.html" formmethod="get" class="btn btn-dark">Регистрация</button>
+        </form>
+    </div>
+</header>
+<main>
+    <div class="navigation">
+        <a href="../Views/index.html">
+            <img src="../wwwroot/pictures/home_icon.png" height=20 alt="Главная">Главная
+        </a>
+        >>
+        <a href="../Views/login.html">Авторизация</a>
+    </div>
+    <div class="d-flex flex-column content-block login-block justify-content-between">
+        <div class="d-flex flex-column box-login">
+            <div class="d-flex form-email flex-column">
+                <label for="floatingEmail">Введите ваш Email:</label>
+                <input type="email" class="form-control" id="floatingEmail" placeholder="Email address">
+            </div>
+            <div class="d-flex form-passwd flex-column">
+                <label for="floatingPassword">Введите ваш пароль:</label>
+                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                <a href="../Views/send_email.html" class="forget-passwd align-self-end">Забыли пароль?</a>
+            </div>
+        </div>
+        <div class="d-flex flex-wrap box-accept justify-content-between align-items-center">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="RemebmerMe">
+                <label class="form-check-label" for="RemebmerMe">Запомнить меня</label>
+            </div>
+            <form>
+                <button type="button" formaction="../Views/index.html" formmethod="get" class="btn btn-dark">Войти</button>
+            </form>
+        </div>
+<!--        <p class="warning">Неправильный Email или пароль</p>-->
+    </div>
+</main>
+<footer class="d-flex justify-content-around align-items-center">
+    © Все права защищены
+</footer>
+</body>
+</html>
