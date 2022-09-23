@@ -17,18 +17,20 @@
       <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\jquery.validate.js" />
       <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\jquery.validate.min.js" />
       <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\LICENSE.md" />
+      <_ContentIncludedByDefault Remove="Views\AllSections.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\ChangePassword.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Discussion.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Login.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Profile.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Registration.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Section.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\SendEmail.cshtml" />
     </ItemGroup>
 
     <ItemGroup>
       <Folder Include="wwwroot\js" />
       <Folder Include="wwwroot\lib\bootstrap\css" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Content Include="Views\section.html">
-        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      </Content>
     </ItemGroup>
 
     <ItemGroup>

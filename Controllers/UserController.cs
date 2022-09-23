@@ -9,7 +9,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace HowIdidIT.Controllers;
 
-[Route("[controller]")]
+[Route("api/[controller]")]
 [ApiController]
 public class UserController : ControllerBase
 {
