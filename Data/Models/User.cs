@@ -6,7 +6,6 @@ namespace HowIdidIT.Data.Models;
 public class User
 {
     [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     [Column(Order = 1)]
     public int UserId { get; set; }
     public string? Nickname { get; set; }
