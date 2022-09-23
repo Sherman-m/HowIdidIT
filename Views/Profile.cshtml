@@ -7,6 +7,7 @@
     <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="~/css/profile.css" rel="stylesheet">
     <link href="~/css/for_all_pages.css" rel="stylesheet">
+    <script src="~/js/for_all_pages.js"></script>
 </head>
 <body class="background text-font">
 <header class="d-flex flex-wrap justify-content-between">
@@ -19,8 +20,8 @@
         <form class="form-search">
             <input type="search" class="form-control form-control-dark" placeholder="Поиск..." aria-label="Search">
         </form>
-        <button onclick ="window.location.href = '/login'" class="btn btn-dark">Авторизация</button>
-        <button onclick ="window.location.href = '/registration'" class="btn btn-dark">Регистрация</button>
+        <button onclick="redirectOnLoginPage()" class="btn btn-dark">Авторизация</button>
+        <button onclick="redirectOnRegistrationPage()" class="btn btn-dark">Регистрация</button>
     </div>
 </header>
 <main>
