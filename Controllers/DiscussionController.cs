@@ -7,11 +7,11 @@ namespace HowIdidIT.Controllers;
 
 [Route("[controller]")]
 [ApiController]
-public class CheckDiscussionServiceController : ControllerBase
+public class DiscussionController : ControllerBase
 {
     private readonly IDiscussionService _discussionService;
 
-    public CheckDiscussionServiceController(IDiscussionService discussionService)
+    public DiscussionController(IDiscussionService discussionService)
     {
         _discussionService = discussionService;
     }

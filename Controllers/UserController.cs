@@ -11,11 +11,11 @@ namespace HowIdidIT.Controllers;
 
 [Route("[controller]")]
 [ApiController]
-public class CheckUserServiceController : ControllerBase
+public class UserController : ControllerBase
 {
     private readonly IUserService _userService;
 
-    public CheckUserServiceController(IUserService userService)
+    public UserController(IUserService userService)
     {
         _userService = userService;
     }

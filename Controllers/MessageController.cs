@@ -7,11 +7,11 @@ namespace HowIdidIT.Controllers;
 
 [Route("[controller]")]
 [ApiController]
-public class CheckMessageServiceController : ControllerBase
+public class MessageController : ControllerBase
 {
     private readonly IMessageService _messageService;
 
-    public CheckMessageServiceController(IMessageService messageService)
+    public MessageController(IMessageService messageService)
     {
         _messageService = messageService;
     }
