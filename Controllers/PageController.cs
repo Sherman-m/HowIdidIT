@@ -52,4 +52,11 @@ public class PageController : Controller
     {
         return View("~/Views/ChangePassword.cshtml");
     }
+    
+    [Route("/send_email")]
+    public IActionResult SendEmail()
+    {
+        return View("~/Views/SendEmail.cshtml");
+    }
+    
 }
