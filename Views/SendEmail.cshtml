@@ -4,38 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Восстановление пароля</title>
-    <link href="../wwwroot/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../wwwroot/css/for_all_pages.css" rel="stylesheet">
-    <link href="../wwwroot/css/send_email.css" rel="stylesheet">
+    <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/css/for_all_pages.css" rel="stylesheet">
+    <link href="~/css/send_email.css" rel="stylesheet">
+    <script src="~/js/for_all_pages.js"></script>
 </head>
 <body class="background text-font">
 <header class="d-flex flex-wrap justify-content-between">
     <div class="d-flex flex-wrap my-nav-bar1 align-items-center justify-content-around">
-        <a href="../Views/index.html" class="logo">HowIdidIT</a>
-        <a href="../Views/index.html" class="pages">Главная</a>
-        <a href="../Views/sections.html" class="pages">Разделы</a>
+        <a href="/" class="logo">HowIdidIT</a>
+        <a href="/" class="pages">Главная</a>
+        <a href="/sections" class="pages">Разделы</a>
     </div>
     <div class="d-flex flex-wrap my-nav-bar2 align-items-center justify-content-around">
         <form class="form-search">
             <input type="search" class="form-control form-control-dark" placeholder="Поиск..." aria-label="Search">
         </form>
-        <form>
-            <button type="button" formaction="../Views/login.html" formmethod="get" class="btn btn-dark">Авторизация</button>
-        </form>
-        <form>
-            <button type="button" formaction="../Views/registration.html" formmethod="get" class="btn btn-dark">Регистрация</button>
-        </form>
+        <button onclick="redirectOnLoginPage()" class="btn btn-dark">Авторизация</button>
+        <button onclick="redirectOnRegistrationPage()" class="btn btn-dark">Регистрация</button>
     </div>
 </header>
 <main>
     <div class="navigation">
-        <a href="../Views/index.html">
-            <img src="../wwwroot/pictures/home_icon.png" height=20 alt="Главная">Главная
+        <a href="/">
+            <img src="~/pictures/home_icon.png" height=20 alt="Главная">Главная
         </a>
         >>
-        <a href="../Views/login.html">Авторизация</a>
+        <a href="/login">Авторизация</a>
         >>
-        <a href="../Views/send_email.html">Восстановление пароля</a>
+        <a href="/send_email">Восстановление пароля</a>
     </div>
     <div class="d-flex flex-column content-block email-block justify-content-between">
         <div class="d-flex flex-column form-email">

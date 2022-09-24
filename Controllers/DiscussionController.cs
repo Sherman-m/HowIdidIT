@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HowIdidIT.Controllers;
 
-[Route("[controller]")]
+[Route("api/[controller]")]
 [ApiController]
 public class DiscussionController : ControllerBase
 {
