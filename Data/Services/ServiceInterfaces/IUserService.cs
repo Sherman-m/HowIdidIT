@@ -6,9 +6,10 @@ namespace HowIdidIT.Data.Services.ServiceInterfaces;
 public interface IUserService
 {
     Task<User?> AddUser(UserDto userDto);
-    Task<List<User>> GetUsers();
-    Task<User?> GetUser(int id);
-    Task<User?> GetUserByEmail(string email, string password);
+    Task<List<User>> GetAllUsers();
+    Task<User?> GetUserById(int id);
+    Task<User?> GetUserByLogin(string login);
+    Task<User?> AuthUser(string login, string password);
     Task<User?> UpdateUser(int id, UserDto userDto);
     Task<bool> DeleteUser(int id);
 }

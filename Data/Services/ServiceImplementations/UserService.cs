@@ -22,8 +22,7 @@ public class UserService : IUserService
         var salt = GenSalt();
         User user = new User()
         {
-            Email = userDto.Email,
-            Nickname = userDto.Nickname,
+            Login = userDto.Login,
             Password = ComputeHmacSha1(
                 Encoding.UTF8.GetBytes(userDto.Password + salt),
                 Encoding.UTF8.GetBytes("my_key")
@@ -44,7 +43,7 @@ public class UserService : IUserService
         }
     }
 
-    public async Task<List<User>> GetUsers()
+    public async Task<List<User>> GetAllUsers()
     {
         var result = await _context.Users
             .Include(t => t.TypeOfUser)
@@ -54,23 +53,33 @@ public class UserService : IUserService
         return await Task.FromResult(result);
     }
 
-    public async Task<User?> GetUser(int id)
+    public async Task<User?> GetUserById(int id)
     {
         var result = await _context.Users
             .Include(t => t.TypeOfUser)
             .Include(d => d.Discussions)
             .Include(m => m.Messages)
-            .FirstOrDefaultAsync(uid => uid.UserId == id);
+            .FirstOrDefaultAsync(u => u.UserId == id);
+        return await Task.FromResult(result);
+    }
+
+    public async Task<User?> GetUserByLogin(string login)
+    {
+        var result = await _context.Users
+            .Include(t => t.TypeOfUser)
+            .Include(d => d.Discussions)
+            .Include(m => m.Messages)
+            .FirstOrDefaultAsync(u => u.Login == login);
         return await Task.FromResult(result);
     }
     
-    public async Task<User?> GetUserByEmail(string email, string password)
+    public async Task<User?> AuthUser(string login, string password)
     {
         var result = await _context.Users
             .Include(t => t.TypeOfUser)
             .Include(d => d.Discussions)
             .Include(m => m.Messages)
-            .FirstOrDefaultAsync(e => e.Email == email);
+            .FirstOrDefaultAsync(u => u.Login == login);
 
         if (result != null)
         {
@@ -84,7 +93,7 @@ public class UserService : IUserService
             {
                 return await Task.FromResult(result);
             }
-    }
+        }
 
         return null;
     }
@@ -95,13 +104,12 @@ public class UserService : IUserService
             .Include(t => t.TypeOfUser)
             .Include(d => d.Discussions)
             .Include(m => m.Messages)
-            .FirstOrDefaultAsync(uid => uid.UserId == id);
+            .FirstOrDefaultAsync(u => u.UserId == id);
         if (result != null)
         {
             var salt = GenSalt();
             
-            result.Nickname = userDto.Nickname;
-            result.Email = userDto.Email;
+            result.Login = userDto.Login;
             result.Password = ComputeHmacSha1(
                 Encoding.Default.GetBytes(userDto.Password + salt),
                 Encoding.Default.GetBytes("my_key")
@@ -126,7 +134,7 @@ public class UserService : IUserService
 
     public async Task<bool> DeleteUser(int id)
     {
-        var result = await _context.Users.FirstOrDefaultAsync(uid => uid.UserId == id);
+        var result = await _context.Users.FirstOrDefaultAsync(u => u.UserId == id);
         if (result != null)
         {
             _context.Users.Remove(result);
@@ -136,7 +144,7 @@ public class UserService : IUserService
 
         return false;
     }
-    // Как бы это все разложить правильно
+    
     private string ComputeHmacSha1(byte[] data, byte[] key)
     {
         using (var hmac = new HMACSHA1(key))

@@ -22,4 +22,6 @@ public class Discussion
     public DateTime LastModification { get; set; }
     
     public ICollection<Message> Messages { get; set; }
+    
+    public ICollection<User> SelectedUsers { get; set; }
 }

@@ -10,7 +10,18 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
     {
         builder.Property(u => u.UserId).ValueGeneratedOnAdd();
         builder.Property(u => u.DateOfRegistration).HasDefaultValueSql("NOW()");
-        builder.HasIndex(u => u.Nickname).IsUnique(true);
-        builder.HasIndex(u => u.Email).IsUnique(true);
+        builder.HasIndex(u => u.Login).IsUnique(true);
+
+        builder
+            .HasMany<Discussion>(u => u.Discussions)
+            .WithOne(d => d.User);
+        
+        builder
+            .HasMany<Discussion>(u => u.SelectedDiscussions)
+            .WithMany(d => d.SelectedUsers);
+        
+        builder
+            .HasMany<Topic>(u => u.SelectedTopics)
+            .WithMany(d => d.SelectedUsers);
     }
 }

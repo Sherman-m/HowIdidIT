@@ -35,30 +35,44 @@ public class UserController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<User>>> GetAllUsers()
     {
-        return await _userService.GetUsers();
+        return await _userService.GetAllUsers();
     }
     
     [HttpGet("{id}")]
     public async Task<ActionResult<User>> GetUser(int id)
     {
-        var result = await _userService.GetUser(id);
+        var result = await _userService.GetUserById(id);
         if (result == null)
         {
             return NotFound();
         }
-
+    
         return result;
+    }
+
+    [HttpGet("/info")]
+    [Authorize]
+    public async Task<ActionResult> GetAuthUser()
+    {
+        var login = HttpContext.User.FindFirst(ClaimTypes.Name);
+        if (login != null)
+        {
+            var result = await _userService.GetUserByLogin(login.Value);
+            return Ok(result);
+        }
+
+        return NotFound();
     }
     
     [HttpGet("{email}/{password}")]
-    public async Task<ActionResult<User>> Login(string email, string password)
+    public async Task<ActionResult<User>> UserLogin(string email, string password)
     {
-        var result = await _userService.GetUserByEmail(email, password);
+        var result = await _userService.AuthUser(email, password);
         if (result != null)
         {
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, result.Nickname),
+                new Claim(ClaimTypes.Name, result.Login),
                 new Claim(ClaimTypes.Actor, result.TypeOfUser.Name)
             };
             var jwt = new JwtSecurityToken(

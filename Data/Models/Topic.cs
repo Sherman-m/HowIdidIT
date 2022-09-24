@@ -16,4 +16,6 @@ public class Topic
     public DateTime LastModification { get; set; }
     
     public ICollection<Discussion> Discussions { get; set; }
+    
+    public ICollection<User> SelectedUsers { get; set; }
 }

@@ -22,31 +22,31 @@ public class PageController : Controller
     {
         return View("~/Views/Registration.cshtml");
     }
-
+    
     [Route("/sections")]
     public IActionResult AllSections()
     {
         return View("~/Views/AllSections.cshtml");
     }
-
+    
     [Route("/section")]
     public IActionResult Section()
     {
         return View("~/Views/Section.cshtml");
     }
-
+    
     [Route("/discussion")]
     public IActionResult Discussion()
     {
         return View("~/Views/Discussion.cshtml");
     }
-
+    
     [Route("/profile")]
     public IActionResult Profile()
     {
         return View("~/Views/Profile.cshtml");
     }
-
+    
     [Route("/change_password")]
     public IActionResult ChangePassword()
     {
