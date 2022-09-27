@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 
 namespace HowIdidIT.Controllers;
 
@@ -14,12 +16,16 @@ public class PageController : Controller
     [Route("/login")]
     public IActionResult Login()
     {
+        if (User.Identity!.IsAuthenticated)
+            return Redirect("/");
         return View("~/Views/Login.cshtml");
     }
     
     [Route("/registration")]
     public IActionResult Registration()
     {
+        if (User.Identity!.IsAuthenticated)
+            return Redirect("/");
         return View("~/Views/Registration.cshtml");
     }
     
@@ -41,6 +47,7 @@ public class PageController : Controller
         return View("~/Views/Discussion.cshtml");
     }
     
+    [Authorize]
     [Route("/profile")]
     public IActionResult Profile()
     {
@@ -53,10 +60,10 @@ public class PageController : Controller
         return View("~/Views/ChangePassword.cshtml");
     }
     
-    [Route("/send_email")]
-    public IActionResult SendEmail()
+    [Route("/recover_password")]
+    public IActionResult RecoverPassword()
     {
-        return View("~/Views/SendEmail.cshtml");
+        return View("~/Views/RecoverPassword.cshtml");
     }
     
 }

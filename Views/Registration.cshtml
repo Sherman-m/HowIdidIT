@@ -7,21 +7,21 @@
     <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="~/css/for_all_pages.css" rel="stylesheet">
     <link href="~/css/registration.css" rel="stylesheet">
-    <script src="~/js/for_all_pages.js"></script>
+    <script defer src="~/js/for_all_pages.js"></script>
 </head>
 <body class="background text-font">
 <header class="d-flex flex-wrap justify-content-between">
-    <div class="d-flex flex-wrap my-nav-bar1 align-items-center justify-content-around">
+    <div id="my-nav-bar1" class="d-flex flex-wrap align-items-center justify-content-around">
         <a href="/" class="logo">HowIdidIT</a>
         <a href="/" class="pages">Главная</a>
         <a href="/sections" class="pages">Разделы</a>
     </div>
-    <div class="d-flex flex-wrap my-nav-bar2 align-items-center justify-content-around">
+    <div id="my-nav-bar2" class="d-flex flex-wrap align-items-center justify-content-around">
         <form class="form-search">
             <input type="search" class="form-control form-control-dark" placeholder="Поиск..." aria-label="Search">
         </form>
-        <button onclick="redirectOnLoginPage()" class="btn btn-dark">Авторизация</button>
-        <button onclick="redirectOnRegistrationPage()" class="btn btn-dark">Регистрация</button>
+        <button id="btn-auth" class="btn btn-dark" onclick="redirectOnLoginPage()">Авторизация</button>
+        <button id="btn-reg" class="btn btn-dark" onclick="redirectOnRegistrationPage()">Регистрация</button>
     </div>
 </header>
 <main>
@@ -33,33 +33,27 @@
         <a href="/registration">Регистрация</a>
     </div>
     <div class="d-flex flex-column content-block registration-block justify-content-between">
-        <div class="d-flex flex-column box-registration">
-            <div class="d-flex form-email flex-column">
-                <label for="floatingEmail">Введите ваш Email:</label>
-                <input type="email" class="form-control" id="floatingEmail" placeholder="Email address">
-                <p class="warning">Email должен содержать знак ""</p>
+        <form>
+            <div class="d-flex flex-column box-registration">
+                <div class="d-flex form-login flex-column">
+                    <label for="floatingEmail">Введите ваш логин:</label>
+                    <input type="text" class="form-control" id="floatingEmail" placeholder="Введите логин">
+                </div>
+                <div class="d-flex form-passwd flex-column">
+                    <label for="floatingPassword">Введите ваш пароль:</label>
+                    <input type="password" class="form-control" id="floatingPassword" placeholder="Введите пароль">
+                    @* <p class="warning">Пароль должен содержать только латинские буквы и хотя бы одну цифру</p> *@
+                </div>
+                <div class="d-flex form-passwd flex-column">
+                    <label for="floatingConfirmPassword">Подтвердите ваш пароль:</label>
+                    <input type="password" class="form-control" id="floatingConfirmPassword" placeholder="Подтвердите пароль">
+                    @* <p class="warning">Пароли не совпадают</p> *@
+                </div>
             </div>
-            <div class="d-flex form-passwd flex-column">
-                <label for="floatingNickname">Введите ваш Nickname:</label>
-                <input type="text" class="form-control" id="floatingNickname" placeholder="Nickname">
-                <p class="warning">Данный Nickname занят</p>
+            <div class="d-flex btn-register justify-content-end align-items-center">
+                <button type="submit" class="btn btn-dark">Зарегистрироваться</button>
             </div>
-            <div class="d-flex form-passwd flex-column">
-                <label for="floatingPassword">Введите ваш пароль:</label>
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                <p class="warning">Пароль должен содержать только латинские буквы и хотя бы одну цифру</p>
-            </div>
-            <div class="d-flex form-passwd flex-column">
-                <label for="floatingConfirmPassword">Подтвердите ваш пароль:</label>
-                <input type="password" class="form-control" id="floatingConfirmPassword" placeholder="Confirm Password">
-                <p class="warning">Пароли не совпадают</p>
-            </div>
-        </div>
-        <div class="d-flex btn-register justify-content-end align-items-center">
-            <form>
-                <button type="button" formaction="../Views/index.html" formmethod="get" class="btn btn-dark">Зарегистрироваться</button>
-            </form>
-        </div>
+        </form>
     </div>
 </main>
 <footer class="d-flex justify-content-around align-items-center">

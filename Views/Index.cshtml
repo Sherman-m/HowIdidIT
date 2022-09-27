@@ -8,20 +8,21 @@
     <link href="~/css/index.css" rel="stylesheet">
     <link href="~/css/for_all_pages.css" rel="stylesheet">
     <script src="~/js/for_all_pages.js"></script>
+    <script src="~/js/index.js"></script>
 </head>
 <body class="background text-font">
 <header class="d-flex flex-wrap justify-content-between">
-    <div class="d-flex flex-wrap my-nav-bar1 align-items-center justify-content-around">
+    <div id="my-nav-bar1" class="d-flex flex-wrap align-items-center justify-content-around">
         <a href="/" class="logo">HowIdidIT</a>
         <a href="/" class="pages">Главная</a>
         <a href="/sections" class="pages">Разделы</a>
     </div>
-    <div class="d-flex flex-wrap my-nav-bar2 align-items-center justify-content-around">
+    <div id="my-nav-bar2" class="d-flex flex-wrap align-items-center justify-content-around">
         <form class="form-search">
             <input type="search" class="form-control form-control-dark" placeholder="Поиск..." aria-label="Search">
         </form>
-        <button onclick="redirectOnLoginPage()" class="btn btn-dark">Авторизация</button>
-        <button onclick="redirectOnRegistrationPage()" class="btn btn-dark">Регистрация</button>
+        <button id="btn-auth" class="btn btn-dark" onclick="redirectOnLoginPage()">Авторизация</button>
+        <button id="btn-reg" class="btn btn-dark" onclick="redirectOnRegistrationPage()">Регистрация</button>
     </div>
 </header>
 <main>
@@ -41,9 +42,9 @@
                 <p>Вот это хорошие новости!</p>
             </div>
         </div>
-        <div class="recent-block content-block">
+        <div id="favorites-block" class="content-block">
             <h3 class="text-center">Избранное</h3><hr>
-            <ul>
+            <ul id="links-for-favorites">
                 <li><a href="/section">Веб-разработка</a></li>
                 <li><a href="#">GameDev</a></li>
                 <li><a href="#">Ребят, помогите сделать курсовую</a></li>

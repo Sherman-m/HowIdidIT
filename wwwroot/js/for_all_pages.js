@@ -6,3 +6,4 @@ function redirectOnRegistrationPage() {
     window.location.href = "/registration";
 }
 
+

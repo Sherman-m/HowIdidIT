@@ -1,7 +1,7 @@
 ﻿main {
     display: grid;
-    grid-template-rows: max-content minmax(75vh, max-content);
-    grid-template-columns: minmax(35vw, max-content);
+    grid-template-rows: max-content max-content;
+    grid-template-columns: 35vw;
     justify-content: center;
     grid-row-gap: 10px;
 }
@@ -12,19 +12,17 @@
 }
 
 .box-registration {
-    flex-basis: max-content;
     font-size: 0.8rem;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+    flex-basis: 40%;
 }
 
-.form-email {
-    max-height: 25%;
-    margin-bottom: 20px;
+.form-login {
+    margin-bottom: 35px;
 }
 
 .form-passwd {
-    max-height: 25%;
-    margin-bottom: 20px;
+    margin-bottom: 35px;
 }
 
 label[for^=floating] {
@@ -32,12 +30,8 @@ label[for^=floating] {
     margin-bottom: 10px;
 }
 
-.open-part .hidden-part {
-    max-height: 30%;
-}
-
 .btn-register {
-    max-height: max-content;
+    margin-bottom: 30px;
 }
 
 .warning {

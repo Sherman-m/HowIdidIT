@@ -1,11 +1,15 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Text;
+using System.Text.Json;
 using HowIdidIT.Data.DTOs;
 using HowIdidIT.Data.Models;
 using HowIdidIT.Data.Services.ServiceInterfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json.Linq;
+using NuGet.Protocol;
 
 namespace HowIdidIT.Controllers;
 
@@ -50,7 +54,7 @@ public class UserController : ControllerBase
         return result;
     }
 
-    [HttpGet("/info")]
+    [HttpGet("info")]
     [Authorize]
     public async Task<ActionResult> GetAuthUser()
     {
@@ -64,10 +68,11 @@ public class UserController : ControllerBase
         return NotFound();
     }
     
-    [HttpGet("{email}/{password}")]
-    public async Task<ActionResult<User>> UserLogin(string email, string password)
+    [HttpPost("login")]
+    public async Task<ActionResult<User>> UserLogin([FromBody] JObject jObject)
     {
-        var result = await _userService.AuthUser(email, password);
+        var data = jObject.ToObject<Dictionary<string, string>>();
+        var result = await _userService.AuthUser(data["login"], data["password"]);
         if (result != null)
         {
             var claims = new List<Claim>

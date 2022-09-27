@@ -36,7 +36,7 @@ header {
     text-align: center;
 }
 
-.my-nav-bar1 {
+#my-nav-bar1 {
     flex-basis: 30%;
 }
 
@@ -49,8 +49,15 @@ header {
     font-size: 0.9rem;
 }
 
-.my-nav-bar2 {
+#my-nav-bar2 {
     flex-basis: 40%;
+}
+
+.login-name {
+    flex-basis: 30%;
+    font-size: 1.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .form-search {
@@ -112,19 +119,20 @@ img[alt=Главная]{
     text-align: justify;
 }
 
-.recent-block {
+#favorites-block {
+    display: none;
     flex-basis: 22%;
     align-self: start;
     max-width: 25%;
     justify-self: center;
 }
 
-.recent-block > ul {
+#links-for-favorites{
     padding-left: 20px;
 }
 
 
-.recent-block > ul > li > a {
+#links-for-favorites > li > a {
     display: block;
     overflow: hidden;
     white-space: nowrap;
