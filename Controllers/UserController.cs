@@ -24,16 +24,16 @@ public class UserController : ControllerBase
         _userService = userService;
     }
     
-    [HttpPost]
+    [HttpPost("register")]
     public async Task<ActionResult<User>> RegisterUser([FromBody] UserDto userDto)
     {
         var result = await _userService.AddUser(userDto);
-        if (result == null)
+        if (result != null)
         {
-            return BadRequest();
+            return Ok(result);
         }
 
-        return Ok(result);
+        return BadRequest();
     }
 
     [HttpGet]
@@ -51,12 +51,12 @@ public class UserController : ControllerBase
             return NotFound();
         }
     
-        return result;
+        return Ok(result);
     }
 
     [HttpGet("info")]
     [Authorize]
-    public async Task<ActionResult> GetAuthUser()
+    public async Task<ActionResult<User>> GetAuthUser()
     {
         var login = HttpContext.User.FindFirst(ClaimTypes.Name);
         if (login != null)
@@ -69,32 +69,12 @@ public class UserController : ControllerBase
     }
     
     [HttpPost("login")]
-    public async Task<ActionResult<User>> UserLogin([FromBody] JObject jObject)
+    public async Task<ActionResult<User>> UserLogin([FromBody] UserDto userDto)
     {
-        var data = jObject.ToObject<Dictionary<string, string>>();
-        var result = await _userService.AuthUser(data["login"], data["password"]);
+        var result = await _userService.AuthUser(userDto);
         if (result != null)
         {
-            var claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.Name, result.Login),
-                new Claim(ClaimTypes.Actor, result.TypeOfUser.Name)
-            };
-            var jwt = new JwtSecurityToken(
-                issuer: AuthOptions.ISSUER,
-                audience: AuthOptions.AUDIENCE,
-                claims: claims,
-                expires: DateTime.UtcNow.Add(TimeSpan.FromMinutes(60)),
-                signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
-            
-            var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
-
-            HttpContext.Response.Cookies.Append(".AspNetCore.Application.Id", encodedJwt, 
-                new CookieOptions
-                {
-                    MaxAge = TimeSpan.FromMinutes(60)
-                });
-
+            CreatingJwtToken(HttpContext, result);
             return Ok(result);
         }
 
@@ -124,5 +104,29 @@ public class UserController : ControllerBase
         }
 
         return BadRequest();
+    }
+
+    private void CreatingJwtToken(HttpContext context, User user)
+    {
+        var claims = new List<Claim>
+        {
+            new Claim(ClaimTypes.Name, user.Login),
+            new Claim(ClaimTypes.Actor, user.TypeOfUser.Name)
+        };
+        var jwt = new JwtSecurityToken(
+            issuer: AuthOptions.ISSUER,
+            audience: AuthOptions.AUDIENCE,
+            claims: claims,
+            expires: DateTime.UtcNow.Add(TimeSpan.FromMinutes(60)),
+            signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(),
+                SecurityAlgorithms.HmacSha256));
+
+        var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
+
+        context.Response.Cookies.Append(".AspNetCore.Application.Id", encodedJwt,
+            new CookieOptions
+            {
+                MaxAge = TimeSpan.FromMinutes(60)
+            });
     }
 }

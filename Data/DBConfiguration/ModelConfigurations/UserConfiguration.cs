@@ -10,6 +10,8 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
     {
         builder.Property(u => u.UserId).ValueGeneratedOnAdd();
         builder.Property(u => u.DateOfRegistration).HasDefaultValueSql("NOW()");
+        builder.Property(u => u.TypeOfUserId).HasDefaultValue(1);
+        builder.Property(u => u.Description).HasDefaultValue("");
         builder.HasIndex(u => u.Login).IsUnique(true);
 
         builder

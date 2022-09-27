@@ -28,7 +28,6 @@ public class UserService : IUserService
                 Encoding.UTF8.GetBytes("my_key")
                 ),
             Salt = salt,
-            TypeOfUserId = userDto.TypeOfUserId
         };
 
         try 
@@ -73,22 +72,20 @@ public class UserService : IUserService
         return await Task.FromResult(result);
     }
     
-    public async Task<User?> AuthUser(string login, string password)
+    public async Task<User?> AuthUser(UserDto userDto)
     {
         var result = await _context.Users
             .Include(t => t.TypeOfUser)
             .Include(d => d.Discussions)
             .Include(m => m.Messages)
-            .FirstOrDefaultAsync(u => u.Login == login);
+            .FirstOrDefaultAsync(u => u.Login == userDto.Login);
 
         if (result != null)
         {
             var p = ComputeHmacSha1(
-                Encoding.Default.GetBytes(password + result.Salt),
+                Encoding.Default.GetBytes(userDto.Password + result.Salt),
                 Encoding.Default.GetBytes("my_key")
             );
-            Console.WriteLine(p.ToString());
-            Console.WriteLine(result.Password);
             if (p == result.Password)
             {
                 return await Task.FromResult(result);

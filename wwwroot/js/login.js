@@ -13,7 +13,6 @@ async function authorize(event) {
     await event.preventDefault();
     let response = await sendData(form);
     if (response.ok) {
-        console.log(response.status)
         return window.location.href = "/";
     }
     else {
