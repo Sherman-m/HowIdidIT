@@ -22,6 +22,26 @@
     grid-column: 1;
 }
 
+label[for="btn-add-to-favorites"] {
+    height: 40px;
+    width: 40px;
+    background-color: #222121;
+    color: #DBDBDB;
+    border-radius: 5px;
+    border-color: black;
+    font-style: normal;
+    padding: 9px;
+}
+
+label[for="btn-add-to-favorites"] > svg {
+    display: block;
+    fill: #DBDBDB;
+}
+
+input[id="btn-add-to-favorites"]:checked + label > svg {
+    fill: red;
+}
+
 .list-of-sections {
     display: grid;
     grid-template-rows: repeat(auto-fill, minmax(50px, auto));

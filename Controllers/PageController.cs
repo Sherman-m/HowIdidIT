@@ -57,12 +57,16 @@ public class PageController : Controller
     [Route("/change_password")]
     public IActionResult ChangePassword()
     {
+        if (User.Identity!.IsAuthenticated)
+            return Redirect("/");
         return View("~/Views/ChangePassword.cshtml");
     }
     
     [Route("/recover_password")]
     public IActionResult RecoverPassword()
     {
+        if (User.Identity!.IsAuthenticated)
+            return Redirect("/");
         return View("~/Views/RecoverPassword.cshtml");
     }
     

@@ -37,4 +37,5 @@ label[for^=floating] {
 .warning {
     margin-top: 10px;
     color: #ea1530;
+    text-align: center;
 }

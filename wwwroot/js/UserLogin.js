@@ -1,4 +1,4 @@
-﻿async function sendData(form) {
+﻿async function auth(form) {
     return await fetch("api/user/login", {
         method: "POST", 
         headers: { "Accept": "application/json", "Content-Type": "application/json" }, 
@@ -9,11 +9,12 @@
     });
 }
 
-async function authorize(event) {
-    await event.preventDefault();
-    let response = await sendData(form);
-    if (response.ok) {
-        return window.location.href = "/";
+async function handlerLogin(event) {
+    event.preventDefault();
+    
+    let authResponse = await auth(event.currentTarget);
+    if (authResponse.ok) {
+        window.location.href = "/";
     }
     else {
         let warning = document.createElement("p");
@@ -23,8 +24,13 @@ async function authorize(event) {
     }
 }
 
-const form = document.getElementById("auth-form");
-form.addEventListener("submit", authorize);
+function main() {
+    let form = document.getElementById("auth-form");
+    form.addEventListener("submit", handlerLogin);
+}
+
+window.addEventListener("load", main);
+
 
 
 
