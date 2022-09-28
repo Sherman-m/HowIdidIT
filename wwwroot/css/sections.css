@@ -35,11 +35,29 @@ label[for="btn-add-to-favorites"] {
 
 label[for="btn-add-to-favorites"] > svg {
     display: block;
-    fill: #DBDBDB;
 }
 
-input[id="btn-add-to-favorites"]:checked + label > svg {
+.checkbox-temporary-mark > svg {
+    fill: #DBDBDB;
+    animation-name: ch;
+    animation-duration: 0.5s;
+}
+
+.checkbox-checked > svg {
     fill: red;
+}
+
+.checkbox-unchecked {
+    fill: #DBDBDB;
+}
+.checkbox-unchecked:hover > svg {
+    fill: red;
+}
+
+@keyframes ch {
+    0% {fill: red}
+    50% {fill: red}
+    100% {fill: #DBDBDB}
 }
 
 .list-of-sections {
