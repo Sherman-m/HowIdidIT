@@ -15,6 +15,7 @@ async function register(form) {
 }
 
 async function login(form) {
+    console.log(form);
     return await fetch("api/user/login", {
         method: "POST",
         headers: { "Accept": "application/json", "Content-Type": "application/json" },
@@ -30,11 +31,11 @@ async function handlerRegistration(event) {
     
     let matchingPasswords = checkPasswords(event.currentTarget);
     if (matchingPasswords) {
-        
+ 
         let registrationResponse = await register(event.currentTarget);
         if (registrationResponse.ok) {
             
-            let loginResponse = await login(event.currentTarget);
+            let loginResponse = await login(event.target);
             if (loginResponse.ok) {
                 
                 window.location.href = "/";

@@ -12,7 +12,7 @@
 async function handlerLogin(event) {
     event.preventDefault();
     
-    let authResponse = await auth(event.currentTarget);
+    let authResponse = await auth(event.target);
     if (authResponse.ok) {
         window.location.href = "/";
     }

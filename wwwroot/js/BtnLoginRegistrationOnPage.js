@@ -3,7 +3,8 @@
     window.location.href = "/login";
 }
 
-function redirectOnRegistrationPage() {
+function redirectOnRegistrationPage(event) {
+    event.preventDefault();
     window.location.href = "/registration";
 }
 
