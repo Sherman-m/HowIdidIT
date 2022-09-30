@@ -10,7 +10,7 @@ namespace HowIdidIT.Data.Services.ServiceImplementations;
 
 public class UserService : IUserService
 {
-    private ForumContext _context;
+    private readonly ForumContext _context;
 
     public UserService(ForumContext context)
     {
@@ -48,6 +48,8 @@ public class UserService : IUserService
             .Include(t => t.TypeOfUser)
             .Include(d => d.Discussions)
             .Include(m => m.Messages)
+            .Include(st => st.SelectedTopics)
+            .Include(sd => sd.SelectedDiscussions)
             .ToListAsync();
         return await Task.FromResult(result);
     }

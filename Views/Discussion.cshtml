@@ -18,15 +18,15 @@
         <a href="/sections" class="pages">Разделы</a>
     </div>
     <div id="my-nav-bar2" class="d-flex flex-wrap align-items-center justify-content-around">
-        <form class="form-search">
-            <input type="search" class="form-control form-control-dark" placeholder="Поиск..." aria-label="Search">
+        <form id="form-search">
+            <input type="search" class="form-control" placeholder="Поиск..." aria-label="Search">
         </form>
-        <button id="btn-auth" class="btn btn-dark" onclick="redirectOnLoginPage()">Авторизация</button>
-        <button id="btn-reg" class="btn btn-dark" onclick="redirectOnRegistrationPage()">Регистрация</button>
+        <button id="btn-auth" class="btn btn-dark">Авторизация</button>
+        <button id="btn-reg" class="btn btn-dark">Регистрация</button>
     </div>
 </header>
 <main>
-    <div class="navigation">
+    <div id="navigation">
         <a href="/">
             <img src="~/pictures/home_icon.png" height=20 alt="Главная">Главная
         </a>
@@ -37,7 +37,7 @@
         >>
         <a href="/discussion">Обсуждение №1</a>
     </div>
-    <div class="main-block">
+    <div id="main-block">
         <div class="content-block user-block">
             <h3><a href="/profile">Пользователь</a></h3><br>
             <span>люблю задавать вопросики</span>
@@ -60,12 +60,12 @@
         <div class="content-block answer-block">
             <p>Идите нахер, Ребзя</p>
         </div>
-        <div class="disc-buttons d-flex justify-content-between">
-            <form class="add-answer">
-                <button formaction="" formmethod="get" class="btn btn-dark btn-answer-create">Добавить ответ</button>
+        <div id="disc-buttons" class="d-flex justify-content-between">
+            <form id="add-answer">
+                <button class="btn btn-dark btn-answer-create">Добавить ответ</button>
             </form>
-            <form class="create-disc">
-                <button formaction="" formmethod="get" class="btn btn-dark btn-answer-create">Создать обсуждение</button>
+            <form id="create-disc">
+                <button class="btn btn-dark btn-answer-create">Создать обсуждение</button>
             </form>
         </div>
     </div>

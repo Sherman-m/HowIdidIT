@@ -25,7 +25,7 @@ async function handlerLogin(event) {
 }
 
 function main() {
-    let form = document.getElementById("auth-form");
+    let form = document.getElementById("login-block");
     form.addEventListener("submit", handlerLogin);
 }
 

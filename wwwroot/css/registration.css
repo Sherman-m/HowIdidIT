@@ -6,12 +6,12 @@
     grid-row-gap: 10px;
 }
 
-.registration-block {
+#registration-block {
     grid-row: 2;
     grid-column: 1;
 }
 
-.box-registration {
+#box-registration {
     font-size: 0.8rem;
     margin-bottom: 20px;
     flex-basis: 40%;
@@ -32,6 +32,7 @@ label[for^=floating] {
 
 .btn-register {
     margin-bottom: 30px;
+    align-self: end;
 }
 
 .warning {

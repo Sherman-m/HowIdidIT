@@ -47,11 +47,12 @@ public class PageController : Controller
         return View("~/Views/Discussion.cshtml");
     }
     
-    [Authorize]
     [Route("/profile")]
     public IActionResult Profile()
     {
-        return View("~/Views/Profile.cshtml");
+        if (User.Identity!.IsAuthenticated)
+            return View("~/Views/Profile.cshtml");
+        return Redirect("/login");
     }
     
     [Route("/change_password")]

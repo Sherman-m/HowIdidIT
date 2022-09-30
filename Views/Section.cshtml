@@ -20,15 +20,15 @@
         <a href="/sections" class="pages">Разделы</a>
     </div>
     <div id="my-nav-bar2" class="d-flex flex-wrap align-items-center justify-content-around">
-        <form class="form-search">
-            <input type="search" class="form-control form-control-dark" placeholder="Поиск..." aria-label="Search">
+        <form id="form-search">
+            <input type="search" class="form-control" placeholder="Поиск..." aria-label="Search">
         </form>
-        <button id="btn-auth" class="btn btn-dark" onclick="redirectOnLoginPage()">Авторизация</button>
-        <button id="btn-reg" class="btn btn-dark" onclick="redirectOnRegistrationPage()">Регистрация</button>
+        <button id="btn-auth" class="btn btn-dark">Авторизация</button>
+        <button id="btn-reg" class="btn btn-dark">Регистрация</button>
     </div>
 </header>
 <main>
-    <div class="navigation">
+    <div id="navigation">
             <a href="/">
                 <img src="~/pictures/home_icon.png" height=20 alt="Главная">Главная
             </a>
@@ -38,10 +38,10 @@
             <a href="/section">Раздел №1</a>
     </div>
     <div class="d-flex justify-content-between">
-        <div class="main-block">
-            <div class="content-block sections-block">
+        <div id="main-block">
+            <div id="section-block" class="content-block">
                 <div class ="d-flex justify-content-between">
-                    <h3 class="name-of-section">Веб-разработка</h3><hr>
+                    <h3 id="name-of-section">Веб-разработка</h3><hr>
                     <input type="checkbox" class="btn-check" id="btn-add-to-favorites">
                     <label class="btn shadow-none checkbox-unchecked" for="btn-add-to-favorites">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16">
@@ -51,13 +51,11 @@
                 </div>
                 <p>Описание</p>
             </div>
-            <div class="d-flex flex-column content-block discussing-block">
-                <div class="d-flex justify-content-between header-of-desc">
+            <div id="discussing-block" class="d-flex flex-column content-block">
+                <div id="header-of-desc" class="d-flex justify-content-between">
                     <h3>Обсуждения:</h3>
-                    <div class="d-flex desc-buttons flex-wrap justify-content-between">
-                        <form>
-                            <button type="button" class="btn btn-dark btn-create-desc">Cоздать обсуждение</button>
-                        </form>
+                    <div id="desc-buttons" class="d-flex justify-content-between flex-wrap">
+                        <button id="btn-create-desc" type="button" class="btn btn-dark">Cоздать обсуждение</button>
                         <div class="dropdown">
                             <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
                                 Новые
@@ -70,7 +68,7 @@
                         </div>
                     </div>
                 </div>
-                <table class="table table-desc">
+                <table id="table-desc" class="table">
                     <thead>
                     <tr>
                         <th scope="col">#</th>

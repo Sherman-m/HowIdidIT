@@ -24,6 +24,6 @@ public class User
     public ICollection<Discussion> Discussions { get; set; }
     public ICollection<Message> Messages { get; set; }
     
-    public ICollection<Discussion> SelectedDiscussions { get; set; }
     public ICollection<Topic> SelectedTopics { get; set; }
+    public ICollection<Discussion> SelectedDiscussions { get; set; }
 }

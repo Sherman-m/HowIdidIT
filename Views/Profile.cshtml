@@ -18,7 +18,7 @@
         <a href="/sections" class="pages">Разделы</a>
     </div>
     <div id="my-nav-bar2" class="d-flex flex-wrap align-items-center justify-content-around">
-        <form class="form-search">
+        <form id="form-search">
             <input type="search" class="form-control form-control-dark" placeholder="Поиск..." aria-label="Search">
         </form>
         <button id="btn-auth" class="btn btn-dark" onclick="redirectOnLoginPage()">Авторизация</button>
@@ -26,7 +26,7 @@
     </div>
 </header>
 <main>
-    <div class="navigation">
+    <div id="navigation">
         <a href="/">
             <img src="~/pictures/home_icon.png" height=20 alt="Главная">Главная
         </a>
@@ -34,7 +34,7 @@
         <a href="/profile">Профиль</a>
     </div>
     <div class="d-flex justify-content-between">
-        <div class="first-column">
+        <div id="first-column">
             <div class="d-flex flex-column user-avatar content-block justify-content-between align-items-center">
                 <img src="~/pictures/avatar.png" height="250" width="250">
                 <form>
@@ -48,7 +48,7 @@
                 <button type="button" formaction="../Views/registration.html" formmethod="get" class="btn btn-dark">Удалить профиль</button>
             </div>
         </div>     
-        <div class="second-column">
+        <div id="second-column">
             <div class="user-data content-block">
                 <h3>Nickname:</h3>
                 <form id="user-prop">

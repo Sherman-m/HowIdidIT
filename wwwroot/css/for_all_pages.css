@@ -60,7 +60,7 @@ header {
     text-overflow: ellipsis;
 }
 
-.form-search {
+#form-search {
     max-width: 40%;
     font-style: initial;
     font-size: 0.8rem;
@@ -98,7 +98,7 @@ a:hover{
     text-decoration: #2A2A2A;
 }
 
-.navigation {
+#navigation {
     grid-row: 1;
     font-size: 0.95rem;
     align-self: start;
@@ -148,5 +148,11 @@ footer {
     border-color: black;
     color: #DBDBDB;
     text-align: center;
+}
+
+.warning {
+    margin-top: 10px;
+    color: #ea1530;
+    align-self: center;
 }
 

@@ -51,12 +51,12 @@ async function handlerRegistration(event) {
         let warningPasswd = document.createElement("p");
         warningPasswd.className = "warning";
         warningPasswd.innerText = "Пароли не совпадают";
-        document.getElementById("register-form").append(warningPasswd);
+        document.getElementById("registration-block").append(warningPasswd);
     }
 }
 
 function main() {
-    let form = document.getElementById("register-form");
+    let form = document.getElementById("registration-block");
     form.addEventListener("submit", handlerRegistration);
 }
 

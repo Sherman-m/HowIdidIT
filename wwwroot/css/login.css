@@ -11,7 +11,7 @@
     grid-column: 1;
 }
 
-.box-login {
+#box-login {
     flex-basis: max-content;
     font-size: 0.8rem;
     margin-bottom: 30px;
@@ -37,24 +37,22 @@ label[for^=floating] {
     margin-top: 10px;
 }
 
-.box-accept {
+#box-accept {
     flex-basis: max-content;
     margin-bottom: 30px;
 }
 
 .form-check {
     font-size: 0.9rem;
-}
-
-input[id=RemebmerMe] {
+    min-width: 27%;
     margin: 3px;
 }
 
-.warning {
-    flex-basis: max-content;
-    color: #ea1530;
-    align-self: center;
+.form-check > label {
+    margin-top: 9px;
+    margin-left: 8px;
 }
+
 
 
 

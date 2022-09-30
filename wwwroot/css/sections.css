@@ -7,7 +7,7 @@
     justify-content: center;
 }
 
-.main-block {
+#main-block {
     grid-row: 2;
     display: grid;
     grid-template-rows: minmax(20vh, max-content) 30px minmax(20vh, max-content);
@@ -15,7 +15,7 @@
     grid-row-gap: 5px;
 }
 
-.sections-block {
+#sections-block {
     align-self: auto;
     font-size: 0.9rem;
     grid-row: 1;
@@ -60,7 +60,7 @@ label[for="btn-add-to-favorites"] > svg {
     100% {fill: #DBDBDB}
 }
 
-.list-of-sections {
+#list-of-sections {
     display: grid;
     grid-template-rows: repeat(auto-fill, minmax(50px, auto));
     grid-template-columns: repeat(auto-fill, minmax(150px, auto));
@@ -69,35 +69,33 @@ label[for="btn-add-to-favorites"] > svg {
     text-align: center;
 }
 
-.discussing-block {
+.link-on-section {
+    margin-right: 15px;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+}
+
+#discussing-block {
     font-size: 0.8rem;
     grid-row: 3;
     grid-column: 1;
 }
 
-.table-desc {
-    background-color: #222121;
-    border-radius: 10px;
-    color: aliceblue;
-}
-
-table.table-desc >tbody > tr:hover {
-    background-color: #323030;
-}
-
-.header-of-desc {
+#header-of-desc {
     margin-bottom: 20px;
 }
 
-.header-of-desc > h3 {
+#header-of-desc > h3 {
     max-width: 20%;
+    align-self: center;
 }
 
-.desc-buttons {
+#desc-buttons {
     max-width: 60%;
+    align-content: center;
 }
 
-.btn-create-desc {
+#btn-create-desc {
     margin-right: 30px;
 }
 
@@ -110,9 +108,13 @@ ul.dropdown-menu > li > a {
     color: aliceblue;
 }
 
-.link-on-section {
-    margin-right: 15px;
-    margin-bottom: 10px;
-    font-size: 0.9rem;
+#table-desc {
+    background-color: #222121;
+    border-radius: 10px;
+    color: aliceblue;
+}
+
+#table-desc > tbody > tr:hover {
+    background-color: #323030;
 }
 
