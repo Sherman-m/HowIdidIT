@@ -16,5 +16,13 @@ async function handlerLoadTopics() {
 
             listOfTopics.appendChild(topicLink);
         }
+
+        let topicSelectionList = document.getElementById("selectTopic");
+        for (let topic of dataTopics) {
+            let opt = document.createElement("option");
+            opt.setAttribute("value", topic.topicId);
+            opt.innerText = topic.name;
+            topicSelectionList.appendChild(opt);
+        }
     }
 }

@@ -65,10 +65,10 @@ function enableCreateDisc(btnCreatingDisc) {
         '                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>\n' +
         '            </div>\n' +
         '            <div class="modal-body">\n' +
-        '                <form id="create-desc" class="d-flex flex-column">\n' +
+        '                <form id="create-disc" class="d-flex flex-column">\n' +
         '                    <div class="name-of-new-disc">\n' +
         '                        <label for="nameOfNewDisc">Напишите название:</label>\n' +
-        '                        <input type="text" id="nameOfNewDesc" class="form-control">\n' +
+        '                        <input type="text" id="nameOfNewDisc" class="form-control">\n' +
         '                    </div>\n' +
         '                    <div class="question-of-new-disc">\n' +
         '                        <label for="questionForDisc">Задайте ваш вопрос:</label>\n' +
@@ -109,6 +109,11 @@ async function handlerAuthUser() {
         let btnCreatingDisc = document.getElementById("btn-create-disc");
         if (btnCreatingDisc) {
             enableCreateDisc(btnCreatingDisc);
+        }
+        
+        let formCreateDisc = document.getElementById("create-disc");
+        if (formCreateDisc) {
+            await handlerCreateDisc(formCreateDisc, dataUser.userId);
         }
     }
 }
