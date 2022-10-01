@@ -9,10 +9,10 @@ async function handlerLoadDiscussionsForCurrentTopic() {
     let discussionsForTopicResponse = await loadDiscussionsForCurrentTopic(params.id);
     if (discussionsForTopicResponse.ok) {
         let dataAllDiscussions = await discussionsForTopicResponse.json();
-
+        console.log(dataAllDiscussions)
         let tableBody = document.querySelector("tbody");
 
-        for (let discussion of dataAllDiscussions) {
+        for (let discussion of dataAllDiscussions.sort(byField("dateOfCreating"))) {
             let row = document.createElement("tr");
             row.addEventListener("click", function (event) {
                 event.preventDefault();
@@ -22,7 +22,7 @@ async function handlerLoadDiscussionsForCurrentTopic() {
                 '                        <td>' + discussion.name + '</td>\n' +
                 '                        <td>' + discussion.topic.name+ '</td>\n' +
                 '                        <td>' + discussion.user.login + '</td>\n' +
-                '                        <td>' + discussion.dateOfCreating + '</td>';
+                '                        <td>' + Date(discussion.dateOfCreating) + '</td>';
             tableBody.appendChild(row);
         }
     }

@@ -10,17 +10,22 @@ async function handlerLoadAllDiscussions() {
         
         let tableBody = document.querySelector("tbody");
         
-        for (let discussion of dataAllDiscussions) {
+        for (let discussion of dataAllDiscussions.sort(byField("dateOfCreating"))) {
             let row = document.createElement("tr");
             row.addEventListener("click", function (event) {
                 event.preventDefault();
                 window.location.href = "/discussion?id=" + discussion.discussionId;
             });
+            
+            let date = Date(discussion.dateOfCreating);
+            
+            let formatDate = date.getDate + '.' + date.getMonth + '.' + date.getFullYear;
+            
             row.innerHTML = '<th scope="row">' + discussion.discussionId + '</th>\n' +
                 '                        <td>' + discussion.name + '</td>\n' +
                 '                        <td>' + discussion.topic.name+ '</td>\n' +
                 '                        <td>' + discussion.user.login + '</td>\n' +
-                '                        <td>' + discussion.dateOfCreating + '</td>';
+                '                        <td>' + date + '</td>';
             tableBody.appendChild(row);
         }
     }
