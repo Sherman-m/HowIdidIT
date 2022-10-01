@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace HowIdidIT.Controllers;
 
@@ -29,16 +27,16 @@ public class PageController : Controller
         return View("~/Views/Registration.cshtml");
     }
     
-    [Route("/sections")]
+    [Route("/topics")]
     public IActionResult AllSections()
     {
-        return View("~/Views/AllSections.cshtml");
+        return View("~/Views/AllTopics.cshtml");
     }
     
-    [Route("/section")]
+    [Route("/topic")]
     public IActionResult Section()
     {
-        return View("~/Views/Section.cshtml");
+        return View("~/Views/Topic.cshtml");
     }
     
     [Route("/discussion")]

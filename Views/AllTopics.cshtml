@@ -5,18 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Разделы</title>
     <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="~/css/sections.css" rel="stylesheet">
+    <link href="~/css/topics.css" rel="stylesheet">
     <link href="~/css/for_all_pages.css" rel="stylesheet">
+    <script src="~/js/DefaultEventsForButtons.js"></script>
+    <script src="~/js/AuthUser.js"></script>
     <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/BtnLoginRegistrationOnPage.js"></script>
-    <script src="~/js/GetDataForHeaderAndFavorites.js"></script>
 </head>
 <body class="background text-font">
 <header class="d-flex flex-wrap justify-content-between">
     <div id="my-nav-bar1" class="d-flex flex-wrap align-items-center justify-content-around">
         <a href="/" class="logo">HowIdidIT</a>
         <a href="/" class="pages">Главная</a>
-        <a href="/sections" class="pages">Разделы</a>
+        <a href="/topics" class="pages">Разделы</a>
     </div>
     <div id="my-nav-bar2" class="d-flex flex-wrap align-items-center justify-content-around">
         <form id="form-search">
@@ -32,27 +32,27 @@
             <img src="~/pictures/home_icon.png" height=20 alt="Главная">Главная
         </a>
         >>
-        <a href="/sections">Разделы</a>
+        <a href="/topics">Разделы</a>
     </div>
     <div class="d-flex justify-content-between">
         <div id="main-block">
-            <div id="section-block" class="content-block">
-                <div id="list-of-sections">
-                    <a href="/section" class="link-on-section">Веб-разработка</a>
-                    <a href="#" class="link-on-section">GameDev</a>
-                    <a href="#" class="link-on-section">Сетевые технологии</a>
-                    <a href="#" class="link-on-section">DevOps</a>
-                    <a href="#" class="link-on-section">Embadded-Разработка</a>
-                    <a href="#" class="link-on-section">Операционные системы</a>
-                    <a href="#" class="link-on-section">Купи слона</a>
-                    <a href="#" class="link-on-section">А ты купи</a>
-                    <a href="#" class="link-on-section">Слабо?</a>
-                    <a href="#" class="link-on-section">Iot</a>
-                    <a href="#" class="link-on-section">C++</a>
-                    <a href="#" class="link-on-section">C#</a>
-                    <a href="#" class="link-on-section">Python</a>
-                    <a href="#" class="link-on-section">Java</a>
-                    <a href="#" class="link-on-section">.Net</a>
+            <div id="topics-block" class="content-block">
+                <div id="list-of-topics">
+                    <a href="/topic" class="link-on-topics">Веб-разработка</a>
+                    <a href="#" class="link-on-topics">GameDev</a>
+                    <a href="#" class="link-on-topics">Сетевые технологии</a>
+                    <a href="#" class="link-on-topics">DevOps</a>
+                    <a href="#" class="link-on-topics">Embadded-Разработка</a>
+                    <a href="#" class="link-on-topics">Операционные системы</a>
+                    <a href="#" class="link-on-topics">Купи слона</a>
+                    <a href="#" class="link-on-topics">А ты купи</a>
+                    <a href="#" class="link-on-topics">Слабо?</a>
+                    <a href="#" class="link-on-topics">Iot</a>
+                    <a href="#" class="link-on-topics">C++</a>
+                    <a href="#" class="link-on-topics">C#</a>
+                    <a href="#" class="link-on-topics">Python</a>
+                    <a href="#" class="link-on-topics">Java</a>
+                    <a href="#" class="link-on-topics">.Net</a>
                 </div>
             </div>
             <div id="discussing-block" class="d-flex flex-column content-block">
@@ -108,15 +108,7 @@
                 </table>
             </div>
         </div>
-        <div id="favorites-block" class="content-block">
-            <h3 class="text-center">Избранное</h3><hr>
-            <ul id="links-for-favorites">
-                <li><a href="/section">Веб-разработка</a></li>
-                <li><a href="#">GameDev</a></li>
-                <li><a href="#">Ребят, помогите сделать курсовую</a></li>
-                <li><a href="#">Что такое нормальные формы БД? Поясните, пж!</a></li>
-            </ul>
-        </div>
+        <div id="favorites-block"></div>
     </div>
 </main>
 <footer class="d-flex justify-content-around align-items-center">

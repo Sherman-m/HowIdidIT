@@ -1,4 +1,4 @@
-﻿async function auth(form) {
+﻿async function login(form) {
     return await fetch("api/user/login", {
         method: "POST", 
         headers: { "Accept": "application/json", "Content-Type": "application/json" }, 
@@ -12,8 +12,8 @@
 async function handlerLogin(event) {
     event.preventDefault();
     
-    let authResponse = await auth(event.target);
-    if (authResponse.ok) {
+    let loginResponse = await login(event.target);
+    if (loginResponse.ok) {
         window.location.href = "/";
     }
     else {

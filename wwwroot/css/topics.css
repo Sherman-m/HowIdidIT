@@ -15,7 +15,7 @@
     grid-row-gap: 5px;
 }
 
-#sections-block {
+#topics-block {
     align-self: auto;
     font-size: 0.9rem;
     grid-row: 1;
@@ -60,7 +60,7 @@ label[for="btn-add-to-favorites"] > svg {
     100% {fill: #DBDBDB}
 }
 
-#list-of-sections {
+#list-of-topics {
     display: grid;
     grid-template-rows: repeat(auto-fill, minmax(50px, auto));
     grid-template-columns: repeat(auto-fill, minmax(150px, auto));
@@ -69,7 +69,7 @@ label[for="btn-add-to-favorites"] > svg {
     text-align: center;
 }
 
-.link-on-section {
+.link-on-topics {
     margin-right: 15px;
     margin-bottom: 10px;
     font-size: 0.9rem;
@@ -116,5 +116,30 @@ ul.dropdown-menu > li > a {
 
 #table-desc > tbody > tr:hover {
     background-color: #323030;
+}
+
+.modal-content {
+    background-color: #2A2A2A;
+    border-radius: 15px;
+    border-width: 1px;
+    border-color: black;
+    box-shadow: 1px 0 5px black, -1px 0 5px black;
+    text-align: justify;
+    font-size: 1.1rem;
+}
+
+.name-of-new-desc, .your-question,
+.select-topic {
+    margin-bottom: 30px;
+}
+
+.name-of-new-desc > label, .your-question > label, 
+.select-topic > label {
+    margin-bottom: 10px;
+}
+
+.your-question > textarea {
+    max-height: 250px;
+    min-height: 80px;
 }
 

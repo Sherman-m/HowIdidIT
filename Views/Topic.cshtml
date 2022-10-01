@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Раздел №1</title>
     <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="~/css/sections.css" rel="stylesheet">
+    <link href="~/css/topics.css" rel="stylesheet">
     <link href="~/css/for_all_pages.css" rel="stylesheet">
-    <script src="~/js/BtnLoginRegistrationOnPage.js"></script>
-    <script src="~/js/GetDataForHeaderAndFavorites.js"></script>
-    <script src="~/js/check.js"></script>
+    <script src="~/js/DefaultEventsForButtons.js"></script>
+    <script src="~/js/AuthUser.js"></script>
+    <script src="~/js/AddToFavorites.js"></script>
     <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
 </head>
 <body class="background text-font">
@@ -17,7 +17,7 @@
     <div id="my-nav-bar1" class="d-flex flex-wrap align-items-center justify-content-around">
         <a href="/" class="logo">HowIdidIT</a>
         <a href="/" class="pages">Главная</a>
-        <a href="/sections" class="pages">Разделы</a>
+        <a href="/topics" class="pages">Разделы</a>
     </div>
     <div id="my-nav-bar2" class="d-flex flex-wrap align-items-center justify-content-around">
         <form id="form-search">
@@ -29,19 +29,19 @@
 </header>
 <main>
     <div id="navigation">
-            <a href="/">
-                <img src="~/pictures/home_icon.png" height=20 alt="Главная">Главная
-            </a>
-            >>
-            <a href="/sections">Разделы</a>
-            >>
-            <a href="/section">Раздел №1</a>
+        <a href="/">
+            <img src="~/pictures/home_icon.png" height=20 alt="Главная">Главная
+        </a>
+        >>
+        <a href="/topics">Разделы</a>
+        >>
+        <a href="/topic">Раздел №1</a>
     </div>
     <div class="d-flex justify-content-between">
         <div id="main-block">
-            <div id="section-block" class="content-block">
-                <div class ="d-flex justify-content-between">
-                    <h3 id="name-of-section">Веб-разработка</h3><hr>
+            <div id="topics-block" class="content-block">
+                <div class="d-flex justify-content-between">
+                    <h3 id="name-of-topic">Веб-разработка</h3><hr>
                     <input type="checkbox" class="btn-check" id="btn-add-to-favorites">
                     <label class="btn shadow-none checkbox-unchecked" for="btn-add-to-favorites">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16">
@@ -100,15 +100,7 @@
                 </table>
             </div>
         </div>
-        <div id="favorites-block" class="content-block">
-            <h3 class="text-center">Избранное</h3><hr>
-            <ul id="links-for-favorites">
-                <li><a href="/section">Веб-разработка</a></li>
-                <li><a href="#">GameDev</a></li>
-                <li><a href="#">Ребят, помогите сделать курсовую</a></li>
-                <li><a href="#">Что такое нормальные формы БД? Поясните, пж!</a></li>
-            </ul>
-        </div>
+        <div id="favorites-block"></div>
     </div>
 </main>
 <footer class="d-flex justify-content-around align-items-center">
