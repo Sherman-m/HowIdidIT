@@ -8,7 +8,7 @@ function redirectOnRegistrationPage(event) {
     window.location.href = "/registration";
 }
 
-function main() {
+function handlerDefaultEventsForButtons() {
     let btnAuth = document.getElementById("btn-auth");
     if  (btnAuth) {
         btnAuth.addEventListener("click", redirectOnLoginPage);
@@ -19,13 +19,11 @@ function main() {
         btnRegister.addEventListener("click", redirectOnRegistrationPage);
     }
 
-    let btnCreateDesc = document.getElementById("btn-create-desc");
-    if (btnCreateDesc) {
-        btnCreateDesc.addEventListener("click", redirectOnLoginPage);
+    let btnCreateDisc = document.getElementById("btn-create-disc");
+    if (btnCreateDisc) {
+        btnCreateDisc.addEventListener("click", redirectOnLoginPage);
     }
 }
-
-window.addEventListener("load", main);
 
 
 

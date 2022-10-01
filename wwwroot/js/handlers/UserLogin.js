@@ -13,6 +13,7 @@ async function handlerLogin(event) {
     event.preventDefault();
     
     let loginResponse = await login(event.target);
+    console.log(event.target);
     if (loginResponse.ok) {
         window.location.href = "/";
     }
@@ -24,12 +25,10 @@ async function handlerLogin(event) {
     }
 }
 
-function main() {
+function handlerUserLogin() {
     let form = document.getElementById("login-block");
     form.addEventListener("submit", handlerLogin);
 }
-
-window.addEventListener("load", main);
 
 
 
