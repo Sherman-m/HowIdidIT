@@ -10,6 +10,7 @@ public class Discussion
     [Column(Order = 1)]
     public int DiscussionId { get; set; }
     public string Name { get; set; }
+    public string Question { get; set; }
     
     public int TopicId { get; set; }
     public Topic Topic { get; set; }

@@ -81,7 +81,7 @@ label[for="btn-add-to-favorites"] > svg {
     grid-column: 1;
 }
 
-#header-of-desc {
+#header-of-disc {
     margin-bottom: 20px;
 }
 
@@ -90,12 +90,12 @@ label[for="btn-add-to-favorites"] > svg {
     align-self: center;
 }
 
-#desc-buttons {
+#disc-buttons {
     max-width: 60%;
     align-content: center;
 }
 
-#btn-create-desc {
+#btn-create-disc {
     margin-right: 30px;
 }
 
@@ -108,13 +108,13 @@ ul.dropdown-menu > li > a {
     color: aliceblue;
 }
 
-#table-desc {
+#table-disc {
     background-color: #222121;
     border-radius: 10px;
     color: aliceblue;
 }
 
-#table-desc > tbody > tr:hover {
+#table-disc > tbody > tr:hover {
     background-color: #323030;
 }
 
@@ -128,17 +128,17 @@ ul.dropdown-menu > li > a {
     font-size: 1.1rem;
 }
 
-.name-of-new-desc, .your-question,
-.select-topic {
+.name-of-new-disc, .question-of-new-disc,
+.select-topic-for-new-disc {
     margin-bottom: 30px;
 }
 
-.name-of-new-desc > label, .your-question > label, 
-.select-topic > label {
+.name-of-new-disc > label, .question-of-new-disc > label, 
+.select-topic-for-new-disc > label {
     margin-bottom: 10px;
 }
 
-.your-question > textarea {
+.question-of-new-disc > textarea {
     max-height: 250px;
     min-height: 80px;
 }

@@ -13,9 +13,7 @@ function addToFavorites(event) {
     }
 }
 
-function main() {
+function handlerAddToFavorites() {
     let checkbox = document.getElementById("btn-add-to-favorites");
     checkbox.addEventListener("click", addToFavorites);
 }
-
-window.addEventListener("load", main);

@@ -7,9 +7,13 @@
     <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="~/css/topics.css" rel="stylesheet">
     <link href="~/css/for_all_pages.css" rel="stylesheet">
-    <script src="~/js/DefaultEventsForButtons.js"></script>
-    <script src="~/js/AuthUser.js"></script>
-    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/handlers/DefaultEventsForButtons.js"></script>
+    <script src="~/js/handlers/AuthUser.js"></script>
+    <script src="~/js/handlers/LoadTopics.js"></script>
+    <script src="~/js/handlers/LoadTopicsForSelection.js"></script>
+    <script src="~/js/orderOfHandlers/ForAllTopics.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js">
+    </script>
 </head>
 <body class="background text-font">
 <header class="d-flex flex-wrap justify-content-between">
@@ -37,29 +41,13 @@
     <div class="d-flex justify-content-between">
         <div id="main-block">
             <div id="topics-block" class="content-block">
-                <div id="list-of-topics">
-                    <a href="/topic" class="link-on-topics">Веб-разработка</a>
-                    <a href="#" class="link-on-topics">GameDev</a>
-                    <a href="#" class="link-on-topics">Сетевые технологии</a>
-                    <a href="#" class="link-on-topics">DevOps</a>
-                    <a href="#" class="link-on-topics">Embadded-Разработка</a>
-                    <a href="#" class="link-on-topics">Операционные системы</a>
-                    <a href="#" class="link-on-topics">Купи слона</a>
-                    <a href="#" class="link-on-topics">А ты купи</a>
-                    <a href="#" class="link-on-topics">Слабо?</a>
-                    <a href="#" class="link-on-topics">Iot</a>
-                    <a href="#" class="link-on-topics">C++</a>
-                    <a href="#" class="link-on-topics">C#</a>
-                    <a href="#" class="link-on-topics">Python</a>
-                    <a href="#" class="link-on-topics">Java</a>
-                    <a href="#" class="link-on-topics">.Net</a>
-                </div>
+                <div id="list-of-topics"></div>
             </div>
             <div id="discussing-block" class="d-flex flex-column content-block">
-                <div id="header-of-desc" class="d-flex justify-content-between">
+                <div id="header-of-disc" class="d-flex justify-content-between">
                     <h3>Обсуждения:</h3>
-                    <div id="desc-buttons" class="d-flex justify-content-between flex-wrap">
-                        <button id="btn-create-desc" type="button" class="btn btn-dark">Cоздать обсуждение</button>
+                    <div id="disc-buttons" class="d-flex justify-content-between flex-wrap">
+                        <button id="btn-create-disc" type="button" class="btn btn-dark">Cоздать обсуждение</button>
                         <div class="dropdown">
                             <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
                                 Новые
@@ -72,7 +60,7 @@
                         </div>
                     </div>
                 </div>
-                <table id="table-desc" class="table">
+                <table id="table-disc" class="table">
                     <thead>
                     <tr>
                         <th scope="col">#</th>

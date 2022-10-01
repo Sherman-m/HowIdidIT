@@ -55,12 +55,10 @@ async function handlerRegistration(event) {
     }
 }
 
-function main() {
+function handlerUserRegistration() {
     let form = document.getElementById("registration-block");
     form.addEventListener("submit", handlerRegistration);
 }
-
-window.addEventListener("load", main);
 
 
 

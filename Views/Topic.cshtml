@@ -7,9 +7,12 @@
     <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="~/css/topics.css" rel="stylesheet">
     <link href="~/css/for_all_pages.css" rel="stylesheet">
-    <script src="~/js/DefaultEventsForButtons.js"></script>
-    <script src="~/js/AuthUser.js"></script>
-    <script src="~/js/AddToFavorites.js"></script>
+    <script src="~/js/handlers/DefaultEventsForButtons.js"></script>
+    <script src="~/js/handlers/AuthUser.js"></script>
+    <script src="~/js/handlers/AddToFavorites.js"></script>
+    <script src="~/js/handlers/LoadCurrentTopic.js"></script>
+    <script src="~/js/handlers/LoadTopicsForSelection.js"></script>
+    <script src="~/js/orderOfHandlers/ForTopic.js"></script>
     <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
 </head>
 <body class="background text-font">
@@ -41,7 +44,7 @@
         <div id="main-block">
             <div id="topics-block" class="content-block">
                 <div class="d-flex justify-content-between">
-                    <h3 id="name-of-topic">Веб-разработка</h3><hr>
+                    <h3 id="name-of-topic"></h3><hr>
                     <input type="checkbox" class="btn-check" id="btn-add-to-favorites">
                     <label class="btn shadow-none checkbox-unchecked" for="btn-add-to-favorites">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16">
@@ -49,13 +52,13 @@
                         </svg>
                     </label>
                 </div>
-                <p>Описание</p>
+                <p id="topic-description"></p>
             </div>
             <div id="discussing-block" class="d-flex flex-column content-block">
-                <div id="header-of-desc" class="d-flex justify-content-between">
+                <div id="header-of-disc" class="d-flex justify-content-between">
                     <h3>Обсуждения:</h3>
-                    <div id="desc-buttons" class="d-flex justify-content-between flex-wrap">
-                        <button id="btn-create-desc" type="button" class="btn btn-dark">Cоздать обсуждение</button>
+                    <div id="disc-buttons" class="d-flex justify-content-between flex-wrap">
+                        <button id="btn-create-disc" type="button" class="btn btn-dark">Cоздать обсуждение</button>
                         <div class="dropdown">
                             <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
                                 Новые
@@ -68,7 +71,7 @@
                         </div>
                     </div>
                 </div>
-                <table id="table-desc" class="table">
+                <table id="table-disc" class="table">
                     <thead>
                     <tr>
                         <th scope="col">#</th>
