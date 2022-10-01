@@ -14,5 +14,9 @@ public class TopicConfiguration : IEntityTypeConfiguration<Topic>
         builder.Property(t => t.DateOfCreating).HasDefaultValueSql("NOW()");
         builder.Property(t => t.LastModification).HasDefaultValueSql("NOW()");
         builder.HasIndex(t => t.Name).IsUnique(true);
+
+        builder
+            .HasMany<User>(t => t.SelectedUsers)
+            .WithMany(u => u.SelectedTopics);
     }
 }

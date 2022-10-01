@@ -12,5 +12,13 @@ public class DiscussionConfiguration : IEntityTypeConfiguration<Discussion>
         builder.Property(d => d.DateOfCreating).HasDefaultValueSql("NOW()");
         builder.Property(d => d.LastModification).HasDefaultValueSql("NOW()");
         builder.Property(d => d.CountOfMessages).HasDefaultValue(0);
+
+        builder
+            .HasOne<User>(d => d.User)
+            .WithMany(u => u.Discussions);
+        
+        builder
+            .HasMany<User>(d => d.SelectedUsers)
+            .WithMany(u => u.SelectedDiscussions);
     }
 }

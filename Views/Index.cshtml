@@ -7,49 +7,42 @@
     <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="~/css/index.css" rel="stylesheet">
     <link href="~/css/for_all_pages.css" rel="stylesheet">
-    <script src="~/js/for_all_pages.js"></script>
+    <script src="~/js/DefaultEventsForButtons.js"></script>
+    <script src="~/js/AuthUser.js"></script>
 </head>
 <body class="background text-font">
 <header class="d-flex flex-wrap justify-content-between">
-    <div class="d-flex flex-wrap my-nav-bar1 align-items-center justify-content-around">
+    <div id="my-nav-bar1" class="d-flex flex-wrap align-items-center justify-content-around">
         <a href="/" class="logo">HowIdidIT</a>
         <a href="/" class="pages">Главная</a>
-        <a href="/sections" class="pages">Разделы</a>
+        <a href="/topics" class="pages">Разделы</a>
     </div>
-    <div class="d-flex flex-wrap my-nav-bar2 align-items-center justify-content-around">
-        <form class="form-search">
-            <input type="search" class="form-control form-control-dark" placeholder="Поиск..." aria-label="Search">
+    <div id="my-nav-bar2" class="d-flex flex-wrap align-items-center justify-content-around">
+        <form id="form-search">
+            <input type="search" class="form-control" placeholder="Поиск..." aria-label="Search">
         </form>
-        <button onclick="redirectOnLoginPage()" class="btn btn-dark">Авторизация</button>
-        <button onclick="redirectOnRegistrationPage()" class="btn btn-dark">Регистрация</button>
+        <button id="btn-auth" class="btn btn-dark">Авторизация</button>
+        <button id="btn-reg" class="btn btn-dark">Регистрация</button>
     </div>
 </header>
 <main>
-    <div class="navigation">
+    <div id="navigation">
         <a href="/">
             <img src="~/pictures/home_icon.png" height=20 alt="Главная">Главная
         </a>
     </div>
     <div class="d-flex justify-content-between">
-        <div class="main-block">
-            <div class="content content-block">
+        <div id="main-block">
+            <div id="content" class="content-block">
                 <h2>Добро пожаловать!</h2><hr>
                 <p>Форум посвящен IT-тематикам. Это место, где каждый сможет создать обсуждение, поговорить о проблемах, спросить о реализации той или иной вещи, выложить свое собственное исследование или просто пообщаться с другими людьми. Данный форум будет чем-то средним между обычным форумом и соц. сетью. Здесь мы ответим на самый главный вопрос: How I did it!!!</p>
             </div>
-            <div class="news content-block">
+            <div id="news" class="content-block">
                 <h2>Новости форума</h2><hr>
                 <p>Вот это хорошие новости!</p>
             </div>
         </div>
-        <div class="recent-block content-block">
-            <h3 class="text-center">Избранное</h3><hr>
-            <ul>
-                <li><a href="/section">Веб-разработка</a></li>
-                <li><a href="#">GameDev</a></li>
-                <li><a href="#">Ребят, помогите сделать курсовую</a></li>
-                <li><a href="#">Что такое нормальные формы БД? Поясните, пж!</a></li>
-            </ul>
-        </div>
+        <div id="favorites-block"></div>
     </div>
 </main>
 <footer>

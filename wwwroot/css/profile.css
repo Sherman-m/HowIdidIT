@@ -6,7 +6,7 @@
     justify-content: center;
 }
 
-.first-column {
+#first-column {
     grid-row: 2;
     display: grid;
     grid-template-rows: minmax(30vh, max-content) minmax(20vh, max-content);
@@ -30,7 +30,7 @@
     margin-bottom: 20px;
 }
 
-.second-column {
+#second-column {
     grid-row: 2;
     display: grid;
     grid-template-rows: minmax(20vh, max-content) minmax(20vh, max-content);

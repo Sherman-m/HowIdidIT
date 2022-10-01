@@ -17,6 +17,7 @@ builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<ITopicService, TopicService>();
 builder.Services.AddTransient<IDiscussionService, DiscussionService>();
 builder.Services.AddTransient<IMessageService, MessageService>();
+builder.Services.AddTransient<ITokenService, TokenService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ForumContext>();

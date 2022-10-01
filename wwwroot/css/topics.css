@@ -1,0 +1,145 @@
+﻿main {
+    display: grid;
+    grid-template-rows: max-content auto;
+    grid-template-columns: 90%;
+    grid-row-gap: 10px;
+    margin-inline: 20px;
+    justify-content: center;
+}
+
+#main-block {
+    grid-row: 2;
+    display: grid;
+    grid-template-rows: minmax(20vh, max-content) 30px minmax(20vh, max-content);
+    grid-template-columns: minmax(600px, 50vw);
+    grid-row-gap: 5px;
+}
+
+#topics-block {
+    align-self: auto;
+    font-size: 0.9rem;
+    grid-row: 1;
+    grid-column: 1;
+}
+
+label[for="btn-add-to-favorites"] {
+    height: 40px;
+    width: 40px;
+    background-color: #222121;
+    color: #DBDBDB;
+    border-radius: 5px;
+    border-color: black;
+    font-style: normal;
+    padding: 9px;
+}
+
+label[for="btn-add-to-favorites"] > svg {
+    display: block;
+}
+
+.checkbox-temporary-mark > svg {
+    fill: #DBDBDB;
+    animation-name: ch;
+    animation-duration: 0.5s;
+}
+
+.checkbox-checked > svg {
+    fill: red;
+}
+
+.checkbox-unchecked {
+    fill: #DBDBDB;
+}
+.checkbox-unchecked:hover > svg {
+    fill: red;
+}
+
+@keyframes ch {
+    0% {fill: red}
+    50% {fill: red}
+    100% {fill: #DBDBDB}
+}
+
+#list-of-topics {
+    display: grid;
+    grid-template-rows: repeat(auto-fill, minmax(50px, auto));
+    grid-template-columns: repeat(auto-fill, minmax(150px, auto));
+    grid-gap: 5px;
+    vertical-align: center;
+    text-align: center;
+}
+
+.link-on-topics {
+    margin-right: 15px;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+}
+
+#discussing-block {
+    font-size: 0.8rem;
+    grid-row: 3;
+    grid-column: 1;
+}
+
+#header-of-desc {
+    margin-bottom: 20px;
+}
+
+#header-of-desc > h3 {
+    max-width: 20%;
+    align-self: center;
+}
+
+#desc-buttons {
+    max-width: 60%;
+    align-content: center;
+}
+
+#btn-create-desc {
+    margin-right: 30px;
+}
+
+.dropdown-menu {
+    background-color: #2A2A2A;
+    max-width: 40%;
+}
+
+ul.dropdown-menu > li > a {
+    color: aliceblue;
+}
+
+#table-desc {
+    background-color: #222121;
+    border-radius: 10px;
+    color: aliceblue;
+}
+
+#table-desc > tbody > tr:hover {
+    background-color: #323030;
+}
+
+.modal-content {
+    background-color: #2A2A2A;
+    border-radius: 15px;
+    border-width: 1px;
+    border-color: black;
+    box-shadow: 1px 0 5px black, -1px 0 5px black;
+    text-align: justify;
+    font-size: 1.1rem;
+}
+
+.name-of-new-desc, .your-question,
+.select-topic {
+    margin-bottom: 30px;
+}
+
+.name-of-new-desc > label, .your-question > label, 
+.select-topic > label {
+    margin-bottom: 10px;
+}
+
+.your-question > textarea {
+    max-height: 250px;
+    min-height: 80px;
+}
+

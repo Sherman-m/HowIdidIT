@@ -14,49 +14,59 @@ public class PageController : Controller
     [Route("/login")]
     public IActionResult Login()
     {
+        if (User.Identity!.IsAuthenticated)
+            return Redirect("/");
         return View("~/Views/Login.cshtml");
     }
     
     [Route("/registration")]
     public IActionResult Registration()
     {
+        if (User.Identity!.IsAuthenticated)
+            return Redirect("/");
         return View("~/Views/Registration.cshtml");
     }
-
-    [Route("/sections")]
+    
+    [Route("/topics")]
     public IActionResult AllSections()
     {
-        return View("~/Views/AllSections.cshtml");
+        return View("~/Views/AllTopics.cshtml");
     }
-
-    [Route("/section")]
+    
+    [Route("/topic")]
     public IActionResult Section()
     {
-        return View("~/Views/Section.cshtml");
+        return View("~/Views/Topic.cshtml");
     }
-
+    
     [Route("/discussion")]
     public IActionResult Discussion()
     {
         return View("~/Views/Discussion.cshtml");
     }
-
+    
     [Route("/profile")]
     public IActionResult Profile()
     {
-        return View("~/Views/Profile.cshtml");
+        if (User.Identity!.IsAuthenticated)
+            return View("~/Views/Profile.cshtml");
+        return Redirect("/login");
     }
-
+    
     [Route("/change_password")]
     public IActionResult ChangePassword()
     {
+        if (User.Identity!.IsAuthenticated)
+            return Redirect("/");
         return View("~/Views/ChangePassword.cshtml");
     }
     
-    [Route("/send_email")]
-    public IActionResult SendEmail()
+    [Route("/recover_password")]
+    public IActionResult RecoverPassword()
     {
-        return View("~/Views/SendEmail.cshtml");
+        if (User.Identity!.IsAuthenticated)
+            return Redirect("/");
+        return View("~/Views/RecoverPassword.cshtml");
     }
     
 }
