@@ -33,11 +33,17 @@ public class DiscussionController : ControllerBase
     {
         return await _discussionService.GetDiscussions();
     }
+    
+    [HttpGet("for_topic/{topicId}")]
+    public async Task<ActionResult<IEnumerable<Discussion>>> GetDiscussionsByTopic(int topicId)
+    {
+        return await _discussionService.GetDiscussionsByTopic(topicId);
+    }
 
     [HttpGet("{id}")]
     public async Task<ActionResult<Discussion>> GetDiscussion(int id)
     {
-        var result = await _discussionService.GetDiscussion(id);
+        var result = await _discussionService.GetDiscussionById(id);
         if (result == null)
         {
             return NotFound();
