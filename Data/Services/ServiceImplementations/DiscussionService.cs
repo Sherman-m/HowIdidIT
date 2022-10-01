@@ -15,6 +15,37 @@ public class DiscussionService : IDiscussionService
         _context = context;
     }
 
+    public async Task<List<Discussion>> GetDiscussions()
+    {
+        var result = await _context.Discussions
+            .Include(t => t.Topic)
+            .Include(u => u.User)
+            .Include(m => m.Messages)
+            .ToListAsync();
+        return await Task.FromResult(result);
+    }
+
+    public async Task<Discussion?> GetDiscussionById(int id)
+    {
+        var result = await _context.Discussions
+            .Include(t => t.Topic)
+            .Include(u => u.User)
+            .Include(m => m.Messages)
+            .FirstOrDefaultAsync(mid => mid.DiscussionId == id);
+        return await Task.FromResult(result);
+    }
+
+    public async Task<List<Discussion>> GetDiscussionsByTopic(int id)
+    {
+        var result = await _context.Discussions
+            .Include(t => t.Topic)
+            .Include(u => u.User)
+            .Include(m => m.Messages)
+            .Where(t => t.TopicId == id)
+            .ToListAsync();
+        return await Task.FromResult(result);
+    }
+    
     public async Task<Discussion?> AddDiscussion(DiscussionDto discussionDto)
     {
         var discussion = new Discussion()
@@ -35,26 +66,6 @@ public class DiscussionService : IDiscussionService
         {
             return null;
         }
-    }
-
-    public async Task<List<Discussion>> GetDiscussions()
-    {
-        var result = await _context.Discussions
-            .Include(t => t.Topic)
-            .Include(u => u.User)
-            .Include(m => m.Messages)
-            .ToListAsync();
-        return await Task.FromResult(result);
-    }
-
-    public async Task<Discussion?> GetDiscussion(int id)
-    {
-        var result = await _context.Discussions
-            .Include(t => t.Topic)
-            .Include(u => u.User)
-            .Include(m => m.Messages)
-            .FirstOrDefaultAsync(mid => mid.DiscussionId == id);
-        return await Task.FromResult(result);
     }
 
     public async Task<Discussion?> UpdateDiscussion(int id, DiscussionDto discussionDto)

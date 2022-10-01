@@ -1,6 +1,5 @@
 ﻿async function createDisc(form, userId) {
-    console.log(userId);
-   return await fetch("api/Discussion", {
+   return await fetch("../api/Discussion", {
         method: "POST",
         headers: { "Accept": "application/json", "Content-Type": "application/json" },
         body: JSON.stringify({

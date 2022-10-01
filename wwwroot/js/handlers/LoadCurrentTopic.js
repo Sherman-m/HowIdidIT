@@ -6,12 +6,6 @@ async function loadTopics() {
     return await fetch("../api/Topic");
 }
 
-function getUrlSearchParams() {
-    return new Proxy(new URLSearchParams(window.location.search), {
-        get: (searchParams, prop) => searchParams.get(prop),
-    });
-}
-
 async function handlerLoadCurrentTopic() {
 
     let params = getUrlSearchParams();
@@ -28,15 +22,17 @@ async function handlerLoadCurrentTopic() {
         let dataTopic = await loadTopicsResponse.json();
 
         let topicSelectionList = document.getElementById("selectTopic");
-        for (let topic of dataTopic) {
-            let opt = document.createElement("option");
-            opt.setAttribute("value", topic.topicId);
-            opt.innerText = topic.name;
-            
-            if (Number(params.id) === topic.topicId) {
-                opt.selected = true;
+        if (topicSelectionList) {
+            for (let topic of dataTopic) {
+                let opt = document.createElement("option");
+                opt.setAttribute("value", topic.topicId);
+                opt.innerText = topic.name;
+
+                if (Number(params.id) === topic.topicId) {
+                    opt.selected = true;
+                }
+                topicSelectionList.appendChild(opt);
             }
-            topicSelectionList.appendChild(opt);
         }
     }
 }
