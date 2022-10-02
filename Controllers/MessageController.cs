@@ -16,7 +16,25 @@ public class MessageController : ControllerBase
         _messageService = messageService;
     }
 
-    [HttpPost]
+    [HttpGet("GetAllMessages")]
+    public async Task<ActionResult<IEnumerable<Message>>> GetAllMessages()
+    {
+        return await _messageService.GetAllMessages();
+    }
+
+    [HttpGet("GetMessageById")]
+    public async Task<ActionResult<Message>> GetMessageById(int id)
+    {
+        var result = await _messageService.GetMessageById(id);
+        if (result == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(result);
+    }
+    
+    [HttpPost("AddMessage")]
     public async Task<ActionResult<Message>> AddMessage([FromBody] MessageDto messageDto)
     {
         var result = await _messageService.AddMessage(messageDto);
@@ -28,28 +46,10 @@ public class MessageController : ControllerBase
         return Ok(result);
     }
 
-    [HttpGet]
-    public async Task<ActionResult<IEnumerable<Message>>> GetMessages()
+    [HttpPut("UpdateMessageById")]
+    public async Task<ActionResult<Message>> UpdateMessageById(int id, MessageDto messageDto)
     {
-        return await _messageService.GetMessages();
-    }
-
-    [HttpGet("{id}")]
-    public async Task<ActionResult<Message>> GetMessage(int id)
-    {
-        var result = await _messageService.GetMessage(id);
-        if (result == null)
-        {
-            return NotFound();
-        }
-
-        return Ok(result);
-    }
-
-    [HttpPut("{id}")]
-    public async Task<ActionResult<Message>> UpdateMessage(int id, MessageDto messageDto)
-    {
-        var result = await _messageService.UpdateMessage(id, messageDto);
+        var result = await _messageService.UpdateMessageById(id, messageDto);
         if (result == null)
         {
             return BadRequest();
@@ -58,10 +58,10 @@ public class MessageController : ControllerBase
         return Ok(result);
     }
     
-    [HttpDelete("{id}")]
-    public async Task<ActionResult> DeleteUser(int id)
+    [HttpDelete("DeleteUserById")]
+    public async Task<ActionResult> DeleteUserById(int id)
     {
-        var result = await _messageService.DeleteMessage(id);
+        var result = await _messageService.DeleteMessageById(id);
         if (result)
         {
             return Ok();

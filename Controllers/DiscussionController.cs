@@ -16,7 +16,31 @@ public class DiscussionController : ControllerBase
         _discussionService = discussionService;
     }
 
-    [HttpPost]
+    [HttpGet("GetAllDiscussions")]
+    public async Task<ActionResult<IEnumerable<Discussion>>> GetAllDiscussions()
+    {
+        return await _discussionService.GetAllDiscussions();
+    }
+    
+    [HttpGet("GetAllDiscussionsForTopic")]
+    public async Task<ActionResult<IEnumerable<Discussion>>> GetAllDiscussionsForTopic(int topicId)
+    {
+        return await _discussionService.GetAllDiscussionsForTopic(topicId);
+    }
+
+    [HttpGet("GetDiscussionById")]
+    public async Task<ActionResult<Discussion>> GetDiscussionById(int id)
+    {
+        var result = await _discussionService.GetDiscussionById(id);
+        if (result == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(result);
+    }
+    
+    [HttpPost("AddDiscussion")]
     public async Task<ActionResult<Discussion>> AddDiscussion([FromBody] DiscussionDto discussionDto)
     {
         var result = await _discussionService.AddDiscussion(discussionDto);
@@ -28,28 +52,10 @@ public class DiscussionController : ControllerBase
         return Ok(result);
     }
 
-    [HttpGet]
-    public async Task<ActionResult<IEnumerable<Discussion>>> GetDiscussions()
+    [HttpPut("UpdateDiscussionById")]
+    public async Task<ActionResult<Discussion>> UpdateDiscussionById(int id, [FromBody] DiscussionDto discussionDto)
     {
-        return await _discussionService.GetDiscussions();
-    }
-
-    [HttpGet("{id}")]
-    public async Task<ActionResult<Discussion>> GetDiscussion(int id)
-    {
-        var result = await _discussionService.GetDiscussion(id);
-        if (result == null)
-        {
-            return NotFound();
-        }
-
-        return Ok(result);
-    }
-
-    [HttpPut("{id}")]
-    public async Task<ActionResult<Discussion>> UpdateDiscussion(int id, [FromBody] DiscussionDto discussionDto)
-    {
-        var result = await _discussionService.UpdateDiscussion(id, discussionDto);
+        var result = await _discussionService.UpdateDiscussionById(id, discussionDto);
         if (result == null)
         {
             return BadRequest();
@@ -58,10 +64,10 @@ public class DiscussionController : ControllerBase
         return Ok(result);
     }
 
-    [HttpDelete]
-    public async Task<ActionResult> DeleteDiscussion(int id)
+    [HttpDelete("DeleteDiscussionById")]
+    public async Task<ActionResult> DeleteDiscussionById(int id)
     {
-        var result = await _discussionService.DeleteDiscussion(id);
+        var result = await _discussionService.DeleteDiscussionById(id);
         if (result)
         {
             return Ok();

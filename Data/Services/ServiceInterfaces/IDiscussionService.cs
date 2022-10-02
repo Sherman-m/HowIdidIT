@@ -5,9 +5,10 @@ namespace HowIdidIT.Data.Services.ServiceInterfaces;
 
 public interface IDiscussionService
 {
+    Task<List<Discussion>> GetAllDiscussions();
+    Task<Discussion?> GetDiscussionById(int id);
+    Task<List<Discussion>> GetAllDiscussionsForTopic(int topicId); 
     Task<Discussion?> AddDiscussion(DiscussionDto discussionDto);
-    Task<List<Discussion>> GetDiscussions();
-    Task<Discussion?> GetDiscussion(int id);
-    Task<Discussion?> UpdateDiscussion(int id, DiscussionDto discussionDto);
-    Task<bool> DeleteDiscussion(int id);
+    Task<Discussion?> UpdateDiscussionById(int id, DiscussionDto discussionDto);
+    Task<bool> DeleteDiscussionById(int id);
 }

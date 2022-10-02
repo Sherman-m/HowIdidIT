@@ -16,7 +16,25 @@ public class TopicController : ControllerBase
         _topicService = topicService;
     }
 
-    [HttpPost]
+    [HttpGet("GetAllTopics")]
+    public async Task<ActionResult<IEnumerable<Topic>>> GetAllTopics()
+    {
+        return await _topicService.GetAllTopics();
+    }
+
+    [HttpGet("GetTopicById")]
+    public async Task<ActionResult<Topic>> GetTopicById(int id)
+    {
+        var result = await _topicService.GetTopicById(id);
+        if (result == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(result);
+    }
+    
+    [HttpPost("CreateTopic")]
     public async Task<ActionResult<Topic>> CreateTopic([FromBody] TopicDto topicDto)
     {
         var result = await _topicService.AddTopic(topicDto);
@@ -28,28 +46,10 @@ public class TopicController : ControllerBase
         return Ok(result);
     }
 
-    [HttpGet]
-    public async Task<ActionResult<IEnumerable<Topic>>> GetTopics()
+    [HttpPut("UpdateTopicById")]
+    public async Task<ActionResult<Topic>> UpdateTopicById(int id,[FromBody] TopicDto topicDto)
     {
-        return await _topicService.GetTopics();
-    }
-
-    [HttpGet("{id}")]
-    public async Task<ActionResult<Topic>> GetTopic(int id)
-    {
-        var result = await _topicService.GetTopic(id);
-        if (result == null)
-        {
-            return NotFound();
-        }
-
-        return Ok(result);
-    }
-
-    [HttpPut("{id}")]
-    public async Task<ActionResult<Topic>> UpdateTopic(int id,[FromBody] TopicDto topicDto)
-    {
-        var result = await _topicService.UpdateTopic(id, topicDto);
+        var result = await _topicService.UpdateTopicById(id, topicDto);
         if (result == null)
         {
             return BadRequest();
@@ -58,10 +58,10 @@ public class TopicController : ControllerBase
         return Ok(result);
     }
 
-    [HttpDelete("{id}")]
-    public async Task<ActionResult> DeleteTopic(int id)
+    [HttpDelete("DeleteTopicById")]
+    public async Task<ActionResult> DeleteTopicById(int id)
     {
-        var result = await _topicService.DeleteTopic(id);
+        var result = await _topicService.DeleteTopicById(id);
         if (result)
         {
             return Ok();
