@@ -18,14 +18,14 @@ public class UserController : ControllerBase
         _userService = userService;
     }
     
-    [HttpGet]
+    [HttpGet("GetAllUsers")]
     public async Task<ActionResult<IEnumerable<User>>> GetAllUsers()
     {
         return await _userService.GetAllUsers();
     }
     
-    [HttpGet("{id}")]
-    public async Task<ActionResult<User>> GetUser(int id)
+    [HttpGet("GetUserById")]
+    public async Task<ActionResult<User>> GetUserById(int id)
     {
         var result = await _userService.GetUserById(id);
         if (result == null) return NotFound();
@@ -34,7 +34,7 @@ public class UserController : ControllerBase
     }
 
     [Authorize]
-    [HttpGet("info")]
+    [HttpGet("GetAuthUser")]
     public async Task<ActionResult<User>> GetAuthUser()
     {
         var login = HttpContext.User.FindFirst(ClaimTypes.Name);
@@ -46,7 +46,7 @@ public class UserController : ControllerBase
         return Ok(result);
     }
     
-    [HttpPost("register")]
+    [HttpPost("RegisterUser")]
     public async Task<ActionResult<User>> RegisterUser([FromBody] UserDto userDto)
     {
         var result = await _userService.AddUser(userDto);
@@ -55,7 +55,7 @@ public class UserController : ControllerBase
         return Ok(result);
     }
     
-    [HttpPost("login")]
+    [HttpPost("UserLogin")]
     public async Task<ActionResult<User>> UserLogin([FromBody] UserDto userDto, 
         [FromServices] ITokenService tokenService)
     {
@@ -68,20 +68,20 @@ public class UserController : ControllerBase
     }
 
     [Authorize]
-    [HttpPut("{id}")]
-    public async Task<ActionResult<User>> UpdateUser(int id, [FromBody] UserDto userDto)
+    [HttpPut("UpdateUserById")]
+    public async Task<ActionResult<User>> UpdateUserById(int id, [FromBody] UserDto userDto)
     {
-        var result = await _userService.UpdateUser(id, userDto);
+        var result = await _userService.UpdateUserById(id, userDto);
         if (result == null) return BadRequest();
 
         return Ok(result);
     }
     
     [Authorize]
-    [HttpDelete("{id}")]
-    public async Task<ActionResult> DeleteUser(int id)
+    [HttpDelete("DeleteUserById")]
+    public async Task<ActionResult> DeleteUserById(int id)
     {
-        var result = await _userService.DeleteUser(id);
+        var result = await _userService.DeleteUserById(id);
         if (result) return Ok();
 
         return BadRequest();

@@ -1,9 +1,9 @@
 ﻿async function loadCurrentTopic(topicId) {
-    return await fetch("../api/Topic/" + topicId);
+    return await fetch("../api/Topic/GetTopicById?id=" + topicId);
 }
 
 async function loadTopics() {
-    return await fetch("../api/Topic");
+    return await fetch("../api/Topic/GetAllTopics");
 }
 
 async function handlerLoadCurrentTopic() {
@@ -15,6 +15,8 @@ async function handlerLoadCurrentTopic() {
         let dataCurrentTopic = await loadCurrentTopicResponse.json();
         document.getElementById("name-of-topic").innerText = dataCurrentTopic.name;
         document.getElementById("topic-description").innerText = dataCurrentTopic.description;
+        
+        document.querySelector("title").innerText = dataCurrentTopic.name;
     }
 
     let loadTopicsResponse = await loadTopics();

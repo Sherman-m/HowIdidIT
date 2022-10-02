@@ -17,31 +17,6 @@ public class UserService : IUserService
         _context = context;
     }
 
-    public async Task<User?> AddUser(UserDto userDto)
-    {
-        var salt = GenSalt();
-        User user = new User()
-        {
-            Login = userDto.Login,
-            Password = ComputeHmacSha1(
-                Encoding.UTF8.GetBytes(userDto.Password + salt),
-                Encoding.UTF8.GetBytes("my_key")
-                ),
-            Salt = salt,
-        };
-
-        try 
-        {
-            var result = _context.Users.Add(user);
-            await _context.SaveChangesAsync();
-            return await Task.FromResult(result.Entity);
-        }
-        catch
-        {
-            return null;
-        }
-    }
-
     public async Task<List<User>> GetAllUsers()
     {
         var result = await _context.Users
@@ -96,8 +71,33 @@ public class UserService : IUserService
 
         return null;
     }
+    
+    public async Task<User?> AddUser(UserDto userDto)
+    {
+        var salt = GenSalt();
+        User user = new User()
+        {
+            Login = userDto.Login,
+            Password = ComputeHmacSha1(
+                Encoding.UTF8.GetBytes(userDto.Password + salt),
+                Encoding.UTF8.GetBytes("my_key")
+            ),
+            Salt = salt,
+        };
 
-    public async Task<User?> UpdateUser(int id, UserDto userDto)
+        try 
+        {
+            var result = _context.Users.Add(user);
+            await _context.SaveChangesAsync();
+            return await Task.FromResult(result.Entity);
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    public async Task<User?> UpdateUserById(int id, UserDto userDto)
     {
         var result = await _context.Users
             .Include(t => t.TypeOfUser)
@@ -131,7 +131,7 @@ public class UserService : IUserService
         return null;
     }
 
-    public async Task<bool> DeleteUser(int id)
+    public async Task<bool> DeleteUserById(int id)
     {
         var result = await _context.Users.FirstOrDefaultAsync(u => u.UserId == id);
         if (result != null)

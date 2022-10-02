@@ -1,5 +1,5 @@
 ﻿async function loadAllDiscussions() {
-    return await fetch("../api/Discussion");
+    return await fetch("../api/Discussion/GetAllDiscussions");
 }
 
 

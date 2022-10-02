@@ -5,9 +5,9 @@ namespace HowIdidIT.Data.Services.ServiceInterfaces;
 
 public interface IMessageService
 {
+    Task<List<Message>> GetAllMessages();
+    Task<Message?> GetMessageById(int id);
     Task<Message?> AddMessage(MessageDto messageDto);
-    Task<List<Message>> GetMessages();
-    Task<Message?> GetMessage(int id);
-    Task<Message?> UpdateMessage(int id, MessageDto messageDto);
-    Task<bool> DeleteMessage(int id);
+    Task<Message?> UpdateMessageById(int id, MessageDto messageDto);
+    Task<bool> DeleteMessageById(int id);
 }

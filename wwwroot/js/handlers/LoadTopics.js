@@ -1,5 +1,5 @@
 ﻿async function loadTopics() {
-    return await fetch("../api/Topic");
+    return await fetch("../api/Topic/GetAllTopics");
 }
 
 async function handlerLoadTopics() {

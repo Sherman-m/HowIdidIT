@@ -15,6 +15,22 @@ public class TopicService : ITopicService
         _context = context;
     }
 
+    public async Task<List<Topic>> GetAllTopics()
+    {
+        var result = await _context.Topics
+            .Include(d => d.Discussions)
+            .ToListAsync();
+        return await Task.FromResult(result);
+    }
+
+    public async Task<Topic?> GetTopicById(int id)
+    {
+        var result = await _context.Topics
+            .Include(d => d.Discussions)
+            .FirstOrDefaultAsync(tid => tid.TopicId == id);
+        return await Task.FromResult(result);
+    }
+    
     public async Task<Topic?> AddTopic(TopicDto topicDto)
     {
         var topic = new Topic()
@@ -35,23 +51,7 @@ public class TopicService : ITopicService
         }
     }
 
-    public async Task<List<Topic>> GetTopics()
-    {
-        var result = await _context.Topics
-            .Include(d => d.Discussions)
-            .ToListAsync();
-        return await Task.FromResult(result);
-    }
-
-    public async Task<Topic?> GetTopic(int id)
-    {
-        var result = await _context.Topics
-            .Include(d => d.Discussions)
-            .FirstOrDefaultAsync(tid => tid.TopicId == id);
-        return await Task.FromResult(result);
-    }
-
-    public async Task<Topic?> UpdateTopic(int id, TopicDto topicDto)
+    public async Task<Topic?> UpdateTopicById(int id, TopicDto topicDto)
     {
         var result = await _context.Topics.FirstOrDefaultAsync(tid => tid.TopicId == id);
         if (result != null)
@@ -76,7 +76,7 @@ public class TopicService : ITopicService
         return null;
     }
 
-    public async Task<bool> DeleteTopic(int id)
+    public async Task<bool> DeleteTopicById(int id)
     {
         var result = await _context.Topics.FirstOrDefaultAsync(tid => tid.TopicId == id);
         if (result != null)

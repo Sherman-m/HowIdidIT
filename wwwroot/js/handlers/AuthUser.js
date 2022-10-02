@@ -1,5 +1,5 @@
 ﻿async function authUser() {
-    return await fetch("../api/user/info");
+    return await fetch("../api/User/GetAuthUser");
 }
 
 function setLoginInHeader(data) {

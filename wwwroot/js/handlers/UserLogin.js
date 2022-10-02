@@ -1,5 +1,5 @@
 ﻿async function login(form) {
-    return await fetch("api/user/login", {
+    return await fetch("api/User/UserLogin", {
         method: "POST", 
         headers: { "Accept": "application/json", "Content-Type": "application/json" }, 
         body: JSON.stringify({

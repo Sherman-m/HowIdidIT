@@ -1,5 +1,5 @@
 ﻿async function loadDiscussionsForCurrentTopic(topicId) {
-    return await fetch("../api/Discussion/for_topic/" + topicId);
+    return await fetch("../api/Discussion/GetAllDiscussionsForTopic?topicId=" + topicId);
 }
 
 

@@ -15,6 +15,24 @@ public class MessageService : IMessageService
         _context = context;
     }
 
+    public async Task<List<Message>> GetAllMessages()
+    {
+        var result = await _context.Messages
+            .Include(u => u.User)
+            .Include(d => d.Discussion)
+            .ToListAsync();
+        return await Task.FromResult(result);
+    }
+
+    public async Task<Message?> GetMessageById(int id)
+    {
+        var result = await _context.Messages
+            .Include(u => u.User)
+            .Include(d => d.Discussion)
+            .FirstOrDefaultAsync(mid => mid.MessageId == id);
+        return await Task.FromResult(result);
+    }
+    
     public async Task<Message?> AddMessage(MessageDto messageDto)
     {
         var message = new Message()
@@ -36,25 +54,7 @@ public class MessageService : IMessageService
         }
     }
 
-    public async Task<List<Message>> GetMessages()
-    {
-        var result = await _context.Messages
-            .Include(u => u.User)
-            .Include(d => d.Discussion)
-            .ToListAsync();
-        return await Task.FromResult(result);
-    }
-
-    public async Task<Message?> GetMessage(int id)
-    {
-        var result = await _context.Messages
-            .Include(u => u.User)
-            .Include(d => d.Discussion)
-            .FirstOrDefaultAsync(mid => mid.MessageId == id);
-        return await Task.FromResult(result);
-    }
-
-    public async Task<Message?> UpdateMessage(int id, MessageDto messageDto)
+    public async Task<Message?> UpdateMessageById(int id, MessageDto messageDto)
     {
         var result = await _context.Messages.FirstOrDefaultAsync(mid => mid.MessageId == id);
         if (result != null)
@@ -76,7 +76,7 @@ public class MessageService : IMessageService
         return null;
     }
 
-    public async Task<bool> DeleteMessage(int id)
+    public async Task<bool> DeleteMessageById(int id)
     {
         var result = await _context.Messages.FirstOrDefaultAsync(mid => mid.MessageId == id);
         if (result != null)
