@@ -1,22 +1,22 @@
 ﻿async function loadDiscussionsForCurrentTopic(topicId) {
-    return await fetch("../api/Discussion/GetAllDiscussionsForTopic?topicId=" + topicId);
+    return await fetch("../api/topics/" + topicId + "/discussions");
 }
 
 
 async function handlerLoadDiscussionsForCurrentTopic() {
-    let params = getUrlSearchParams();
+    let topicId = window.location.pathname.split('/').at(2);
     
-    let discussionsForTopicResponse = await loadDiscussionsForCurrentTopic(params.id);
+    let discussionsForTopicResponse = await loadDiscussionsForCurrentTopic(topicId);
     if (discussionsForTopicResponse.ok) {
         let dataAllDiscussions = await discussionsForTopicResponse.json();
-        console.log(dataAllDiscussions)
+
         let tableBody = document.querySelector("tbody");
 
         for (let discussion of dataAllDiscussions.sort(byField("dateOfCreating"))) {
             let row = document.createElement("tr");
             row.addEventListener("click", function (event) {
                 event.preventDefault();
-                window.location.href = "/discussion?id=" + discussion.discussionId;
+                window.location.href = "/discussions/" + discussion.discussionId;
             });
             row.innerHTML = '<th scope="row">' + discussion.discussionId + '</th>\n' +
                 '                        <td>' + discussion.name + '</td>\n' +

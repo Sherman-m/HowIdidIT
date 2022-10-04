@@ -1,5 +1,5 @@
 ﻿async function loadAllDiscussions() {
-    return await fetch("../api/Discussion/GetAllDiscussions");
+    return await fetch("../api/discussions");
 }
 
 
@@ -18,8 +18,6 @@ async function handlerLoadAllDiscussions() {
             });
             
             let date = Date(discussion.dateOfCreating);
-            
-            let formatDate = date.getDate + '.' + date.getMonth + '.' + date.getFullYear;
             
             row.innerHTML = '<th scope="row">' + discussion.discussionId + '</th>\n' +
                 '                        <td>' + discussion.name + '</td>\n' +

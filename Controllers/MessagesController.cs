@@ -7,22 +7,22 @@ namespace HowIdidIT.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class MessageController : ControllerBase
+public class MessagesController : ControllerBase
 {
     private readonly IMessageService _messageService;
 
-    public MessageController(IMessageService messageService)
+    public MessagesController(IMessageService messageService)
     {
         _messageService = messageService;
     }
 
-    [HttpGet("GetAllMessages")]
+    [HttpGet]
     public async Task<ActionResult<IEnumerable<Message>>> GetAllMessages()
     {
         return await _messageService.GetAllMessages();
     }
 
-    [HttpGet("GetMessageById")]
+    [HttpGet("{id:int}")]
     public async Task<ActionResult<Message>> GetMessageById(int id)
     {
         var result = await _messageService.GetMessageById(id);
@@ -34,7 +34,7 @@ public class MessageController : ControllerBase
         return Ok(result);
     }
     
-    [HttpPost("AddMessage")]
+    [HttpPost]
     public async Task<ActionResult<Message>> AddMessage([FromBody] MessageDto messageDto)
     {
         var result = await _messageService.AddMessage(messageDto);
@@ -46,7 +46,7 @@ public class MessageController : ControllerBase
         return Ok(result);
     }
 
-    [HttpPut("UpdateMessageById")]
+    [HttpPut("{id}")]
     public async Task<ActionResult<Message>> UpdateMessageById(int id, MessageDto messageDto)
     {
         var result = await _messageService.UpdateMessageById(id, messageDto);
@@ -58,8 +58,8 @@ public class MessageController : ControllerBase
         return Ok(result);
     }
     
-    [HttpDelete("DeleteUserById")]
-    public async Task<ActionResult> DeleteUserById(int id)
+    [HttpDelete("{id}")]
+    public async Task<ActionResult> DeleteMessageById(int id)
     {
         var result = await _messageService.DeleteMessageById(id);
         if (result)

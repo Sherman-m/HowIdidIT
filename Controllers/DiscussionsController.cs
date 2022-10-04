@@ -7,28 +7,22 @@ namespace HowIdidIT.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class DiscussionController : ControllerBase
+public class DiscussionsController : ControllerBase
 {
     private readonly IDiscussionService _discussionService;
 
-    public DiscussionController(IDiscussionService discussionService)
+    public DiscussionsController(IDiscussionService discussionService)
     {
         _discussionService = discussionService;
     }
 
-    [HttpGet("GetAllDiscussions")]
+    [HttpGet]
     public async Task<ActionResult<IEnumerable<Discussion>>> GetAllDiscussions()
     {
         return await _discussionService.GetAllDiscussions();
     }
-    
-    [HttpGet("GetAllDiscussionsForTopic")]
-    public async Task<ActionResult<IEnumerable<Discussion>>> GetAllDiscussionsForTopic(int topicId)
-    {
-        return await _discussionService.GetAllDiscussionsForTopic(topicId);
-    }
 
-    [HttpGet("GetDiscussionById")]
+    [HttpGet("{id:int}")]
     public async Task<ActionResult<Discussion>> GetDiscussionById(int id)
     {
         var result = await _discussionService.GetDiscussionById(id);
@@ -40,7 +34,7 @@ public class DiscussionController : ControllerBase
         return Ok(result);
     }
     
-    [HttpPost("AddDiscussion")]
+    [HttpPost]
     public async Task<ActionResult<Discussion>> AddDiscussion([FromBody] DiscussionDto discussionDto)
     {
         var result = await _discussionService.AddDiscussion(discussionDto);
@@ -52,7 +46,7 @@ public class DiscussionController : ControllerBase
         return Ok(result);
     }
 
-    [HttpPut("UpdateDiscussionById")]
+    [HttpPut("{id:int}")]
     public async Task<ActionResult<Discussion>> UpdateDiscussionById(int id, [FromBody] DiscussionDto discussionDto)
     {
         var result = await _discussionService.UpdateDiscussionById(id, discussionDto);
@@ -64,7 +58,7 @@ public class DiscussionController : ControllerBase
         return Ok(result);
     }
 
-    [HttpDelete("DeleteDiscussionById")]
+    [HttpDelete("{id:int}")]
     public async Task<ActionResult> DeleteDiscussionById(int id)
     {
         var result = await _discussionService.DeleteDiscussionById(id);

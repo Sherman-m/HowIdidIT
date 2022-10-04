@@ -1,5 +1,5 @@
 ﻿async function createDisc(form, userId) {
-   return await fetch("../api/Discussion/AddDiscussion", {
+   return await fetch("../api/discussions", {
         method: "POST",
         headers: { "Accept": "application/json", "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -12,7 +12,7 @@
 }
 
 async function getDisc(discId) {
-    return await fetch("../api/GetDiscussionById?id=" + discId);
+    return await fetch("../api/discussions/" + discId);
 }
 
 async function creatingDisc(event, userId) {

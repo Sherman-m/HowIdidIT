@@ -1,15 +1,24 @@
 ﻿async function authUser() {
-    return await fetch("../api/User/GetAuthUser");
+    return await fetch("../api/users/auth");
 }
 
 function setLoginInHeader(data) {
     document.getElementById("btn-auth").remove();
     document.getElementById("btn-reg").remove();
 
-    let login = document.createElement("div");
-    login.className = "login-name";
-    login.innerText = data.login;
-    document.getElementById("my-nav-bar2").appendChild(login);
+    let loginMenu = document.createElement("div");
+    loginMenu.className = "dropdown";
+    loginMenu.innerHTML = '<div class="dropdown">' +
+        '            <button class="btn btn-dark dropdown-toggle" type="button" id="loginMenu" data-bs-toggle="dropdown" aria-expanded="false">' +
+        '                ' + data.login +
+        '            </button>' +
+        '            <ul class="dropdown-menu login-menu" aria-labelledby="dropdownLoginMenuButton">' +
+        '                <li><a class="dropdown-item" href="/profile">Профиль</a></li>' +
+        '                <li><a class="dropdown-item" href="/logout">Выйти</a></li>' +
+        '            </ul>' +
+        '        </div>'
+    
+    document.getElementById("my-nav-bar2").appendChild(loginMenu);
 }
 
 function setFavorites(selectedDiscussions, selectedTopics, favoritesBlock) {

@@ -4,7 +4,7 @@
 }
 
 async function register(form) {
-    return await fetch("api/user/RegisterUser", {
+    return await fetch("../api/users/registration", {
         method: "POST",
         headers: { "Accept": "application/json", "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -16,7 +16,7 @@ async function register(form) {
 
 async function login(form) {
     console.log(form);
-    return await fetch("api/user/UserLogin", {
+    return await fetch("../api/users/login", {
         method: "POST",
         headers: { "Accept": "application/json", "Content-Type": "application/json" },
         body: JSON.stringify({

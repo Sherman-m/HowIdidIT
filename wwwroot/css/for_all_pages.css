@@ -53,17 +53,33 @@ header {
     flex-basis: 40%;
 }
 
-.login-name {
-    flex-basis: 30%;
-    font-size: 1.5rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
 #form-search {
     max-width: 40%;
     font-style: initial;
     font-size: 0.8rem;
+}
+
+#loginMenu {
+    max-width: 160px;
+    font-size: 1.1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dropdown-menu.login-menu  {
+    min-width: 160px;
+    background-color: #2A2A2A;
+    border-radius: 10px;
+    border-color: black;
+    box-shadow: 1px 0 5px black, -1px 0 5px black;
+}
+
+.dropdown-menu.login-menu > li > a {
+    color: aliceblue;
+}
+
+.dropdown-menu.login-menu > li > a:hover {
+    color: black;
 }
 
 .form-control:focus {
@@ -83,12 +99,10 @@ header {
 
 .btn-dark {
     background-color: #222121;
-    color: #DBDBDB;
 }
 
 .btn-danger {
     background-color: red;
-    color: #DBDBDB;
 }
 
 button[class^=btn]:hover {

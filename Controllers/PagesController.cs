@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using HowIdidIT.Data.Services.ServiceInterfaces;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace HowIdidIT.Controllers;
 
 [Controller]
-public class PageController : Controller
+public class PagesController : Controller
 {
     [Route("/")]
     public IActionResult Index()
@@ -17,6 +19,14 @@ public class PageController : Controller
         if (User.Identity!.IsAuthenticated)
             return Redirect("/");
         return View("~/Views/Login.cshtml");
+    }
+    
+    [Authorize]
+    [Route("/logout")]
+    public IActionResult Logout([FromServices] ITokenService tokenService)
+    {
+        tokenService.DeleteJwtToken(HttpContext);
+        return Redirect("/");
     }
     
     [Route("/registration")]
@@ -33,18 +43,19 @@ public class PageController : Controller
         return View("~/Views/AllTopics.cshtml");
     }
     
-    [Route("/topic")]
-    public IActionResult Section()
+    [Route("/topics/{id:int}")]
+    public IActionResult Section(int id)
     {
         return View("~/Views/Topic.cshtml");
     }
     
-    [Route("/discussion")]
-    public IActionResult Discussion()
+    [Route("/discussions/{id:int}")]
+    public IActionResult Discussion(int id)
     {
         return View("~/Views/Discussion.cshtml");
     }
     
+    [Authorize]
     [Route("/profile")]
     public IActionResult Profile()
     {

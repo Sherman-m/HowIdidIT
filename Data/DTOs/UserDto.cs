@@ -1,7 +1,11 @@
-﻿namespace HowIdidIT.Data.DTOs;
+﻿using HowIdidIT.Data.Models;
 
-public class UserDto
+
+namespace HowIdidIT.Data.DTOs;
+
+public class UserDto : User
 {
+    public int UserId { get; set; }
     public string Login { get; set; }
     public string Password { get; set; }
     public string? Description { get; set; }
