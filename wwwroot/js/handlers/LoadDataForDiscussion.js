@@ -6,7 +6,7 @@ async function loadMessagesForDiscussion(discussionId) {
     return await fetch("../api/discussions/" + discussionId + "/messages");
 }
 
-function addMessageForDiscussionContent(message, userId) {
+function addMessageForDiscussionContent(message, userId, authorDiscussion) {
     let discContent = document.getElementById("disc-content");
     
     let messageBlock = document.createElement("div");
@@ -20,6 +20,9 @@ function addMessageForDiscussionContent(message, userId) {
         let answerText = document.createElement("div")
         answerText.className = "message-block";
         answerText.innerText = message.text;
+        if (userId === authorDiscussion) {
+            answerText.style.borderColor = "red";
+        }
 
         messageBlock.append(answerText, messageUserAvatar);
         discContent.appendChild(messageBlock);
@@ -33,6 +36,9 @@ function addMessageForDiscussionContent(message, userId) {
         let answerText = document.createElement("div")
         answerText.className = "message-block";
         answerText.innerText = message.text;
+        if (message.userId === authorDiscussion) {
+            answerText.style.borderColor = "red";
+        }
 
         messageBlock.append(messageUserAvatar, answerText);
         discContent.appendChild(messageBlock);
@@ -49,6 +55,9 @@ async function handlerLoadDataForDiscussion(userId) {
     if (loadForDiscussionResponse.ok) {
         let dataDiscussion = await loadForDiscussionResponse.json();
 
+        window.sessionStorage.setItem("prevPageTitle", dataDiscussion.topic.name);
+        window.sessionStorage.setItem("prevPageLink", "../topics/" + dataDiscussion.topicId);
+
         document.querySelector("#header-of-disc > h2").innerText = dataDiscussion.name;
 
         let loadMessagesResponse = await loadMessagesForDiscussion(dataDiscussion.discussionId);
@@ -57,7 +66,7 @@ async function handlerLoadDataForDiscussion(userId) {
             let dataMessages = await loadMessagesResponse.json();
 
             for (let message of dataMessages.sort(byField("dateOfPublication"))) {
-                addMessageForDiscussionContent(message, userId);
+                addMessageForDiscussionContent(message, userId, dataDiscussion.discussionId);
             }
         }
     }

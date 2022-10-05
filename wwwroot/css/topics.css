@@ -106,17 +106,15 @@ ul.dropdown-menu > li > a {
     font-size: 1.1rem;
 }
 
-.name-of-new-disc, .question-of-new-disc,
-.select-topic-for-new-disc {
+.name-of-new-disc, .select-topic-for-new-disc {
     margin-bottom: 30px;
 }
 
-.name-of-new-disc > label, .question-of-new-disc > label, 
-.select-topic-for-new-disc > label {
+.name-of-new-disc > label, .select-topic-for-new-disc > label {
     margin-bottom: 10px;
 }
 
-.question-of-new-disc > textarea {
+.first-message-of-new-disc > textarea {
     max-height: 250px;
     min-height: 80px;
 }

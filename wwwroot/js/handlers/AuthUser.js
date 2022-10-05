@@ -79,10 +79,6 @@ function enableCreateDisc(btnCreatingDisc) {
         '                        <label for="nameOfNewDisc">Напишите название:</label>\n' +
         '                        <input type="text" id="nameOfNewDisc" class="form-control">\n' +
         '                    </div>\n' +
-        '                    <div class="question-of-new-disc">\n' +
-        '                        <label for="questionForDisc">Задайте ваш вопрос:</label>\n' +
-        '                        <textarea id="questionOfNewDisc" class="form-control"></textarea>\n' +
-        '                    </div>\n' +
         '                    <div class="select-topic-for-new-disc">\n' +
         '                        <label for="chooseTopic">Выберете раздел:</label>\n' +
         '                        <select class="form-select" id="selectTopic">\n' +
@@ -132,6 +128,7 @@ async function handlerAuthUser() {
                 event.preventDefault();
 
                 let discussionId = window.location.pathname.split('/').at(2);
+                
                 let messageText = formSendMessage.messageText.value;
                 formSendMessage.messageText.value = "";
                 await handlerAddMessage(dataUser.userId, discussionId, messageText);

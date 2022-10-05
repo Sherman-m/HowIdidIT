@@ -10,7 +10,7 @@ async function handlerLoadTopics() {
         let listOfTopics = document.getElementById("list-of-topics");
         for (let topic of dataTopics.sort(byField("name"))) {
             let topicLink = document.createElement("a");
-            topicLink.href = "/topics/" + topic.topicId;
+            topicLink.href = "../topics/" + topic.topicId;
             topicLink.className = "link-on-topics";
             topicLink.innerText = topic.name;
 

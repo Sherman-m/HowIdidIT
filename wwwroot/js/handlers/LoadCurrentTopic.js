@@ -13,6 +13,10 @@ async function handlerLoadCurrentTopic() {
     let loadCurrentTopicResponse = await loadCurrentTopic(topicId);
     if (loadCurrentTopicResponse.ok) {
         let dataCurrentTopic = await loadCurrentTopicResponse.json();
+
+        window.sessionStorage.setItem("prevPageTitle", dataCurrentTopic.name);
+        window.sessionStorage.setItem("prevPageLink", "../topics/" + dataCurrentTopic.topicId);
+        
         document.getElementById("name-of-topic").innerText = dataCurrentTopic.name;
         document.getElementById("topic-description").innerText = dataCurrentTopic.description;
         

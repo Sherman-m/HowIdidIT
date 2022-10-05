@@ -18,9 +18,6 @@
     });
     
     await handlerLoadDiscussionsForCurrentTopic(selectSort);
-    
-    window.sessionStorage.setItem("prevPageTitle", document.title);
-    window.sessionStorage.setItem("prevPageLink", document.URL);
     handlerNavigation();
 }
 

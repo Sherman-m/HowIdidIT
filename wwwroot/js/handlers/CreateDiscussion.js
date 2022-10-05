@@ -1,10 +1,9 @@
 ﻿async function createDisc(form, userId) {
-   return await fetch("../api/discussions", {
+    return await fetch("../api/discussions", {
         method: "POST",
-        headers: { "Accept": "application/json", "Content-Type": "application/json" },
+        headers: {"Accept": "application/json", "Content-Type": "application/json"},
         body: JSON.stringify({
             name: form.nameOfNewDisc.value,
-            question: form.questionOfNewDisc.value,
             topicId: form.selectTopic.value,
             userId: userId
         })

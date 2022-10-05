@@ -51,7 +51,6 @@ public class DiscussionService : IDiscussionService
         var discussion = new Discussion()
         {
             Name = discussionDto.Name,
-            Question = discussionDto.Question,
             TopicId = discussionDto.TopicId,
             UserId = discussionDto.UserId
         };
@@ -74,7 +73,6 @@ public class DiscussionService : IDiscussionService
         if (result != null)
         {
             result.Name = discussionDto.Name;
-            result.Question = discussionDto.Question;
             result.TopicId = discussionDto.TopicId;
 
             try

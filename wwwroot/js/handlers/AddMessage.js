@@ -21,7 +21,7 @@ async function handlerAddMessage(userId, discussionId, messageText) {
         let getMessageResponse = await getMessageById(dataAddMessageResponse.messageId);
         if (getMessageResponse.ok) {
             let message = await getMessageResponse.json()
-            await addMessageForDiscussionContent(message, userId);
+            await addMessageForDiscussionContent(message, userId, message.discussion.userId);
         }
     }
 }
