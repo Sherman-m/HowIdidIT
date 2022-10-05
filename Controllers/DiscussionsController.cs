@@ -1,5 +1,6 @@
 ﻿using HowIdidIT.Data.DTOs;
 using HowIdidIT.Data.Models;
+using HowIdidIT.Data.Services.ServiceImplementations;
 using HowIdidIT.Data.Services.ServiceInterfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,6 +21,13 @@ public class DiscussionsController : ControllerBase
     public async Task<ActionResult<IEnumerable<Discussion>>> GetAllDiscussions()
     {
         return await _discussionService.GetAllDiscussions();
+    }
+
+    [HttpGet("{discussionId:int}/messages")]
+    public async Task<ActionResult<IEnumerable<Message>>> GetAllMessagesForDiscussion(int discussionId,
+        [FromServices] IMessageService messageService)
+    {
+        return await messageService.GetAllMessagesForDiscussion(discussionId);
     }
 
     [HttpGet("{id:int}")]

@@ -3,6 +3,7 @@
     await handlerAuthUser();
     handlerAddToFavorites();
     await handlerLoadCurrentTopic();
+    customTextarea();
 
     let selectSort = document.getElementById("selectSort");
     selectSort.addEventListener("change", async function(event) {

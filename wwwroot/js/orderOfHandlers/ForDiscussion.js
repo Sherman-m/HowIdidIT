@@ -1,7 +1,10 @@
 ﻿async function main() {
     handlerDefaultEventsForButtons();
-    await handlerAuthUser();
+    let userId = await handlerAuthUser();
+    await handlerLoadDataForDiscussion(userId);
     handlerNavigation();
+    handlerAddToFavorites();
+    customTextarea();
 }
 
 window.addEventListener("load", main);

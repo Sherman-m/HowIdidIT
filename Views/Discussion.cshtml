@@ -11,6 +11,9 @@
     <script src="~/js/handlers/Navigation.js"></script>
     <script src="~/js/handlers/DefaultEventsForButtons.js"></script>
     <script src="~/js/handlers/AuthUser.js"></script>
+    <script src="~/js/handlers/AddToFavorites.js"></script>
+    <script src="~/js/handlers/LoadDataForDiscussion.js"></script>
+    <script src="~/js/handlers/AddMessage.js"></script>
     <script src="~/js/orderOfHandlers/ForDiscussion.js"></script>
     <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
 </head>
@@ -35,40 +38,31 @@
             <img src="~/pictures/home_icon.png" height=20 alt="Главная">Главная
         </a>
         >>
-        <a href="/sections">Разделы</a>
+        <a href="/topics">Разделы</a>
         >>
     </div>
-    <div id="main-block">
-        <div class="content-block user-block">
-            <h3><a href="/profile">Пользователь</a></h3><br>
-            <span>люблю задавать вопросики</span>
-        </div>
-        <div class="content-block answer-block">
-            <h2>Йоу, Ребзя! Подскажите деду, как правильно делать дизайн?gfdgfgdfgdfgdfgdfgdfdfffffffffffffffff</h2><hr>
-            <p>реально помогите! Я эти кнопки делаю 3 миллиона лет!</p>
-        </div>
-        <div class="content-block user-block">
-            <h3>Пользователь</h3><br>
-            <span>люблю задавать вопросики</span>
-        </div>
-        <div class="content-block answer-block">
-            <p>Йоу, Ребзя! Подскажите деду, как правильно делать дизайн?</p>
-        </div>
-        <div class="content-block user-block">
-            <h3>Пользователь</h3><br>
-            <span>люблю задавать вопросики</span>
-        </div>
-        <div class="content-block answer-block">
-            <p>Идите нахер, Ребзя</p>
-        </div>
-        <div id="disc-buttons" class="d-flex justify-content-between">
-            <form id="add-answer">
-                <button class="btn btn-dark btn-answer-create">Добавить ответ</button>
-            </form>
-            <form id="create-disc">
-                <button class="btn btn-dark btn-answer-create">Создать обсуждение</button>
+    <div class="d-flex justify-content-between">
+        <div id="disc-block" class="content-block">
+            <div id="header-of-disc" class="d-flex justify-content-between">
+                <h2>Название обсуждения</h2>
+                <input type="checkbox" class="btn-check" id="btn-add-to-favorites">
+                <label class="btn shadow-none checkbox-unchecked" for="btn-add-to-favorites">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16">
+                        <path d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/>
+                    </svg>
+                </label>
+            </div><hr>
+            <div id="disc-content"></div>
+            <form id="send-message" class="send-buttons d-flex justify-content-around">
+                    <textarea id="messageText" class="form-control" aria-label="message"></textarea>
+                    <button type="submit" class="btn btn-dark">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
+                            <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
+                        </svg>
+                    </button>
             </form>
         </div>
+        <div id="favorites-block"></div>
     </div>
 </main>
 <footer class="d-flex justify-content-around align-items-center">

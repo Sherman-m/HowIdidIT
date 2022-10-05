@@ -27,9 +27,6 @@ async function creatingDisc(event, userId) {
             let dataDisc = await getDiscResponse.json(); 
             console.log(dataDisc)
 
-            window.sessionStorage.setItem("prevPageTitle", dataDisc.topic.name);
-            window.sessionStorage.setItem("prevPageLink", "/topics/" + dataDisc.topicId);
-
             window.location.href = "/discussions/" + dataDisc.discussionId;
         }
     }

@@ -24,6 +24,16 @@ public class MessageService : IMessageService
         return await Task.FromResult(result);
     }
 
+    public async Task<List<Message>> GetAllMessagesForDiscussion(int discussionId)
+    {
+        var result = await _context.Messages
+            .Include(u => u.User)
+            .Include(d => d.Discussion)
+            .Where(d => d.DiscussionId == discussionId)
+            .ToListAsync();
+        return await Task.FromResult(result);
+    }
+
     public async Task<Message?> GetMessageById(int id)
     {
         var result = await _context.Messages
@@ -32,7 +42,7 @@ public class MessageService : IMessageService
             .FirstOrDefaultAsync(mid => mid.MessageId == id);
         return await Task.FromResult(result);
     }
-    
+
     public async Task<Message?> AddMessage(MessageDto messageDto)
     {
         var message = new Message()

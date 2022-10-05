@@ -24,6 +24,17 @@ public class DiscussionService : IDiscussionService
             .ToListAsync();
         return await Task.FromResult(result);
     }
+    
+    public async Task<List<Discussion>> GetAllDiscussionsForTopic(int topicId)
+    {
+        var result = await _context.Discussions
+            .Include(t => t.Topic)
+            .Include(u => u.User)
+            .Include(m => m.Messages)
+            .Where(t => t.TopicId == topicId)
+            .ToListAsync();
+        return await Task.FromResult(result);
+    }
 
     public async Task<Discussion?> GetDiscussionById(int id)
     {
@@ -35,17 +46,6 @@ public class DiscussionService : IDiscussionService
         return await Task.FromResult(result);
     }
 
-    public async Task<List<Discussion>> GetAllDiscussionsForTopic(int topicId)
-    {
-        var result = await _context.Discussions
-            .Include(t => t.Topic)
-            .Include(u => u.User)
-            .Include(m => m.Messages)
-            .Where(t => t.TopicId == topicId)
-            .ToListAsync();
-        return await Task.FromResult(result);
-    }
-    
     public async Task<Discussion?> AddDiscussion(DiscussionDto discussionDto)
     {
         var discussion = new Discussion()

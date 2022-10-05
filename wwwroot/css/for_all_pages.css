@@ -5,6 +5,20 @@ html {
     font-size: 20px;
 }
 
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #222121;
+    border-radius: 30px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #DBDBDB;
+    border-radius: 30px;
+}
+
 .text-font {
     font-family: 'Akshar', 'Oswald', sans-serif;
     color: aliceblue;
@@ -177,3 +191,45 @@ footer {
     align-self: center;
 }
 
+label[for="btn-add-to-favorites"] {
+    height: 40px;
+    width: 40px;
+    background-color: #222121;
+    color: #DBDBDB;
+    border-radius: 5px;
+    border-color: black;
+    font-style: normal;
+    padding: 9px;
+}
+
+label[for="btn-add-to-favorites"] > svg {
+    display: block;
+}
+
+.checkbox-temporary-mark > svg {
+    fill: #DBDBDB;
+    animation-name: ch;
+    animation-duration: 0.5s;
+}
+
+.checkbox-checked > svg {
+    fill: red;
+}
+
+.checkbox-unchecked {
+    fill: #DBDBDB;
+}
+.checkbox-unchecked:hover > svg {
+    fill: red;
+}
+
+@keyframes ch {
+    0% {fill: red}
+    50% {fill: red}
+    100% {fill: #DBDBDB}
+}
+
+textarea {
+    overflow: hidden;
+    resize: none;
+}

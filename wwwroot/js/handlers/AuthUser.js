@@ -124,5 +124,21 @@ async function handlerAuthUser() {
         if (formCreateDisc) {
             await handlerCreateDisc(formCreateDisc, dataUser.userId);
         }
+        
+        let formSendMessage = document.getElementById("send-message");
+        if (formSendMessage) {
+            formSendMessage.removeEventListener("submit", redirectOnLoginPage);
+            formSendMessage.addEventListener("submit", async function (event) {
+                event.preventDefault();
+
+                let discussionId = window.location.pathname.split('/').at(2);
+                let messageText = formSendMessage.messageText.value;
+                formSendMessage.messageText.value = "";
+                await handlerAddMessage(dataUser.userId, discussionId, messageText);
+            });
+        }
+        
+        return dataUser.userId;
     }
+    return null;
 }

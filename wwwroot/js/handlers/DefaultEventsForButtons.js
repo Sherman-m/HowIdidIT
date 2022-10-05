@@ -23,6 +23,11 @@ function handlerDefaultEventsForButtons() {
     if (btnCreateDisc) {
         btnCreateDisc.addEventListener("click", redirectOnLoginPage);
     }
+    
+    let formSendMessage = document.getElementById("send-message");
+    if (formSendMessage) {
+        formSendMessage.addEventListener("submit", redirectOnLoginPage);
+    }
 }
 
 

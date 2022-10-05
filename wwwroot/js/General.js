@@ -7,3 +7,21 @@ function getUrlSearchParams() {
         get: (searchParams, prop) => searchParams.get(prop),
     });
 }
+
+function customTextarea() {
+    let tx = document.getElementsByTagName("textarea");
+    for (let i = 0; i < tx.length; ++i) {
+        tx[i].addEventListener("input", OnInput, false);
+    }
+}
+
+function OnInput() {
+    if (this.scrollHeight < 300) {
+        this.style.overflowY = "hidden";
+        this.style.height = 0;
+        this.style.height = (this.scrollHeight) + "px";
+    } else {
+        this.style.height = "300px";
+        this.style.overflowY = "scroll";
+    }
+}
