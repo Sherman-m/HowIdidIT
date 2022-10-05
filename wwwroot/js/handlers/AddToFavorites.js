@@ -7,6 +7,8 @@ function addToFavorites(event) {
     if (event.target.checked) {
         label.removeEventListener("mouseleave", setUnchecked);
         label.className = "btn shadow-none checkbox-checked";
+        
+        
     } else {
         label.className = "btn shadow-none checkbox-temporary-mark";
         label.addEventListener("mouseleave", setUnchecked);

@@ -33,7 +33,7 @@ function setFavorites(selectedDiscussions, selectedTopics, favoritesBlock) {
 
         for (let favoriteDisc of selectedDiscussions) {
             let linkOnDisc = document.createElement("a");
-            linkOnDisc.href = "/discussion/&id=" + favoriteDisc.discussionId;
+            linkOnDisc.href = "/discussions/" + favoriteDisc.discussionId;
             linkOnDisc.innerText = favoriteDisc.name;
 
             listOfDisc.appendChild(document.createElement("li").appendChild(linkOnDisc));
@@ -48,7 +48,7 @@ function setFavorites(selectedDiscussions, selectedTopics, favoritesBlock) {
 
         for (let favoriteTopic of selectedTopics) {
             let linkOnDisc = document.createElement("a");
-            linkOnDisc.href = "/discussion/&id=" + favoriteTopic.topicId;
+            linkOnDisc.href = "/discussions/" + favoriteTopic.topicId;
             linkOnDisc.innerText = favoriteTopic.name;
 
             listOfTopics.appendChild(document.createElement("li").appendChild(linkOnDisc));

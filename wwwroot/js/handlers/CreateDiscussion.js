@@ -28,9 +28,9 @@ async function creatingDisc(event, userId) {
             console.log(dataDisc)
 
             window.sessionStorage.setItem("prevPageTitle", dataDisc.topic.name);
-            window.sessionStorage.setItem("prevPageLink", "/topic?id=" + dataDisc.topicId);
+            window.sessionStorage.setItem("prevPageLink", "/topics/" + dataDisc.topicId);
 
-            window.location.href = "/discussion?id=" + dataDisc.discussionId;
+            window.location.href = "/discussions/" + dataDisc.discussionId;
         }
     }
 }

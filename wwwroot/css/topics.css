@@ -114,6 +114,11 @@ ul.dropdown-menu > li > a {
     color: aliceblue;
 }
 
+#table-disc > tbody > tr > td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 #table-disc > tbody > tr:hover {
     background-color: #323030;
 }
@@ -147,3 +152,13 @@ ul.dropdown-menu > li > a {
     margin-bottom: 10px;
 }
 
+#selectSort {
+    box-shadow: #FFFFFF;
+    color: aliceblue;
+    background-color: #222121;;
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: black;
+    font-style: normal;
+    max-width: max-content;
+}

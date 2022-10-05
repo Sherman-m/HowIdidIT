@@ -15,7 +15,7 @@ async function register(form) {
 }
 
 async function login(form) {
-    console.log(form);
+
     return await fetch("../api/users/login", {
         method: "POST",
         headers: { "Accept": "application/json", "Content-Type": "application/json" },

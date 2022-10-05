@@ -13,7 +13,7 @@ async function handlerLogin(event) {
     event.preventDefault();
     
     let loginResponse = await login(event.target);
-    console.log(event.target);
+
     if (loginResponse.ok) {
         window.location.href = "/";
     }
