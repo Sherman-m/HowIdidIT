@@ -27,13 +27,16 @@
                 let updateSelectedTopics = await removingResponse.json();
                 editingSelectedTopics(userId, updateSelectedTopics.selectedTopics, favoritesBlock);
 
-                if (favoritesBlock) 
+                if (favoritesBlock)
                     setSelectedTopicsInFavorites(updateSelectedTopics.selectedTopics);
 
-                let checkbox = document.querySelector("#isFavorite");
-                if (checkbox) {
-                    checkbox.checked = false;
-                    addToFavorites(checkbox);
+                let topicId = window.location.pathname.split("/").at(2);
+                if (selectedTopic.topicId === Number(topicId)) {
+                    let checkbox = document.querySelector("#isFavorite");
+                    if (checkbox) {
+                        checkbox.checked = false;
+                        addToFavorites(checkbox);
+                    }
                 }
             }
         });
@@ -76,10 +79,14 @@ function editingSelectedDiscussions(userId, selectedDiscussions, favoritesBlock)
                 if (favoritesBlock) {
                     setSelectedDiscussionsInFavorites(updateSelectedDiscussion.selectedDiscussions);
                 }
-                let checkbox = document.querySelector("#isFavorite");
-                if (checkbox) {
-                    checkbox.checked = false;
-                    addToFavorites(checkbox);
+                
+                let discussionId = window.location.pathname.split("/").at(2);
+                if (selectedDiscussion.discussionId === Number(discussionId)) {
+                    let checkbox = document.querySelector("#isFavorite");
+                    if (checkbox) {
+                        checkbox.checked = false;
+                        addToFavorites(checkbox);
+                    }
                 }
             }
         });

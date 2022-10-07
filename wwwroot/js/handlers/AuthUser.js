@@ -35,15 +35,15 @@ async function handlerAuthUser() {
             handlerEditingFavorites(dataUser.userId, dataUser.selectedTopics, dataUser.selectedDiscussions, favoritesBlock);
         }
         
-        let topicId = window.location.href.split("/").at(4);
-        if (topicId !== undefined && window.location.href.split("/").at(3) === "topics") {
+        let topicId = window.location.pathname.split("/").at(2);
+        if (topicId !== undefined && window.location.pathname.split("/").at(1) === "topics") {
             let headerOfTopic = document.getElementById("header-of-topic");
             let checkbox = addButtonAddToFavorites(headerOfTopic);
             handlerAddTopicToFavorites(checkbox, dataUser.userId, Number(topicId), dataUser.selectedTopics, favoritesBlock);
         }
 
-        let discussionId = window.location.href.split("/").at(4);
-        if (discussionId !== undefined && window.location.href.split("/").at(3) === "discussions") {
+        let discussionId = window.location.pathname.split("/").at(2);
+        if (discussionId !== undefined && window.location.pathname.split("/").at(1) === "discussions") {
             let headerOfDiscussion = document.getElementById("header-of-discussion");
             let checkbox = addButtonAddToFavorites(headerOfDiscussion);
             handlerAddDiscussionToFavorites(checkbox, dataUser.userId, Number(topicId), dataUser.selectedDiscussions, favoritesBlock);
