@@ -14,14 +14,23 @@ async function getMessageById(messageId) {
     return await fetch("../api/messages/" + messageId);
 }
 
-async function handlerAddMessage(userId, discussionId, messageText) {
-    let addMessageResponse = await addMessage(userId, discussionId, messageText);
-    if (addMessageResponse.ok) {
-        let dataAddMessageResponse = await addMessageResponse.json();
-        let getMessageResponse = await getMessageById(dataAddMessageResponse.messageId);
-        if (getMessageResponse.ok) {
-            let message = await getMessageResponse.json()
-            await addMessageForDiscussionContent(message, userId, message.discussion.userId);
+async function handlerAddMessage(userId, formSendMessage) {
+    formSendMessage.removeEventListener("submit", redirectOnLoginPage);
+    formSendMessage.addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        let discussionId = window.location.pathname.split('/').at(2);
+
+        let messageText = formSendMessage.messageContent.value;
+        formSendMessage.messageContent.value = "";
+        let addMessageResponse = await addMessage(userId, discussionId, messageText);
+        if (addMessageResponse.ok) {
+            let dataAddMessageResponse = await addMessageResponse.json();
+            let getMessageResponse = await getMessageById(dataAddMessageResponse.messageId);
+            if (getMessageResponse.ok) {
+                let message = await getMessageResponse.json()
+                await addMessageForDiscussionContent(message, userId, message.discussion.userId);
+            }
         }
-    }
+    });
 }

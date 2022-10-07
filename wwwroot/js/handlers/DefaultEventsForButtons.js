@@ -19,7 +19,7 @@ function handlerDefaultEventsForButtons() {
         btnRegister.addEventListener("click", redirectOnRegistrationPage);
     }
 
-    let btnCreateDisc = document.getElementById("btn-create-disc");
+    let btnCreateDisc = document.getElementById("btn-create-discussion");
     if (btnCreateDisc) {
         btnCreateDisc.addEventListener("click", redirectOnLoginPage);
     }

@@ -4,22 +4,19 @@
     });
 }
 
-function setUnchecked(event) {
-    event.currentTarget.className = "btn shadow-none checkbox-unchecked";
-}
-
-function handlerAddDiscussionToFavorites(checkbox, authUserId, discussionId, selectedDiscussions) {
+function handlerAddDiscussionToFavorites(checkbox, authUserId, discussionId, selectedDiscussions, favoritesBlock) {
     if (selectedDiscussions.some(d => d.discussionId === discussionId)) {
         checkbox.checked = true;
         document.querySelector("label[for='isFavorite']").className = "btn shadow-none checkbox-checked";
     }
 
     checkbox.addEventListener("click", async function(event) {
-        addToFavorites(event);
-        let updateSelectDiscussionResponse = await updateSelectDiscussions(authUserId, discussionId);
-        if (updateSelectDiscussionResponse.ok) {
-            let updateSelectDiscussion = await updateSelectDiscussionResponse.json();
-            setSelectedDiscussionsInFavorites(updateSelectDiscussion.selectedDiscussions);
+        addToFavorites(event.target);
+        let updateSelectedDiscussionsResponse = await updateSelectDiscussions(authUserId, discussionId);
+        if (updateSelectedDiscussionsResponse.ok) {
+            let updateSelectedDiscussions = await updateSelectedDiscussionsResponse.json();
+            setSelectedDiscussionsInFavorites(updateSelectedDiscussions.selectedDiscussions);
+            editingSelectedDiscussions(authUserId, updateSelectedDiscussions.selectedDiscussions, favoritesBlock);
         }
     });
 }

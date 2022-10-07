@@ -4,22 +4,19 @@
     });
 }
 
-function setUnchecked(event) {
-    event.currentTarget.className = "btn shadow-none checkbox-unchecked";
-}
-
-function handlerAddTopicToFavorites(checkbox, authUserId, topicId, selectedTopics) {
+function handlerAddTopicToFavorites(checkbox, authUserId, topicId, selectedTopics, favoritesBlock) {
     if (selectedTopics.some(t => t.topicId === topicId)) {
         checkbox.checked = true;
         document.querySelector("label[for='isFavorite']").className = "btn shadow-none checkbox-checked";
     }
     
     checkbox.addEventListener("click", async function(event) {
-        addToFavorites(event);
-        let updateSelectTopicResponse = await updateSelectTopic(authUserId, topicId);
-        if (updateSelectTopicResponse.ok) {
-            let updateSelectTopic = await updateSelectTopicResponse.json();
-            setSelectedTopicsInFavorites(updateSelectTopic.selectedTopics);
+        addToFavorites(event.target);
+        let updateSelectTopicsResponse = await updateSelectTopic(authUserId, topicId);
+        if (updateSelectTopicsResponse.ok) {
+            let updateSelectedTopics = await updateSelectTopicsResponse.json();
+            setSelectedTopicsInFavorites(updateSelectedTopics.selectedTopics);
+            editingSelectedTopics(authUserId, updateSelectedTopics.selectedTopics, favoritesBlock);
         }
     });
 }

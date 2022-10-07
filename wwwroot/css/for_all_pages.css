@@ -179,20 +179,35 @@ img[alt=Главная]{
     align-self: start;
     width: 22%;
     justify-self: center;
+}
+
+#favorites-block > h3:hover {
+    text-decoration: underline;
+}
+
+#links-for-favorites, 
+#links-for-editing-favorites {
+    max-height: 300px;
     overflow-y: auto;
 }
 
-#links-for-favorites > ul {
+#links-for-favorites > div > ul,
+#links-for-editing-favorites > div > ul {
     padding-left: 20px;
-}
-
-#links-for-favorites > ul > div {
     margin-bottom: 15px;
 }
 
-#links-for-favorites > ul > li, #links-for-favorites > ul > div > li  {
+#links-for-favorites > div > ul > div,
+#links-for-editing-favorites > div > ul > div {
+    margin-bottom: 15px;
+    align-self: center;
+    margin-right: 10px;
+}
+
+#links-for-favorites > div > ul > li, 
+#links-for-editing-favorites > div > ul > div > li  {
     list-style-position: inside;
-    overflow: hidden;
+    overflow-x: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     text-align: left;

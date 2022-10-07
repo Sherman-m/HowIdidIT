@@ -11,6 +11,9 @@
     <script src="~/js/handlers/Navigation.js"></script>
     <script src="~/js/handlers/DefaultEventsForButtons.js"></script>
     <script src="~/js/handlers/AuthUser.js"></script>
+    <script src="~/js/handlers/SettingFavoriteBlock.js"></script>
+    <script src="~/js/handlers/EditingFavorites.js"></script>
+    <script src="~/js/handlers/RemoveFromFavorite.js"></script>
     <script src="~/js/handlers/AddTopicToFavorites.js"></script>
     <script src="~/js/handlers/LoadCurrentTopic.js"></script>
     <script src="~/js/handlers/CreateDiscussion.js"></script>
@@ -53,9 +56,9 @@
             <div id="discussing-block" class="d-flex flex-column content-block">
                 <div id="header-of-discussions" class="d-flex justify-content-between">
                     <h3>Обсуждения:</h3>
-                    <div id="disc-buttons" class="d-flex justify-content-between flex-wrap">
-                        <button id="btn-create-disc" type="button" class="btn btn-dark">Cоздать обсуждение</button>
-                        <select class="form-select shadow-none" id="selectSort" aria-label="SortingDisc">
+                    <div id="discussion-buttons" class="d-flex justify-content-between flex-wrap">
+                        <button id="btn-create-discussion" type="button" class="btn btn-dark">Cоздать обсуждение</button>
+                        <select class="shadow-none form-select" id="selectSort" aria-label="SortingDisc">
                             <option value="1">Новые</option>
                             <option value="2">Старые</option>
                             <option value="3">Max сообщений</option>
@@ -64,7 +67,7 @@
                     </div>
                 </div>
                 <div class="table-responsive">
-                    <table id="table-disc" class="table">
+                    <table id="table-discussion" class="table">
                         <thead>
                         <tr class="d-flex">
                             <th class="col-1">№</th>

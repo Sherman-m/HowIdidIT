@@ -41,6 +41,7 @@
     font-size: 0.8rem;
     grid-row: 3;
     grid-column: 1;
+    min-width: min-content;
 }
 
 #header-of-discussions {
@@ -52,24 +53,34 @@
     align-self: center;
 }
 
-#disc-buttons {
+#discussions-buttons {
     max-width: 60%;
     align-content: center;
 }
 
-#btn-create-disc {
+#btn-create-discussion {
     margin-right: 30px;
 }
 
 #selectSort {
     box-shadow: #FFFFFF;
     color: aliceblue;
-    background-color: #222121;;
-    border-width: 2px;
+    background-color: #222121;
+    border-width: 1px;
     border-radius: 10px;
     border-color: black;
     font-style: normal;
     max-width: max-content;
+}
+
+#selectSort > option {
+    color: aliceblue;
+    background-color: #222121;
+}
+
+#selectSort:hover {
+    background-color: #FFFFFF;
+    color: black;
 }
 
 .dropdown-menu {
@@ -81,30 +92,25 @@ ul.dropdown-menu > li > a {
     color: aliceblue;
 }
 
-#table-disc {
+#table-discussion {
     background-color: #222121;
     border-radius: 10px;
     color: aliceblue;
 }
 
-#table-disc > tbody > tr > td {
+#table-discussion > tbody > tr > td {
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-#table-disc > tbody > tr:hover {
+#table-discussion > tbody > tr:hover {
     background-color: #323030;
 }
 
-.name-of-new-disc, .select-topic-for-new-disc {
+.name-of-new-discussion, .select-topic-for-new-discussion {
     margin-bottom: 30px;
 }
 
-.name-of-new-disc > label, .select-topic-for-new-disc > label {
+.name-of-new-discussion > label, .select-topic-for-new-discussion > label {
     margin-bottom: 10px;
-}
-
-.first-message-of-new-disc > textarea {
-    max-height: 250px;
-    min-height: 80px;
 }
