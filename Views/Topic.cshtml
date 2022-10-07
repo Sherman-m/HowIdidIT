@@ -11,7 +11,7 @@
     <script src="~/js/handlers/Navigation.js"></script>
     <script src="~/js/handlers/DefaultEventsForButtons.js"></script>
     <script src="~/js/handlers/AuthUser.js"></script>
-    <script src="~/js/handlers/AddToFavorites.js"></script>
+    <script src="~/js/handlers/AddTopicToFavorites.js"></script>
     <script src="~/js/handlers/LoadCurrentTopic.js"></script>
     <script src="~/js/handlers/CreateDiscussion.js"></script>
     <script src="~/js/handlers/LoadDiscussionsForCurrentTopic.js"></script>
@@ -45,19 +45,13 @@
     <div class="d-flex justify-content-between">
         <div id="main-block">
             <div id="topics-block" class="content-block">
-                <div class="d-flex justify-content-between">
+                <div id="header-of-topic" class="d-flex justify-content-between">
                     <h3 id="name-of-topic"></h3><hr>
-                    <input type="checkbox" class="btn-check" id="btn-add-to-favorites">
-                    <label class="btn shadow-none checkbox-unchecked" for="btn-add-to-favorites">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16">
-                            <path d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/>
-                        </svg>
-                    </label>
                 </div>
                 <p id="topic-description"></p>
             </div>
             <div id="discussing-block" class="d-flex flex-column content-block">
-                <div id="header-of-disc" class="d-flex justify-content-between">
+                <div id="header-of-discussions" class="d-flex justify-content-between">
                     <h3>Обсуждения:</h3>
                     <div id="disc-buttons" class="d-flex justify-content-between flex-wrap">
                         <button id="btn-create-disc" type="button" class="btn btn-dark">Cоздать обсуждение</button>

@@ -10,6 +10,8 @@ public interface IUserService
     Task<User?> GetUserByLogin(string login);
     Task<User?> AuthUser(UserDto userDto);
     Task<User?> AddUser(UserDto userDto);
+    Task<User?> AddTopicToUser(int userId, int topicId);
+    Task<User?> AddDiscussionToUser(int userId, int discussionId);
     Task<User?> UpdateUserById(int id, UserDto userDto);
     Task<bool> DeleteUserById(int id);
 }

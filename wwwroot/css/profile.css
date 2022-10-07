@@ -1,49 +1,55 @@
 ﻿main {
     display: grid;
     grid-template-rows: max-content auto;
-    grid-template-columns: 75%;
+    grid-template-columns: 50%;
     grid-row-gap: 10px;
     justify-content: center;
 }
 
-#first-column {
-    grid-row: 2;
-    display: grid;
-    grid-template-rows: minmax(30vh, max-content) minmax(20vh, max-content);
-    grid-row-gap: 30px;
-    flex-basis: 25%;
+#profile-block {
+    min-width: max-content;
 }
 
-.user-avatar {
-    grid-row: 1;
+#avatar-block {
+    max-width: 30%;
+    margin-right: 30px;
 }
 
-.user-avatar > img {
-    margin-bottom: 30px;
+#avatar-block > img {
+    border-radius: 100px;
 }
 
-.user-property {
-    grid-row: 2;
+#login-part {
+    max-width: 70%;
 }
 
-.user-property > form {
+#login-part > input[type=text] {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+#login-part > p {
+    padding-left: 5px;
+}
+
+#edit-buttons > button {
+    margin-right: 20px;
+}
+
+#description-part {
     margin-bottom: 20px;
 }
 
-#second-column {
-    grid-row: 2;
-    display: grid;
-    grid-template-rows: minmax(20vh, max-content) minmax(20vh, max-content);
-    grid-row-gap: 40px;
-    flex-basis: 65%;
+#description-part > textarea {
+    min-height: 150px;
 }
 
-.user-data {
-    grid-row: 1;
+.form-password {
+    max-height: 50%;
+    margin-bottom: 20px;
 }
 
-.user-desc {
-    grid-row: 2;
+#change-password-block label {
+    font-size: 1rem;
+    margin-bottom: 10px;
 }
-
-

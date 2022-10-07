@@ -25,7 +25,7 @@ public class UsersController : ControllerBase
     }
     
     [HttpGet("{id:int}")]
-    public async Task<ActionResult<UserDto>> GetUserById(int id)
+    public async Task<ActionResult<User>> GetUserById(int id)
     {
         var result = await _userService.GetUserById(id);
         if (result == null) return NotFound();
@@ -47,16 +47,16 @@ public class UsersController : ControllerBase
     }
     
     [HttpPost("registration")]
-    public async Task<ActionResult<UserDto>> RegisterUser([FromBody] UserDto userDto)
+    public async Task<ActionResult<User>> RegisterUser([FromBody] UserDto userDto)
     {
         var result = await _userService.AddUser(userDto);
         if (result == null) return BadRequest();
         
         return Ok(result);
     }
-    
+
     [HttpPost("login")]
-    public async Task<ActionResult<UserDto>> UserLogin([FromBody] UserDto userDto, 
+    public async Task<ActionResult<User>> UserLogin([FromBody] UserDto userDto, 
         [FromServices] ITokenService tokenService)
     {
         var result = await _userService.AuthUser(userDto);
@@ -65,6 +65,26 @@ public class UsersController : ControllerBase
         tokenService.CreateJwtToken(HttpContext, result);
         return Ok(result);
 
+    }
+    
+    [Authorize]
+    [HttpPut("{userId:int}/selected-topics/{topicId:int}")]
+    public async Task<ActionResult<User>> AddTopicToUser(int userId, int topicId)
+    {
+        var result = await _userService.AddTopicToUser(userId, topicId);
+        if (result == null) return BadRequest();
+
+        return Ok(result);
+    }
+    
+    [Authorize]
+    [HttpPut("{userId:int}/selected-discussions/{discussionId:int}")]
+    public async Task<ActionResult<User>> AddDiscussionToUser(int userId, int discussionId)
+    {
+        var result = await _userService.AddDiscussionToUser(userId, discussionId);
+        if (result == null) return BadRequest();
+
+        return Ok(result);
     }
 
     [Authorize]

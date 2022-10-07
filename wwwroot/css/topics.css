@@ -43,11 +43,11 @@
     grid-column: 1;
 }
 
-#header-of-disc {
+#header-of-discussions {
     margin-bottom: 20px;
 }
 
-#header-of-disc > h3 {
+#header-of-discussions > h3 {
     max-width: 20%;
     align-self: center;
 }
@@ -94,16 +94,6 @@ ul.dropdown-menu > li > a {
 
 #table-disc > tbody > tr:hover {
     background-color: #323030;
-}
-
-.modal-content {
-    background-color: #2A2A2A;
-    border-radius: 15px;
-    border-width: 1px;
-    border-color: black;
-    box-shadow: 1px 0 5px black, -1px 0 5px black;
-    text-align: justify;
-    font-size: 1.1rem;
 }
 
 .name-of-new-disc, .select-topic-for-new-disc {

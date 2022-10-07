@@ -17,10 +17,7 @@ public class MessageService : IMessageService
 
     public async Task<List<Message>> GetAllMessages()
     {
-        var result = await _context.Messages
-            .Include(u => u.User)
-            .Include(d => d.Discussion)
-            .ToListAsync();
+        var result = await _context.Messages.ToListAsync();
         return await Task.FromResult(result);
     }
 

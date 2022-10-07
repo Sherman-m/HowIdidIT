@@ -20,7 +20,6 @@ public class DiscussionService : IDiscussionService
         var result = await _context.Discussions
             .Include(t => t.Topic)
             .Include(u => u.User)
-            .Include(m => m.Messages)
             .ToListAsync();
         return await Task.FromResult(result);
     }
@@ -30,7 +29,6 @@ public class DiscussionService : IDiscussionService
         var result = await _context.Discussions
             .Include(t => t.Topic)
             .Include(u => u.User)
-            .Include(m => m.Messages)
             .Where(t => t.TopicId == topicId)
             .ToListAsync();
         return await Task.FromResult(result);

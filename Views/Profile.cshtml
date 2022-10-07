@@ -14,6 +14,113 @@
     <script src="~/js/orderOfHandlers/ForProfile.js"></script>
     <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
 </head>
+<div class="modal fade" id="editPasswordModal" tabindex="-1" aria-labelledby="editPasswordModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Изменение пароля</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+            </div>
+            <div class="modal-body">
+                <form id="change-password-block" class="d-flex flex-column justify-content-between">
+                    <div class="d-flex form-password flex-column">
+                        <label for="oldPassword">Введите старый пароль:</label>
+                        <input type="password" class="form-control" id="oldPassword" placeholder="Введите старый пароль">
+                    </div>
+                    <div class="d-flex form-password flex-column">
+                        <label for="newPassword">Введите новый пароль:</label>
+                        <input type="password" class="form-control" id="newPassword" placeholder="Введите новый пароль">
+                    </div>
+                    <div class="d-flex form-password flex-column">
+                        <label for="confirmNewPassword">Подтвердите новый пароль:</label>
+                        <input type="password" class="form-control" id="confirmNewPassword" placeholder="Подтвердите новый пароль">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Закрыть</button>
+                <button type="submit" class="btn btn-dark" form="change-password-block">Сохранить изменения</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="editFavoritesModal" tabindex="-1" aria-labelledby="favoritesModalLable" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Избранное
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="red" viewBox="0 0 16 16">
+                        <path d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/>
+                    </svg>
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+            </div>
+            <div class="modal-body">
+                <div id="links-for-favorites">
+                    <i>
+                        <U>Обсуждения</U>
+                    </i>
+                    <ul>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <li><a>gtdgd</a></li>
+                            <button type="button" class="btn-remove">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-trash" viewBox="0 0 16 16">
+                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <li><a>gtdgd</a></li>
+                            <button type="button" class="btn-remove">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-trash" viewBox="0 0 16 16">
+                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <li><a>gtdgd</a></li>
+                            <button type="button" class="btn-remove">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-trash" viewBox="0 0 16 16">
+                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </ul>
+                    <i>
+                        <U>Разделы</U>
+                    </i>
+                    <ul>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <li><a>gtddgppdpngndpifgndpijfgpdjgpdhjgpdfhgpdfihgpdfhgdfggd</a></li>
+                            <button type="button" class="btn-remove">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-trash" viewBox="0 0 16 16">
+                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <li>gtdgd</li>
+                            <button type="button" class="btn-remove">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-trash" viewBox="0 0 16 16">
+                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Закрыть</button>
+                <button type="submit" class="btn btn-dark" form="change-password-block">Сохранить изменения</button>
+            </div>
+        </div>
+    </div>
+</div>
 <body class="background text-font">
 <header class="d-flex flex-wrap justify-content-between">
     <div id="my-nav-bar1" class="d-flex flex-wrap align-items-center justify-content-around">
@@ -23,10 +130,10 @@
     </div>
     <div id="my-nav-bar2" class="d-flex flex-wrap align-items-center justify-content-around">
         <form id="form-search">
-            <input type="search" class="form-control form-control-dark" placeholder="Поиск..." aria-label="Search">
+            <input type="search" class="form-control" placeholder="Поиск..." aria-label="Search">
         </form>
-        <button id="btn-auth" class="btn btn-dark" onclick="redirectOnLoginPage()">Авторизация</button>
-        <button id="btn-reg" class="btn btn-dark" onclick="redirectOnRegistrationPage()">Регистрация</button>
+        <button id="btn-auth" class="btn btn-dark">Авторизация</button>
+        <button id="btn-reg" class="btn btn-dark">Регистрация</button>
     </div>
 </header>
 <main>
@@ -37,48 +144,29 @@
         >>
         <a href="/profile">Профиль</a>
     </div>
-    <div class="d-flex justify-content-between">
-        <div id="first-column">
-            <div class="d-flex flex-column user-avatar content-block justify-content-between align-items-center">
-                <img src="~/pictures/avatar.png" height="250" width="250" alt="">
-                <form>
-                    <button type="button" formaction="../Views/registration.html" formmethod="get" class="btn btn-dark">Сменить аватар</button>
-                </form>
+    <div id="profile-block" class="content-block d-flex flex-column">
+        <div id="user-data-block" class="d-flex">
+            <div id="avatar-block">
+                <img src="~/pictures/coffee-cat.jpg" width="170" height="170" alt="userAvatar">
             </div>
-            <div class="d-flex flex-column justify-content-between align-items-center user-property content-block">
-                <button type="button" formaction="../Views/registration.html" formmethod="get" class="btn btn-dark">Посмотреть обсуждения</button>
-                <button type="button" formaction="../Views/registration.html" formmethod="get" class="btn btn-dark">Посмотреть избранное</button>
-                <button type="button" formaction="../Views/registration.html" formmethod="get" class="btn btn-dark">Сменить пароль</button>
-                <button type="button" formaction="../Views/registration.html" formmethod="get" class="btn btn-dark">Удалить профиль</button>
+            <div id="login-part" class="d-flex flex-column justify-content-between">
+                <input type="text" id="userLogin" class="form-control" value="sherman_m" aria-label="userLogin">
+                <p>Дата регистрации: 11.10.2002</p>
+                <div id="edit-buttons" class="d-flex">
+                    <button type="button" id="changePassword" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#editPasswordModal">Изменить пароль</button>
+                    <button type="button" class="btn btn-dark" id="btn-edit-favorites" data-bs-toggle="modal" data-bs-target="#editFavoritesModal">Избранное
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="red" viewBox="0 0 16 16">
+                            <path d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/>
+                        </svg>
+                    </button>
+                </div>
             </div>
-        </div>     
-        <div id="second-column">
-            <div class="user-data content-block">
-                <h3>Nickname:</h3>
-                <form id="user-prop">
-                    <label>Nickaname:
-                        <input type="text" name="Nickname" value="Пользователь №1">
-                    </label>
-                </form>               
-                <h3>Email: dfjgfd@jidfjg.com</h3>
-<!--                <form>-->
-<!--                <input>-->
-<!--                </form>-->
-<!--                <form>-->
-<!--                    <button type="button" formaction="../Views/registration.html" formmethod="get" class="btn btn-dark">Сменить пароль</button>-->
-<!--                </form>-->
+        </div><hr>
+            <div id="description-part">
+                <h3>Описание:</h3>
+                <textarea id="userDescription" class="form-control" aria-label="userDescription">Описание пользователя</textarea>
             </div>
-            <div class="user-desc content-block">
-                <h3>Описание</h3><hr>
-                <p>Всем привет! Я устал делать фронт часть и поэтому я хочу спать. Всем пока!</p>
-<!--                <form>-->
-<!--                    <input>-->
-<!--                </form>-->
-            </div>
-            <form>
-                <button type="button" formaction="../Views/registration.html" formmethod="get" class="btn btn-dark">Сохранить изменения</button>
-            </form>
-        </div>
+            <button type="submit" class="btn btn-dark align-self-end">Сохранить</button>
     </div>
 </main>
 <footer class="d-flex justify-content-around align-items-center">

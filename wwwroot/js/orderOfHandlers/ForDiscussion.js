@@ -3,7 +3,6 @@
     let userId = await handlerAuthUser();
     await handlerLoadDataForDiscussion(userId);
     handlerNavigation();
-    handlerAddToFavorites();
     customTextarea();
 }
 
