@@ -13,7 +13,7 @@
     <script src="~/js/handlers/AuthUser.js"></script>
     <script src="~/js/handlers/LoadDataForProfile.js"></script>
     <script src="~/js/handlers/EditProfile.js"></script>
-    <script src="~/js/handlers/EditingFavorites.js"></script>
+    <script src="~/js/handlers/EditFavorites.js"></script>
     <script src="~/js/handlers/RemoveFromFavorite.js"></script>
     <script src="~/js/orderOfHandlers/ForProfile.js"></script>
     <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -81,6 +81,23 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="DeleteProfileModal" tabindex="-1" aria-labelledby="DeleteProfileModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Изменение пароля</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+            </div>
+            <div class="modal-body">
+                <p>Вы действительно хотите удалить свой профиль?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Нет</button>
+                <button type="button" class="btn btn-dark" id="delete-user">Удалить</button>
+            </div>
+        </div>
+    </div>
+</div>
 <body class="background text-font">
 <header class="d-flex flex-wrap justify-content-between">
     <div id="my-nav-bar1" class="d-flex flex-wrap align-items-center justify-content-around">
@@ -126,7 +143,10 @@
             <h3>Описание:</h3>
             <textarea id="userDescription" class="form-control" aria-label="userDescription"></textarea>
         </div>
-        <button type="submit" id="saveUpdates" class="btn btn-dark align-self-end" disabled>Сохранить</button>
+        <div class="d-flex justify-content-between">
+            <button type="button" id="deleteProfile" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#DeleteProfileModal">Удалить профиль</button>
+            <button type="submit" id="saveUpdates" class="btn btn-dark" disabled>Сохранить</button>
+        </div>
     </form>
 </main>
 <footer class="d-flex justify-content-around align-items-center">

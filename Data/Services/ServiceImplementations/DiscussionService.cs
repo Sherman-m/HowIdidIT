@@ -87,6 +87,27 @@ public class DiscussionService : IDiscussionService
         }
 
     }
+    
+    public async Task<Discussion?> UpdateDiscussionData(int id, string name, string description)
+    {
+        var result = await _context.Discussions.FirstOrDefaultAsync(d => d.DiscussionId == id);
+        if (result == null) return null;
+
+        result.Name = name;
+        result.Description = description;
+
+        try
+        {
+            _context.Discussions.Update(result);
+            _context.Entry(result).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+            return await Task.FromResult(result);
+        }
+        catch
+        {
+            return null;
+        }
+    }
 
     public async Task<bool> DeleteDiscussionById(int id)
     {

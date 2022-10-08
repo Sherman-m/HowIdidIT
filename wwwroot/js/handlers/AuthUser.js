@@ -51,8 +51,8 @@ async function handlerAuthUser() {
             let divForButtons = document.createElement("div");
             divForButtons.id = "buttons-for-topic-discussion-header";
             document.getElementById("header-of-discussion").appendChild(divForButtons);
-            
 
+            await handlerEditDiscussion(dataUser.userId, discussionId);
             let checkbox = addButtonAddToFavorites();
             handlerAddDiscussionToFavorites(checkbox, dataUser.userId, Number(topicId), dataUser.selectedDiscussions, favoritesBlock);
         }

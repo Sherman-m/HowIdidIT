@@ -139,11 +139,12 @@ public class UsersController : ControllerBase
     
     [Authorize]
     [HttpDelete("{id:int}")]
-    public async Task<ActionResult> DeleteUserById(int id)
+    public async Task<ActionResult> DeleteUserById(int id, [FromServices] ITokenService tokenService)
     {
         var result = await _userService.DeleteUserById(id);
-        if (result) return Ok();
-
-        return BadRequest();
+        if (!result) return BadRequest();
+        
+        tokenService.DeleteJwtToken(HttpContext);
+        return Ok();
     }
 }

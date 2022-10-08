@@ -25,6 +25,12 @@ async function changeUserPassword(form, userId) {
     });
 }
 
+async function deleteUser(userId) {
+    return await fetch("../api/users/" + userId, {
+        method: "DELETE"
+    });
+}
+
 async function handlerUpdateUserFrontSide(event, userId) {
     event.preventDefault();
     
@@ -74,6 +80,15 @@ async function handlerChangeUserPassword(event, userId) {
     }
 }
 
+async function handlerDeleteUser(event, userId) {
+    event.preventDefault();
+    
+    let deleteUserResponse = await deleteUser(userId);
+    if (deleteUserResponse.ok) {
+        window.location.href = "/";
+    }
+}
+
 function enableUpdateUser(form, dataUser) {
     clearForm();
     if (form.userLogin.value !== dataUser.login || form.userDescription.value !== dataUser.description) {
@@ -96,4 +111,7 @@ async function handlerEditProfile(dataUser) {
     formChangePassword.addEventListener("submit", async (event) =>
         await handlerChangeUserPassword(event, dataUser.userId)
     );
+    
+    document.getElementById("delete-user").addEventListener("click", async (event) => 
+        await handlerDeleteUser(event, dataUser.userId));
 }
