@@ -4,14 +4,11 @@
         headers: {"Accept": "application/json", "Content-Type": "application/json"},
         body: JSON.stringify({
             name: form.nameOfNewDiscussion.value,
+            description: form.descriptionOfNewDiscussion.value,
             topicId: form.selectTopic.value,
             userId: userId
         })
     });
-}
-
-async function getDiscussion(discussionI) {
-    return await fetch("../api/discussions/" + discussionI);
 }
 
 function addModalForCreatingDiscussion() {
@@ -30,6 +27,10 @@ function addModalForCreatingDiscussion() {
         '                        <label for="nameOfNewDiscussion">Напишите название:</label>\n' +
         '                        <input type="text" id="nameOfNewDiscussion" class="form-control">\n' +
         '                    </div>\n' +
+        '                    <div class="description-of-new-discussion">' + 
+        '                       <label for="descriptionOfNewDiscussion">Добавьте описание:</label>' +
+        '                       <textarea id="descriptionOfNewDiscussion" class="form-control"></textarea>' +
+        '                    </div> ' +
         '                    <div class="select-topic-for-new-discussion">\n' +
         '                        <label for="chooseTopic">Выберете раздел:</label>\n' +
         '                        <select class="form-select" id="selectTopic">\n' +
@@ -39,7 +40,7 @@ function addModalForCreatingDiscussion() {
         '            </div>\n' +
         '            <div class="modal-footer">\n' +
         '                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Закрыть</button>\n' +
-        '                <button type="submit" class="btn btn-dark" form="create-discussion">Создать</button>\n' +
+        '                <button type="submit" class="btn btn-dark" id="submit-create-discussion" form="create-discussion">Создать</button>\n' +
         '            </div>\n' +
         '        </div>\n' +
         '    </div>\n' +
@@ -56,6 +57,24 @@ async function handlerCreateDisc(userId, btnCreatingDiscussion) {
     btnCreatingDiscussion.setAttribute("data-bs-target", "#ModalForCreatingDiscussion");
     
     addModalForCreatingDiscussion();
+    
+    let loadTopicsResponse = await loadTopics();
+    if (loadTopicsResponse.ok) {
+        let dataTopics = await loadTopicsResponse.json();
+        
+        let topicSelectionList = document.getElementById("selectTopic");
+        if (topicSelectionList) {
+            if (dataTopics.length === 0) {
+                document.getElementById("submit-create-discussion").setAttribute("disabled", true);
+            }
+            for (let topic of dataTopics) {
+                let opt = document.createElement("option");
+                opt.setAttribute("value", topic.topicId);
+                opt.innerText = topic.name;
+                topicSelectionList.appendChild(opt);
+            }
+        }
+    }
 
     let formCreateDiscussion = document.getElementById("create-discussion");
     formCreateDiscussion.addEventListener("submit", async function (event) {
@@ -64,12 +83,7 @@ async function handlerCreateDisc(userId, btnCreatingDiscussion) {
         let createDiscResponse = await createDiscussion(event.target, userId);
         if (createDiscResponse.ok) {
             let dataCreateDisc = await createDiscResponse.json();
-
-            let getDiscResponse = await getDiscussion(dataCreateDisc.discussionId);
-            if (getDiscResponse.ok) {
-                let dataDisc = await getDiscResponse.json();
-                window.location.href = "/discussions/" + dataDisc.discussionId;
-            }
+            window.location.href = "/discussions/" + dataCreateDisc.discussionId;
         }
     });
 }

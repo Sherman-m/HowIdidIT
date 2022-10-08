@@ -10,6 +10,10 @@ public class Topic
     [Column(Order = 1)]
     public int TopicId { get; set; }
     public string Name { get; set; }
+    
+    public int UserId { get; set; }
+    public User User { get; set; }
+    
     public int CountOfDiscussing { get; set; }
     public string Description { get; set; }
     public DateTime DateOfCreating { get; set; }

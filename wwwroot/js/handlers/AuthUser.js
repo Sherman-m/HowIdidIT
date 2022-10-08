@@ -37,16 +37,29 @@ async function handlerAuthUser() {
         
         let topicId = window.location.pathname.split("/").at(2);
         if (topicId !== undefined && window.location.pathname.split("/").at(1) === "topics") {
-            let headerOfTopic = document.getElementById("header-of-topic");
-            let checkbox = addButtonAddToFavorites(headerOfTopic);
+            let divForButtons = document.createElement("div");
+            divForButtons.id = "buttons-for-topic-discussion-header";
+            document.getElementById("header-of-topic").appendChild(divForButtons);
+
+            await handlerEditTopic(dataUser.userId, topicId);
+            let checkbox = addButtonAddToFavorites();
             handlerAddTopicToFavorites(checkbox, dataUser.userId, Number(topicId), dataUser.selectedTopics, favoritesBlock);
         }
 
         let discussionId = window.location.pathname.split("/").at(2);
         if (discussionId !== undefined && window.location.pathname.split("/").at(1) === "discussions") {
-            let headerOfDiscussion = document.getElementById("header-of-discussion");
-            let checkbox = addButtonAddToFavorites(headerOfDiscussion);
+            let divForButtons = document.createElement("div");
+            divForButtons.id = "buttons-for-topic-discussion-header";
+            document.getElementById("header-of-discussion").appendChild(divForButtons);
+            
+
+            let checkbox = addButtonAddToFavorites();
             handlerAddDiscussionToFavorites(checkbox, dataUser.userId, Number(topicId), dataUser.selectedDiscussions, favoritesBlock);
+        }
+        
+        let btnAddNewTopic = document.getElementById("btn-add-new-topic");
+        if (btnAddNewTopic) {
+            await handlerCreateTopic(dataUser.userId, btnAddNewTopic);
         }
         
         let btnCreatingDisc = document.getElementById("btn-create-discussion");

@@ -37,6 +37,7 @@ public class UserService : IUserService
     {
         var result = await _context.Users
             .Include(t => t.TypeOfUser)
+            .Include(t => t.Topics)
             .Include(d => d.Discussions)
             .Include(m => m.Messages)
             .Include(st => st.SelectedTopics)

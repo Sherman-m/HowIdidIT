@@ -9,7 +9,6 @@ function handlerAddTopicToFavorites(checkbox, authUserId, topicId, selectedTopic
         checkbox.checked = true;
         document.querySelector("label[for='isFavorite']").className = "btn shadow-none checkbox-checked";
     }
-    
     checkbox.addEventListener("click", async function(event) {
         addToFavorites(event.target);
         let updateSelectTopicsResponse = await updateSelectTopic(authUserId, topicId);

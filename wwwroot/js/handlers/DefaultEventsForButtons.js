@@ -18,6 +18,11 @@ function handlerDefaultEventsForButtons() {
     if (btnRegister) {
         btnRegister.addEventListener("click", redirectOnRegistrationPage);
     }
+    
+    let btnAddNewTopic = document.getElementById("btn-add-new-topic");
+    if (btnAddNewTopic) {
+        btnAddNewTopic.addEventListener("click", redirectOnLoginPage);
+    }
 
     let btnCreateDisc = document.getElementById("btn-create-discussion");
     if (btnCreateDisc) {

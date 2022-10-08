@@ -1,4 +1,5 @@
-﻿using HowIdidIT.Data.Services.ServiceInterfaces;
+﻿using System.Security.Claims;
+using HowIdidIT.Data.Services.ServiceInterfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,13 +9,13 @@ namespace HowIdidIT.Controllers;
 public class PagesController : Controller
 {
     [Route("/")]
-    public IActionResult Index()
+    public IActionResult IndexPage()
     {
         return View("~/Views/Index.cshtml");
     }
     
     [Route("/login")]
-    public IActionResult Login()
+    public IActionResult LoginPage()
     {
         if (User.Identity!.IsAuthenticated)
             return Redirect("/");
@@ -23,14 +24,14 @@ public class PagesController : Controller
     
     [Authorize]
     [Route("/logout")]
-    public IActionResult Logout([FromServices] ITokenService tokenService)
+    public IActionResult LogoutPage([FromServices] ITokenService tokenService)
     {
         tokenService.DeleteJwtToken(HttpContext);
         return Redirect("/");
     }
     
     [Route("/registration")]
-    public IActionResult Registration()
+    public IActionResult RegistrationPage()
     {
         if (User.Identity!.IsAuthenticated)
             return Redirect("/");
@@ -38,34 +39,40 @@ public class PagesController : Controller
     }
     
     [Route("/topics")]
-    public IActionResult AllSections()
+    public IActionResult AllSectionsPage()
     {
         return View("~/Views/AllTopics.cshtml");
     }
     
     [Route("/topics/{id:int}")]
-    public IActionResult Section(int id)
+    public IActionResult SectionPage(int id)
     {
         return View("~/Views/Topic.cshtml");
     }
     
     [Route("/discussions/{id:int}")]
-    public IActionResult Discussion(int id)
+    public IActionResult DiscussionPage(int id)
     {
         return View("~/Views/Discussion.cshtml");
     }
     
     [Authorize]
     [Route("/profile")]
-    public IActionResult Profile()
+    public IActionResult ProfilePage()
     {
         if (User.Identity!.IsAuthenticated)
             return View("~/Views/Profile.cshtml");
         return Redirect("/login");
     }
+
+    [Route("/users/{id:int}")]
+    public IActionResult UserPage(int id)
+    {
+        return View("~/Views/User.cshtml");
+    }
     
     [Route("/change_password")]
-    public IActionResult ChangePassword()
+    public IActionResult ChangePasswordPage()
     {
         if (User.Identity!.IsAuthenticated)
             return Redirect("/");
@@ -73,7 +80,7 @@ public class PagesController : Controller
     }
     
     [Route("/recover_password")]
-    public IActionResult RecoverPassword()
+    public IActionResult RecoverPasswordPage()
     {
         if (User.Identity!.IsAuthenticated)
             return Redirect("/");

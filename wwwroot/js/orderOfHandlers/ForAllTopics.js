@@ -1,8 +1,9 @@
 ﻿async function main() {
     window.sessionStorage.clear();
+    await handlerLoadTopics();
     handlerDefaultEventsForButtons();
     await handlerAuthUser();
-    await handlerLoadTopics();
+    customTextarea();
 
     let selectSort = document.getElementById("selectSort");
     selectSort.addEventListener("change", async function(event) {

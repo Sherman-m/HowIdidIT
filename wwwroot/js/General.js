@@ -41,13 +41,14 @@ function setUnchecked(event) {
     event.target.className = "btn shadow-none checkbox-unchecked";
 }
 
-function addButtonAddToFavorites(headerOfTopicOrDiscussion) {
-    headerOfTopicOrDiscussion.innerHTML += '<input type="checkbox" class="btn-check" id="isFavorite">\n' +
-        '                    <label class="btn shadow-none checkbox-unchecked" for="isFavorite">\n' +
-        '                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16">\n' +
-        '                            <path d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/>\n' +
-        '                        </svg>\n' +
-        '                    </label>'
+function addButtonAddToFavorites() {
+    document.getElementById("buttons-for-topic-discussion-header").innerHTML += '<input type="checkbox" class="btn-check" id="isFavorite">\n' +
+        '                   <label class="btn shadow-none checkbox-unchecked" for="isFavorite">\n' +
+        '                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16">\n' +
+        '                           <path d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/>\n' +
+        '                       </svg>\n' +
+        '                   </label>' +
+        '               </div>'
     return document.getElementById("isFavorite")
 }
 
@@ -61,4 +62,9 @@ function clearWarnings() {
     let warnings = document.getElementsByClassName("warning");
     for (let warning of warnings)
         warning.remove();
+}
+
+function clearForm() {
+    clearWarnings();
+    clearNotifications();
 }

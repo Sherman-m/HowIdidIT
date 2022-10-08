@@ -1,0 +1,41 @@
+﻿main {
+    display: grid;
+    grid-template-rows: max-content auto;
+    grid-template-columns: 50%;
+    grid-row-gap: 10px;
+    justify-content: center;
+}
+
+#profile-block {
+    min-width: max-content;
+}
+
+#avatar-block {
+    max-width: 30%;
+    margin-right: 30px;
+}
+
+#avatar-block > img {
+    border-radius: 100px;
+}
+
+#login-part {
+    max-width: 70%;
+}
+
+#user-login {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+#date-of-registration {
+    padding-left: 5px;
+}
+
+#description-part {
+    margin-bottom: 20px;
+}
+
+#user-description {
+    min-height: 150px;
+}

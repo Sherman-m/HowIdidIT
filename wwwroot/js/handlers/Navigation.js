@@ -1,15 +1,27 @@
 ﻿function handlerNavigation() {
-    let prevPageTitle = window.sessionStorage.getItem("prevPageTitle");
-    let prevPageLink = window.sessionStorage.getItem("prevPageLink");
-    let curPage = document.createElement("a");
-    curPage.href = document.URL;
-    curPage.innerText = document.title;
+    let topicName = window.sessionStorage.getItem("topicName");
+    let topicLink = window.sessionStorage.getItem("topicLink");
     
-    if (prevPageTitle && prevPageTitle!== curPage.text) {
-        let prevPage = document.createElement("a");
-        prevPage.href = prevPageLink;
-        prevPage.innerText = prevPageTitle;
-        document.getElementById("navigation").append(prevPage, " >> ");
+    let discussionName = window.sessionStorage.getItem("discussionName");
+    let discussionLink = window.sessionStorage.getItem("discussionLink")
+    
+    let currentPage = document.createElement("a");
+    currentPage.href = document.URL;
+    currentPage.innerText = document.title;
+    
+    if (topicName && topicName !== currentPage.text) {
+        let topicPage = document.createElement("a");
+        topicPage.href = topicLink;
+        topicPage.innerText = topicName;
+        document.getElementById("navigation").append(topicPage, " >> ");
     }
-    document.getElementById("navigation").append(curPage);
+
+    if (discussionName && discussionName !== currentPage.text) {
+        let discussionPage = document.createElement("a");
+        discussionPage.href = discussionLink;
+        discussionPage.innerText = discussionName;
+        document.getElementById("navigation").append(discussionPage, " >> ");
+    }
+    
+    document.getElementById("navigation").append(currentPage);
 }

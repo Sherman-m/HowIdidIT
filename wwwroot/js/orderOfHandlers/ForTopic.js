@@ -1,7 +1,7 @@
 ﻿async function main() {
     handlerDefaultEventsForButtons();
-    await handlerAuthUser();
-    await handlerLoadCurrentTopic();
+    let userId = await handlerAuthUser();
+    await handlerLoadCurrentTopic(userId);
 
     let selectSort = document.getElementById("selectSort");
     selectSort.addEventListener("change", async function(event) {
@@ -17,6 +17,7 @@
     
     await handlerLoadDiscussionsForCurrentTopic(selectSort);
     handlerNavigation();
+    customTextarea();
 }
 
 window.addEventListener("load", main);

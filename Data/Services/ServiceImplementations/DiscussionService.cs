@@ -49,6 +49,7 @@ public class DiscussionService : IDiscussionService
         var discussion = new Discussion()
         {
             Name = discussionDto.Name,
+            Description = discussionDto.Description,
             TopicId = discussionDto.TopicId,
             UserId = discussionDto.UserId
         };
@@ -68,36 +69,33 @@ public class DiscussionService : IDiscussionService
     public async Task<Discussion?> UpdateDiscussionById(int id, DiscussionDto discussionDto)
     {
         var result = await _context.Discussions.FirstOrDefaultAsync(mid => mid.DiscussionId == id);
-        if (result != null)
-        {
-            result.Name = discussionDto.Name;
-            result.TopicId = discussionDto.TopicId;
+        if (result == null) return null;
+        
+        result.Name = discussionDto.Name;
+        result.Description = discussionDto.Description;
+        result.TopicId = discussionDto.TopicId;
 
-            try
-            {
-                var m = _context.Discussions.Update(result);
-                await _context.SaveChangesAsync();
-                return await Task.FromResult(m.Entity);
-            }
-            catch
-            {
-                return null;
-            }
+        try
+        {
+            var m = _context.Discussions.Update(result);
+            await _context.SaveChangesAsync();
+            return await Task.FromResult(m.Entity);
+        }
+        catch
+        {
+            return null;
         }
 
-        return null;
     }
 
     public async Task<bool> DeleteDiscussionById(int id)
     {
         var result = await _context.Discussions.FirstOrDefaultAsync(mid => mid.DiscussionId == id);
-        if (result != null)
-        {
-            _context.Discussions.Remove(result);
-            await _context.SaveChangesAsync();
-            return true;
-        }
+        if (result == null) return false;
+        
+        _context.Discussions.Remove(result);
+        await _context.SaveChangesAsync();
+        return true;
 
-        return false;
     }
 }

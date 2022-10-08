@@ -110,14 +110,32 @@ header {
     font-style: normal;
 }
 
+.btn-edit,
+.btn-delete,
+.btn-add,
 .btn-remove {
-    background-color: #2A2A2A;
+    background-color: #222121;
     border-width: 1px;
     border-radius: 5px;
     border-color: black;
     font-style: normal;
 }
 
+.btn-edit, 
+.btn-add,
+.btn-delete {
+    height: 40px;
+    width: 40px;
+}
+
+.btn-add {
+    margin-top: 5px;
+    justify-self: center;
+}
+
+.btn-edit:hover > svg,
+.btn-delete:hover > svg,
+.btn-add:hover > svg,
 .btn-remove:hover > svg {
     fill: black;
 }
@@ -241,7 +259,6 @@ label[for="isFavorite"] {
     height: 40px;
     width: 40px;
     background-color: #222121;
-    color: #DBDBDB;
     border-radius: 5px;
     border-color: black;
     font-style: normal;

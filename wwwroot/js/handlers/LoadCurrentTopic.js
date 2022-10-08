@@ -6,7 +6,13 @@ async function loadTopics() {
     return await fetch("../api/topics");
 }
 
-async function handlerLoadCurrentTopic() {
+function addButtonToEditTopic() {
+    let headerOfTopic = document.getElementById("header-of-topic");
+    headerOfTopic
+    
+}
+
+async function handlerLoadCurrentTopic(userId) {
 
     let topicId = window.location.pathname.split('/').at(2);
     
@@ -14,12 +20,11 @@ async function handlerLoadCurrentTopic() {
     if (loadCurrentTopicResponse.ok) {
         let dataCurrentTopic = await loadCurrentTopicResponse.json();
 
-        window.sessionStorage.setItem("prevPageTitle", dataCurrentTopic.name);
-        window.sessionStorage.setItem("prevPageLink", "../topics/" + dataCurrentTopic.topicId);
+        window.sessionStorage.setItem("topicName", dataCurrentTopic.name);
+        window.sessionStorage.setItem("topicLink", "../topics/" + dataCurrentTopic.topicId);
         
         document.getElementById("name-of-topic").innerText = dataCurrentTopic.name;
         document.getElementById("topic-description").innerText = dataCurrentTopic.description;
-        
         document.querySelector("title").innerText = dataCurrentTopic.name;
     }
 

@@ -5,19 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title></title>
     <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="~/css/discussion.css" rel="stylesheet">
+    <link href="~/css/users.css" rel="stylesheet">
     <link href="~/css/for_all_pages.css" rel="stylesheet">
     <script src="~/js/General.js"></script>
     <script src="~/js/handlers/Navigation.js"></script>
     <script src="~/js/handlers/DefaultEventsForButtons.js"></script>
     <script src="~/js/handlers/AuthUser.js"></script>
-    <script src="~/js/handlers/SettingFavoriteBlock.js"></script>
-    <script src="~/js/handlers/EditingFavorites.js"></script>
-    <script src="~/js/handlers/RemoveFromFavorite.js"></script>
-    <script src="~/js/handlers/AddDiscussionToFavorites.js"></script>
-    <script src="~/js/handlers/LoadDataForDiscussion.js"></script>
-    <script src="~/js/handlers/AddMessage.js"></script>
-    <script src="~/js/orderOfHandlers/ForDiscussion.js"></script>
+    <script src="~/js/handlers/LoadDataForUser.js"></script>
+    <script src="~/js/orderOfHandlers/ForUser.js"></script>
     <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
 </head>
 <body class="background text-font">
@@ -44,23 +39,20 @@
         <a href="/topics">Разделы</a>
         >>
     </div>
-    <div class="d-flex justify-content-between">
-        <div id="disc-block" class="content-block">
-            <div id="header-of-discussion" class="d-flex justify-content-between">
-                <h2>Название обсуждения</h2>
-            </div><hr>
-            <p></p>
-            <div id="disc-content"></div>
-            <form id="send-message" class="send-buttons d-flex justify-content-around">
-                    <textarea id="messageContent" class="form-control" aria-label="message"></textarea>
-                    <button type="submit" class="btn btn-dark">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
-                            <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
-                        </svg>
-                    </button>
-            </form>
+    <div id="user-block" class="content-block d-flex flex-column">
+        <div id="user-data-block" class="d-flex">
+            <div id="avatar-block">
+                <img src="~/pictures/avatar.png" width="170" height="170" alt="userAvatar">
+            </div>
+            <div id="login-part" class="d-flex flex-column justify-content-between">
+                <h3 id="user-login"></h3>
+                <p id="date-of-registration"></p>
+            </div>
+        </div><hr>
+        <div id="description-part">
+            <h3>Описание:</h3>
+            <p id="user-description"></p>
         </div>
-        <div id="favorites-block"></div>
     </div>
 </main>
 <footer class="d-flex justify-content-around align-items-center">

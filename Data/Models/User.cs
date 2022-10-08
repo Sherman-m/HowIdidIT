@@ -23,6 +23,7 @@ public class User
     public int TypeOfUserId { get; set; }
     public TypeOfUser TypeOfUser { get; set; }
     
+    public ICollection<Topic> Topics { get; set; }
     public ICollection<Discussion> Discussions { get; set; }
     public ICollection<Message> Messages { get; set; }
     

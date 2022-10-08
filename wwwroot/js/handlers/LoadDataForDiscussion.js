@@ -75,10 +75,12 @@ async function handlerLoadDataForDiscussion(authUserId) {
     if (loadForDiscussionResponse.ok) {
         let dataDiscussion = await loadForDiscussionResponse.json();
 
-        window.sessionStorage.setItem("prevPageTitle", dataDiscussion.topic.name);
-        window.sessionStorage.setItem("prevPageLink", "../topics/" + dataDiscussion.topicId);
-
+        window.sessionStorage.setItem("discussionName", dataDiscussion.name);
+        window.sessionStorage.setItem("discussionLink", "../discussions/" + dataDiscussion.discussionId);
+        
+        document.title = dataDiscussion.name;
         document.querySelector("#header-of-discussion > h2").innerText = dataDiscussion.name;
+        document.querySelector("#disc-block > p").innerText = dataDiscussion.description;
 
         let loadMessagesResponse = await loadMessagesForDiscussion(dataDiscussion.discussionId);
 

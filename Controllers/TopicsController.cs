@@ -2,6 +2,7 @@
 using HowIdidIT.Data.Models;
 using HowIdidIT.Data.Services.ServiceInterfaces;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 
 namespace HowIdidIT.Controllers;
 
@@ -61,6 +62,19 @@ public class TopicsController : ControllerBase
         {
             return BadRequest();
         }
+
+        return Ok(result);
+    }
+
+    [HttpPut("{id:int}/edit")]
+    public async Task<ActionResult<Topic>> UpdateDataTopic(int id, JObject jObject)
+    {
+        var bodyRequest = jObject.ToObject<Dictionary<string, string>>();
+        if (bodyRequest == null) return BadRequest();
+
+        var result = 
+            await _topicService.UpdateTopicData(id, bodyRequest["name"], bodyRequest["description"]);
+        if (result == null) return BadRequest();
 
         return Ok(result);
     }

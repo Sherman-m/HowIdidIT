@@ -84,11 +84,6 @@ function enableUpdateUser(form, dataUser) {
     }
 }
 
-function clearForm() {
-    clearWarnings();
-    clearNotifications();
-}
-
 async function handlerEditProfile(dataUser) {
     let formEditProfile = document.forms["profile-block"];
     formEditProfile.addEventListener("submit", async (event) => 
