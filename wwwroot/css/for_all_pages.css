@@ -224,10 +224,17 @@ footer {
     text-align: center;
 }
 
-.warning {
+.warning, .notification {
     margin-top: 10px;
-    color: #ea1530;
     align-self: center;
+}
+
+.warning {
+    color: red;
+}
+
+.notification {
+    color: aliceblue;
 }
 
 label[for="isFavorite"] {

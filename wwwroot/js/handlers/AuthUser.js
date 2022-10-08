@@ -61,6 +61,8 @@ async function handlerAuthUser() {
         
         if (window.location.href.split("/").at(3) === "profile") {
             handlerEditingFavorites(dataUser.userId, dataUser.selectedTopics, dataUser.selectedDiscussions);
+            handlerLoadDataForProfile(dataUser.login, dataUser.dateOfRegistration.slice(0, 10), dataUser.description);
+            await handlerEditProfile(dataUser);
         }
         
         return dataUser.userId;

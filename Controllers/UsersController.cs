@@ -4,6 +4,8 @@ using HowIdidIT.Data.Models;
 using HowIdidIT.Data.Services.ServiceInterfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace HowIdidIT.Controllers;
 
@@ -37,10 +39,10 @@ public class UsersController : ControllerBase
     [HttpGet("auth")]
     public async Task<ActionResult<User>> GetAuthUser()
     {
-        var login = HttpContext.User.FindFirst(ClaimTypes.Name);
-        if (login == null) return NotFound();
+        var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier);
+        if (userId == null) return NotFound();
         
-        var result = await _userService.GetUserByLogin(login.Value);
+        var result = await _userService.GetAuthUser(Convert.ToInt32(userId.Value));
         if (result == null) return NotFound();
         
         return Ok(result);
@@ -59,7 +61,7 @@ public class UsersController : ControllerBase
     public async Task<ActionResult<User>> UserLogin([FromBody] UserDto userDto, 
         [FromServices] ITokenService tokenService)
     {
-        var result = await _userService.AuthUser(userDto);
+        var result = await _userService.UserLogin(userDto);
         if (result == null) return Unauthorized();
         
         tokenService.CreateJwtToken(HttpContext, result);
@@ -89,10 +91,48 @@ public class UsersController : ControllerBase
 
     [Authorize]
     [HttpPut("{id:int}")]
-    public async Task<ActionResult<User>> UpdateUserById(int id, [FromBody] UserDto userDto)
+    public async Task<ActionResult<User>> UpdateUserById(int id, [FromBody] UserDto userDto,
+        [FromServices] ITokenService tokenService)
     {
         var result = await _userService.UpdateUserById(id, userDto);
         if (result == null) return BadRequest();
+        
+        tokenService.CreateJwtToken(HttpContext, result);
+        
+        return Ok(result);
+    }
+    
+    [Authorize]
+    [HttpPut("{id:int}/update-user-front-side")]
+    public async Task<ActionResult<User>> UpdateUserLoginOrDescription(int id, JObject jObject,
+        [FromServices] ITokenService tokenService)
+    {
+        var bodyRequest = jObject.ToObject<Dictionary<string, string>>();
+        if (bodyRequest == null) return BadRequest();
+        
+        var result =
+            await _userService.UpdateUserLoginOrDescription(id, bodyRequest["login"], bodyRequest["description"]);
+        if (result == null) return BadRequest();
+        
+        tokenService.CreateJwtToken(HttpContext, result);
+
+        return Ok(result);
+
+    }
+
+    [Authorize]
+    [HttpPut("{id:int}/update-password")]
+    public async Task<ActionResult<User>> UpdateUserPassword(int id, JObject jObject, 
+        [FromServices] ITokenService tokenService)
+    {
+        var bodyRequest = jObject.ToObject<Dictionary<string, string>>();
+        if (bodyRequest == null) return BadRequest();
+
+        var result = 
+            await _userService.UpdateUserPassword(id, bodyRequest["oldPassword"], bodyRequest["newPassword"]);
+        if (result == null) return BadRequest();
+        
+        tokenService.CreateJwtToken(HttpContext, result);
 
         return Ok(result);
     }

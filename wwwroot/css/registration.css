@@ -25,7 +25,7 @@
     margin-bottom: 35px;
 }
 
-label[for^=floating] {
+#box-registration > div > label {
     font-size: 1rem;
     margin-bottom: 10px;
 }

@@ -3,8 +3,8 @@
         method: "POST", 
         headers: { "Accept": "application/json", "Content-Type": "application/json" }, 
         body: JSON.stringify({
-            login: form.floatingLogin.value,
-            password: form.floatingPassword.value
+            login: form.login.value,
+            password: form.password.value
         }) 
     });
 }
@@ -26,7 +26,8 @@ async function handlerLogin(event) {
 }
 
 function handlerUserLogin() {
-    let form = document.getElementById("login-block");
+    let form = document.forms["login-block"];
+    form.addEventListener("input", clearWarnings)
     form.addEventListener("submit", handlerLogin);
 }
 

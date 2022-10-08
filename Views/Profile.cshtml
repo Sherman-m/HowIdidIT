@@ -11,6 +11,8 @@
     <script src="~/js/handlers/Navigation.js"></script>
     <script src="~/js/handlers/DefaultEventsForButtons.js"></script>
     <script src="~/js/handlers/AuthUser.js"></script>
+    <script src="~/js/handlers/LoadDataForProfile.js"></script>
+    <script src="~/js/handlers/EditProfile.js"></script>
     <script src="~/js/handlers/EditingFavorites.js"></script>
     <script src="~/js/handlers/RemoveFromFavorite.js"></script>
     <script src="~/js/orderOfHandlers/ForProfile.js"></script>
@@ -21,7 +23,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Изменение пароля</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                <button type="button" id="btn-close-change-password" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
             </div>
             <div class="modal-body">
                 <form id="change-password-block" class="d-flex flex-column justify-content-between">
@@ -102,14 +104,14 @@
         >>
         <a href="/profile">Профиль</a>
     </div>
-    <div id="profile-block" class="content-block d-flex flex-column">
+    <form id="profile-block" class="content-block d-flex flex-column">
         <div id="user-data-block" class="d-flex">
             <div id="avatar-block">
                 <img src="~/pictures/coffee-cat.jpg" width="170" height="170" alt="userAvatar">
             </div>
             <div id="login-part" class="d-flex flex-column justify-content-between">
-                <input type="text" id="userLogin" class="form-control" value="sherman_m" aria-label="userLogin">
-                <p>Дата регистрации: 11.10.2002</p>
+                <input type="text" id="userLogin" class="form-control" aria-label="userLogin">
+                <p id="date-of-registration"></p>
                 <div id="edit-buttons" class="d-flex">
                     <button type="button" id="changePassword" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#EditPasswordModal">Изменить пароль</button>
                     <button type="button" class="btn btn-dark" id="btn-edit-favorites" data-bs-toggle="modal" data-bs-target="#EditFavoritesModal">Избранное
@@ -120,12 +122,12 @@
                 </div>
             </div>
         </div><hr>
-            <div id="description-part">
-                <h3>Описание:</h3>
-                <textarea id="userDescription" class="form-control" aria-label="userDescription">Описание пользователя</textarea>
-            </div>
-            <button type="submit" class="btn btn-dark align-self-end">Сохранить</button>
-    </div>
+        <div id="description-part">
+            <h3>Описание:</h3>
+            <textarea id="userDescription" class="form-control" aria-label="userDescription"></textarea>
+        </div>
+        <button type="submit" id="saveUpdates" class="btn btn-dark align-self-end" disabled>Сохранить</button>
+    </form>
 </main>
 <footer class="d-flex justify-content-around align-items-center">
     © Все права защищены

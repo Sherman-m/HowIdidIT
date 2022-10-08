@@ -37,8 +37,8 @@ function addToFavorites(checkbox) {
     }
 }
 
-function setUnchecked(checkbox) {
-    checkbox.className = "btn shadow-none checkbox-unchecked";
+function setUnchecked(event) {
+    event.target.className = "btn shadow-none checkbox-unchecked";
 }
 
 function addButtonAddToFavorites(headerOfTopicOrDiscussion) {
@@ -49,4 +49,16 @@ function addButtonAddToFavorites(headerOfTopicOrDiscussion) {
         '                        </svg>\n' +
         '                    </label>'
     return document.getElementById("isFavorite")
+}
+
+function clearNotifications() {
+    let notifications = document.getElementsByClassName("notification");
+    for (let notification of notifications)
+        notification.remove();
+}
+
+function clearWarnings() {
+    let warnings = document.getElementsByClassName("warning");
+    for (let warning of warnings)
+        warning.remove();
 }

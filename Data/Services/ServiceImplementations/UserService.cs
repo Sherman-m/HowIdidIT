@@ -33,7 +33,7 @@ public class UserService : IUserService
         return await Task.FromResult(result);
     }
 
-    public async Task<User?> GetUserByLogin(string login)
+    public async Task<User?> GetAuthUser(int id)
     {
         var result = await _context.Users
             .Include(t => t.TypeOfUser)
@@ -41,11 +41,11 @@ public class UserService : IUserService
             .Include(m => m.Messages)
             .Include(st => st.SelectedTopics)
             .Include(sd => sd.SelectedDiscussions)
-            .FirstOrDefaultAsync(u => u.Login == login);
+            .FirstOrDefaultAsync(u => u.UserId == id);
         return await Task.FromResult(result);
     }
     
-    public async Task<User?> AuthUser(UserDto userDto)
+    public async Task<User?> UserLogin(UserDto userDto)
     {
         var result = await _context.Users
             .Include(t => t.TypeOfUser)
@@ -148,6 +148,62 @@ public class UserService : IUserService
             Encoding.Default.GetBytes("my_key")
         );
         result.Salt = salt;
+
+        try
+        {
+            _context.Users.Update(result);
+            _context.Entry(result).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+            return await Task.FromResult(result);
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    public async Task<User?> UpdateUserLoginOrDescription(int userId, string login, string description)
+    {
+        var result = await _context.Users
+            .Include(t => t.TypeOfUser)
+            .FirstOrDefaultAsync(u => u.UserId == userId);
+        if (result == null) return null;
+        
+        result.Login = login;
+        result.Description = description;
+
+        try
+        {
+            _context.Users.Update(result);
+            _context.Entry(result).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+            return await Task.FromResult(result);
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    public async Task<User?> UpdateUserPassword(int id, string oldPassword, string newPassword)
+    {
+        var result = await _context.Users
+            .Include(t => t.TypeOfUser)
+            .FirstOrDefaultAsync(u => u.UserId == id);
+        if (result == null) return null;
+        
+        var p = ComputeHmacSha1(
+            Encoding.Default.GetBytes(oldPassword + result.Salt),
+            Encoding.Default.GetBytes("my_key")
+        );
+
+        if (p != result.Password) return null;
+        
+        result.Salt = GenSalt();
+        result.Password = ComputeHmacSha1(
+            Encoding.Default.GetBytes(newPassword + result.Salt),
+            Encoding.Default.GetBytes("my_key")
+        );
 
         try
         {
