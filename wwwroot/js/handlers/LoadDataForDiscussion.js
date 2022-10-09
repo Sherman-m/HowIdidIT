@@ -6,7 +6,7 @@ async function loadMessagesForDiscussion(discussionId) {
     return await fetch("../api/discussions/" + discussionId + "/messages");
 }
 
-function addMessageForDiscussionContent(message, authUserId, authorDiscussion) {
+async function addMessageForDiscussionContent(message, authUserId, authorDiscussion) {
     let discContent = document.getElementById("disc-content");
     
     let entireMessage = document.createElement("div");
@@ -36,6 +36,9 @@ function addMessageForDiscussionContent(message, authUserId, authorDiscussion) {
         messageBlock.append(authorMessage, messageText);
         entireMessage.append(messageBlock, messageUserAvatar);
         discContent.appendChild(entireMessage);
+        
+        await handlerEditMessage(authUserId, message.messageId, entireMessage);
+        
     } else {
         entireMessage.className = "d-flex another-user-message";
 
@@ -88,7 +91,7 @@ async function handlerLoadDataForDiscussion(authUserId) {
             let dataMessages = await loadMessagesResponse.json();
 
             for (let message of dataMessages.sort(byField("dateOfPublication"))) {
-                addMessageForDiscussionContent(message, authUserId, dataDiscussion.userId);
+                await addMessageForDiscussionContent(message, authUserId, dataDiscussion.userId);
             }
         }
     }

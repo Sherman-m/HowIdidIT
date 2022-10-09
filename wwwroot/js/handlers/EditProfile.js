@@ -2,7 +2,6 @@
     return form.newPassword.value === form.confirmNewPassword.value;
 }
 
-
 async function updateUserFrontSide(form, userId) {
     return await fetch("../api/users/" + userId + "/update-user-front-side", {
         method: "PUT",

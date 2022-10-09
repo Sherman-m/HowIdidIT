@@ -69,7 +69,7 @@ async function handlerAuthUser() {
         
         let formSendMessage = document.getElementById("send-message");
         if (formSendMessage) {
-            await handlerAddMessage(dataUser.userId, formSendMessage)
+            await handlerAddMessages(dataUser.userId, formSendMessage)
         }
         
         if (window.location.href.split("/").at(3) === "profile") {

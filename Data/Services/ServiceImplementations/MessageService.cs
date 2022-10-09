@@ -64,23 +64,40 @@ public class MessageService : IMessageService
     public async Task<Message?> UpdateMessageById(int id, MessageDto messageDto)
     {
         var result = await _context.Messages.FirstOrDefaultAsync(mid => mid.MessageId == id);
-        if (result != null)
+        if (result == null) return null;
+        result.Text = messageDto.Text;
+
+        try
         {
-            result.Text = messageDto.Text;
-
-            try
-            {
-                var m = _context.Messages.Update(result);
-                await _context.SaveChangesAsync();
-                return await Task.FromResult(m.Entity);
-            }
-            catch
-            {
-                return null;
-            }
+            _context.Messages.Update(result);
+            await _context.SaveChangesAsync();
+            return await Task.FromResult(result);
         }
+        catch
+        {
+            return null;
+        }
+    }
 
-        return null;
+    public async Task<Message?> UpdateMessageData(int id, string text)
+    {
+        var result = await _context.Messages
+            .Include(u => u.User)
+            .Include(d => d.Discussion)
+            .FirstOrDefaultAsync(m => m.MessageId == id);
+        if (result == null) return null;
+
+        result.Text = text;
+        try
+        {
+            _context.Messages.Update(result);
+            await _context.SaveChangesAsync();
+            return await Task.FromResult(result);
+        }
+        catch
+        {
+            return null;
+        }
     }
 
     public async Task<bool> DeleteMessageById(int id)
