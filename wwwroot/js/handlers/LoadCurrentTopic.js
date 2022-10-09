@@ -1,21 +1,30 @@
 ﻿async function loadCurrentTopic(topicId) {
-    return await fetch("../api/Topic/GetTopicById?id=" + topicId);
+    return await fetch("../api/topics/" + topicId);
 }
 
 async function loadTopics() {
-    return await fetch("../api/Topic/GetAllTopics");
+    return await fetch("../api/topics");
 }
 
-async function handlerLoadCurrentTopic() {
-
-    let params = getUrlSearchParams();
+function addButtonToEditTopic() {
+    let headerOfTopic = document.getElementById("header-of-topic");
+    headerOfTopic
     
-    let loadCurrentTopicResponse = await loadCurrentTopic(params.id);
+}
+
+async function handlerLoadCurrentTopic(userId) {
+
+    let topicId = window.location.pathname.split('/').at(2);
+    
+    let loadCurrentTopicResponse = await loadCurrentTopic(topicId);
     if (loadCurrentTopicResponse.ok) {
         let dataCurrentTopic = await loadCurrentTopicResponse.json();
+
+        window.sessionStorage.setItem("topicName", dataCurrentTopic.name);
+        window.sessionStorage.setItem("topicLink", "../topics/" + dataCurrentTopic.topicId);
+        
         document.getElementById("name-of-topic").innerText = dataCurrentTopic.name;
         document.getElementById("topic-description").innerText = dataCurrentTopic.description;
-        
         document.querySelector("title").innerText = dataCurrentTopic.name;
     }
 
@@ -30,7 +39,7 @@ async function handlerLoadCurrentTopic() {
                 opt.setAttribute("value", topic.topicId);
                 opt.innerText = topic.name;
 
-                if (Number(params.id) === topic.topicId) {
+                if (Number(topicId) === topic.topicId) {
                     opt.selected = true;
                 }
                 topicSelectionList.appendChild(opt);

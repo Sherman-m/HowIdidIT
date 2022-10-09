@@ -1,27 +1,26 @@
 ﻿function checkPasswords(form) {
-    return form.floatingPassword.value === form.floatingConfirmPassword.value;
-    
+    return form.password.value === form.confirmPassword.value;
 }
 
 async function register(form) {
-    return await fetch("api/user/RegisterUser", {
+    return await fetch("../api/users/registration", {
         method: "POST",
         headers: { "Accept": "application/json", "Content-Type": "application/json" },
         body: JSON.stringify({
-            login: form.floatingLogin.value,
-            password: form.floatingConfirmPassword.value
+            login: form.login.value,
+            password: form.confirmPassword.value
         })
     });
 }
 
 async function login(form) {
-    console.log(form);
-    return await fetch("api/user/UserLogin", {
+
+    return await fetch("../api/users/login", {
         method: "POST",
         headers: { "Accept": "application/json", "Content-Type": "application/json" },
         body: JSON.stringify({
-            login: form.floatingLogin.value,
-            password: form.floatingPassword.value
+            login: form.login.value,
+            password: form.confirmPassword.value
         })
     });
 }
@@ -29,10 +28,10 @@ async function login(form) {
 async function handlerRegistration(event) {
     await event.preventDefault();
     
-    let matchingPasswords = checkPasswords(event.currentTarget);
+    let matchingPasswords = checkPasswords(event.target);
     if (matchingPasswords) {
  
-        let registrationResponse = await register(event.currentTarget);
+        let registrationResponse = await register(event.target);
         if (registrationResponse.ok) {
             
             let loginResponse = await login(event.target);
@@ -44,7 +43,7 @@ async function handlerRegistration(event) {
             let warningFail = document.createElement("p");
             warningFail.className = "warning";
             warningFail.innerText = "Что-то пошло не так";
-            document.getElementById("register-form").append(warningFail);
+            document.getElementById("registration-block").append(warningFail);
         }
     }
     else {
@@ -57,6 +56,7 @@ async function handlerRegistration(event) {
 
 function handlerUserRegistration() {
     let form = document.getElementById("registration-block");
+    form.addEventListener("input", clearWarnings);
     form.addEventListener("submit", handlerRegistration);
 }
 

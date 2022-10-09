@@ -11,8 +11,93 @@
     <script src="~/js/handlers/Navigation.js"></script>
     <script src="~/js/handlers/DefaultEventsForButtons.js"></script>
     <script src="~/js/handlers/AuthUser.js"></script>
+    <script src="~/js/handlers/LoadDataForProfile.js"></script>
+    <script src="~/js/handlers/EditProfile.js"></script>
+    <script src="~/js/handlers/EditFavorites.js"></script>
+    <script src="~/js/handlers/RemoveFromFavorite.js"></script>
     <script src="~/js/orderOfHandlers/ForProfile.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
 </head>
+<div class="modal fade" id="EditPasswordModal" tabindex="-1" aria-labelledby="editPasswordModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Изменение пароля</h5>
+                <button type="button" id="btn-close-change-password" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+            </div>
+            <div class="modal-body">
+                <form id="change-password-block" class="d-flex flex-column justify-content-between">
+                    <div class="d-flex form-password flex-column">
+                        <label for="oldPassword">Введите старый пароль:</label>
+                        <input type="password" class="form-control" id="oldPassword" placeholder="Введите старый пароль">
+                    </div>
+                    <div class="d-flex form-password flex-column">
+                        <label for="newPassword">Введите новый пароль:</label>
+                        <input type="password" class="form-control" id="newPassword" placeholder="Введите новый пароль">
+                    </div>
+                    <div class="d-flex form-password flex-column">
+                        <label for="confirmNewPassword">Подтвердите новый пароль:</label>
+                        <input type="password" class="form-control" id="confirmNewPassword" placeholder="Подтвердите новый пароль">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Закрыть</button>
+                <button type="submit" class="btn btn-dark" form="change-password-block">Сохранить изменения</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="EditFavoritesModal" tabindex="-1" aria-labelledby="favoritesModalLable" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Избранное
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="red" viewBox="0 0 16 16">
+                        <path d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/>
+                    </svg>
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+            </div>
+            <div id="edit-favorites" class="modal-body">
+                <div id="links-for-editing-favorites">
+                    <div id="block-for-editing-topics">
+                        <i>
+                            <U>Разделы</U>
+                        </i>
+                        <ul></ul>
+                    </div>
+                    <div id="block-for-editing-discussions">
+                        <i>
+                            <U>Обсуждения</U>
+                        </i>
+                        <ul></ul>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Закрыть</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="DeleteProfileModal" tabindex="-1" aria-labelledby="DeleteProfileModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Изменение пароля</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+            </div>
+            <div class="modal-body">
+                <p>Вы действительно хотите удалить свой профиль?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Нет</button>
+                <button type="button" class="btn btn-dark" id="delete-user">Удалить</button>
+            </div>
+        </div>
+    </div>
+</div>
 <body class="background text-font">
 <header class="d-flex flex-wrap justify-content-between">
     <div id="my-nav-bar1" class="d-flex flex-wrap align-items-center justify-content-around">
@@ -22,10 +107,10 @@
     </div>
     <div id="my-nav-bar2" class="d-flex flex-wrap align-items-center justify-content-around">
         <form id="form-search">
-            <input type="search" class="form-control form-control-dark" placeholder="Поиск..." aria-label="Search">
+            <input type="search" class="form-control" placeholder="Поиск..." aria-label="Search">
         </form>
-        <button id="btn-auth" class="btn btn-dark" onclick="redirectOnLoginPage()">Авторизация</button>
-        <button id="btn-reg" class="btn btn-dark" onclick="redirectOnRegistrationPage()">Регистрация</button>
+        <button id="btn-auth" class="btn btn-dark">Авторизация</button>
+        <button id="btn-reg" class="btn btn-dark">Регистрация</button>
     </div>
 </header>
 <main>
@@ -36,49 +121,33 @@
         >>
         <a href="/profile">Профиль</a>
     </div>
-    <div class="d-flex justify-content-between">
-        <div id="first-column">
-            <div class="d-flex flex-column user-avatar content-block justify-content-between align-items-center">
-                <img src="~/pictures/avatar.png" height="250" width="250">
-                <form>
-                    <button type="button" formaction="../Views/registration.html" formmethod="get" class="btn btn-dark">Сменить аватар</button>
-                </form>
+    <form id="profile-block" class="content-block d-flex flex-column">
+        <div id="user-data-block" class="d-flex">
+            <div id="avatar-block">
+                <img src="~/pictures/coffee-cat.jpg" width="170" height="170" alt="userAvatar">
             </div>
-            <div class="d-flex flex-column justify-content-between align-items-center user-property content-block">
-                <button type="button" formaction="../Views/registration.html" formmethod="get" class="btn btn-dark">Посмотреть обсуждения</button>
-                <button type="button" formaction="../Views/registration.html" formmethod="get" class="btn btn-dark">Посмотреть избранное</button>
-                <button type="button" formaction="../Views/registration.html" formmethod="get" class="btn btn-dark">Сменить пароль</button>
-                <button type="button" formaction="../Views/registration.html" formmethod="get" class="btn btn-dark">Удалить профиль</button>
+            <div id="login-part" class="d-flex flex-column justify-content-between">
+                <input type="text" id="userLogin" class="form-control" aria-label="userLogin">
+                <p id="date-of-registration"></p>
+                <div id="edit-buttons" class="d-flex">
+                    <button type="button" id="changePassword" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#EditPasswordModal">Изменить пароль</button>
+                    <button type="button" class="btn btn-dark" id="btn-edit-favorites" data-bs-toggle="modal" data-bs-target="#EditFavoritesModal">Избранное
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="red" viewBox="0 0 16 16">
+                            <path d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/>
+                        </svg>
+                    </button>
+                </div>
             </div>
-        </div>     
-        <div id="second-column">
-            <div class="user-data content-block">
-                <h3>Nickname:</h3>
-                <form id="user-prop">
-                    <label>Nickaname:
-                        <input type="text" name="Nickname" value="Пользователь №1">
-                    </label>
-                </form>               
-                <h3>Email: dfjgfd@jidfjg.com</h3>
-<!--                <form>-->
-<!--                <input>-->
-<!--                </form>-->
-<!--                <form>-->
-<!--                    <button type="button" formaction="../Views/registration.html" formmethod="get" class="btn btn-dark">Сменить пароль</button>-->
-<!--                </form>-->
-            </div>
-            <div class="user-desc content-block">
-                <h3>Описание</h3><hr>
-                <p>Всем привет! Я устал делать фронт часть и поэтому я хочу спать. Всем пока!</p>
-<!--                <form>-->
-<!--                    <input>-->
-<!--                </form>-->
-            </div>
-            <form>
-                <button type="button" formaction="../Views/registration.html" formmethod="get" class="btn btn-dark">Сохранить изменения</button>
-            </form>
+        </div><hr>
+        <div id="description-part">
+            <h3>Описание:</h3>
+            <textarea id="userDescription" class="form-control" aria-label="userDescription"></textarea>
         </div>
-    </div>
+        <div class="d-flex justify-content-between">
+            <button type="button" id="deleteProfile" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#DeleteProfileModal">Удалить профиль</button>
+            <button type="submit" id="saveUpdates" class="btn btn-dark" disabled>Сохранить</button>
+        </div>
+    </form>
 </main>
 <footer class="d-flex justify-content-around align-items-center">
     © Все права защищены

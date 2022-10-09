@@ -5,6 +5,20 @@ html {
     font-size: 20px;
 }
 
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #222121;
+    border-radius: 30px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #DBDBDB;
+    border-radius: 30px;
+}
+
 .text-font {
     font-family: 'Akshar', 'Oswald', sans-serif;
     color: aliceblue;
@@ -53,17 +67,33 @@ header {
     flex-basis: 40%;
 }
 
-.login-name {
-    flex-basis: 30%;
-    font-size: 1.5rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
 #form-search {
     max-width: 40%;
     font-style: initial;
     font-size: 0.8rem;
+}
+
+#loginMenu {
+    max-width: 160px;
+    font-size: 1.1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dropdown-menu.login-menu  {
+    min-width: 160px;
+    background-color: #2A2A2A;
+    border-radius: 10px;
+    border-color: black;
+    box-shadow: 1px 0 5px black, -1px 0 5px black;
+}
+
+.dropdown-menu.login-menu > li > a {
+    color: aliceblue;
+}
+
+.dropdown-menu.login-menu > li > a:hover {
+    color: black;
 }
 
 .form-control:focus {
@@ -74,21 +104,56 @@ header {
 }
 
 .btn-dark, .btn-danger {
-    border-width: 2px;
+    border-width: 1px;
     border-radius: 10px;
     border-color: black;
     font-style: normal;
-    word-break: normal;
+}
+
+.btn-edit,
+.btn-delete,
+.btn-add,
+.btn-remove {
+    background-color: #222121;
+    border-width: 1px;
+    border-radius: 5px;
+    border-color: black;
+    font-style: normal;
+}
+
+.btn-edit, 
+.btn-add,
+.btn-delete {
+    height: 40px;
+    width: 40px;
+}
+
+.btn-add {
+    margin-top: 5px;
+    justify-self: center;
+}
+
+.btn-edit:hover > svg,
+.btn-delete:hover > svg,
+.btn-add:hover > svg,
+.btn-remove:hover > svg {
+    fill: black;
+}
+
+.btn[disabled] {
+    color: #DBDBDB;
+    background-color: #222121;
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
 }
 
 .btn-dark {
     background-color: #222121;
-    color: #DBDBDB;
 }
 
 .btn-danger {
     background-color: red;
-    color: #DBDBDB;
 }
 
 button[class^=btn]:hover {
@@ -124,27 +189,46 @@ img[alt=Главная]{
     border-width: 1px;
     border-color: black;
     box-shadow: 1px 0 5px black, -1px 0 5px black;
-    padding: 20px;
+    padding: 30px;
     text-align: justify;
 }
 
 #favorites-block {
-    flex-basis: 22%;
     align-self: start;
-    max-width: 25%;
+    width: 22%;
     justify-self: center;
 }
 
-#links-for-favorites{
-    padding-left: 20px;
+#favorites-block > h3:hover {
+    text-decoration: underline;
 }
 
+#links-for-favorites, 
+#links-for-editing-favorites {
+    max-height: 300px;
+    overflow-y: auto;
+}
 
-#links-for-favorites > li > a {
-    display: block;
-    overflow: hidden;
-    white-space: nowrap;
+#links-for-favorites > div > ul,
+#links-for-editing-favorites > div > ul {
+    padding-left: 20px;
+    margin-bottom: 15px;
+}
+
+#links-for-favorites > div > ul > div,
+#links-for-editing-favorites > div > ul > div {
+    margin-bottom: 15px;
+    align-self: center;
+    margin-right: 10px;
+}
+
+#links-for-favorites > div > ul > li, 
+#links-for-editing-favorites > div > ul > div > li  {
+    list-style-position: inside;
+    overflow-x: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: left;
 }
 
 footer {
@@ -158,9 +242,80 @@ footer {
     text-align: center;
 }
 
-.warning {
+.warning, .notification {
     margin-top: 10px;
-    color: #ea1530;
     align-self: center;
 }
 
+.warning {
+    color: red;
+}
+
+.notification {
+    color: aliceblue;
+}
+
+label[for="isFavorite"] {
+    height: 40px;
+    width: 40px;
+    background-color: #222121;
+    border-radius: 5px;
+    border-color: black;
+    font-style: normal;
+    padding: 9px;
+}
+
+label[for="isFavorite"] > svg {
+    display: block;
+}
+
+.checkbox-temporary-mark > svg {
+    fill: #DBDBDB;
+    animation-name: ch;
+    animation-duration: 0.5s;
+}
+
+.checkbox-checked > svg {
+    fill: red;
+}
+
+.checkbox-unchecked {
+    fill: #DBDBDB;
+}
+.checkbox-unchecked:hover > svg {
+    fill: red;
+}
+
+@keyframes ch {
+    0% {fill: red}
+    50% {fill: red}
+    100% {fill: #DBDBDB}
+}
+
+textarea {
+    overflow: hidden;
+    resize: none;
+}
+
+input[type=text]:not(:focus), input[type=password]:not(:focus), input[type=search]:not(:focus) {
+    background-color: rgba(28, 26, 26, 0.3);
+    border-color: black;
+    color: aliceblue;
+
+}
+
+textarea:not(:focus) {
+    background-color: rgba(28, 26, 26, 0.3);
+    border-color: black;
+    color: aliceblue;
+}
+
+.modal-content {
+    background-color: #2A2A2A;
+    border-radius: 15px;
+    border-width: 1px;
+    border-color: black;
+    box-shadow: 1px 0 5px black, -1px 0 5px black;
+    text-align: justify;
+    font-size: 1.1rem;
+}

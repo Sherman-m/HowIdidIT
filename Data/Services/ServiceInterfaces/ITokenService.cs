@@ -8,4 +8,5 @@ namespace HowIdidIT.Data.Services.ServiceInterfaces;
 public interface ITokenService
 {
     void CreateJwtToken(HttpContext context, User user);
+    void DeleteJwtToken(HttpContext context);
 }

@@ -1,5 +1,27 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/css/topics.css" rel="stylesheet">
+    <link href="~/css/for_all_pages.css" rel="stylesheet">
+    <script src="~/js/General.js"></script>
+    <script src="~/js/handlers/Navigation.js"></script>
+    <script src="~/js/handlers/DefaultEventsForButtons.js"></script>
+    <script src="~/js/handlers/AuthUser.js"></script>
+    <script src="~/js/handlers/SettingFavoriteBlock.js"></script>
+    <script src="~/js/handlers/EditFavorites.js"></script>
+    <script src="~/js/handlers/RemoveFromFavorite.js"></script>
+    <script src="~/js/handlers/AddTopicToFavorites.js"></script>
+    <script src="~/js/handlers/LoadCurrentTopic.js"></script>
+    <script src="~/js/handlers/EditTopic.js"></script>
+    <script src="~/js/handlers/CreateDiscussion.js"></script>
+    <script src="~/js/handlers/LoadDiscussionsForCurrentTopic.js"></script>
+    <script src="~/js/orderOfHandlers/ForTopic.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+</head>
 <body class="background text-font">
 <header class="d-flex flex-wrap justify-content-between">
     <div id="my-nav-bar1" class="d-flex flex-wrap align-items-center justify-content-around">
@@ -27,46 +49,37 @@
     <div class="d-flex justify-content-between">
         <div id="main-block">
             <div id="topics-block" class="content-block">
-                <div class="d-flex justify-content-between">
-                    <h3 id="name-of-topic"></h3><hr>
-                    <input type="checkbox" class="btn-check" id="btn-add-to-favorites">
-                    <label class="btn shadow-none checkbox-unchecked" for="btn-add-to-favorites">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16">
-                            <path d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/>
-                        </svg>
-                    </label>
-                </div>
+                <div id="header-of-topic" class="d-flex justify-content-between">
+                    <h3 id="name-of-topic"></h3>
+                </div><hr>
                 <p id="topic-description"></p>
             </div>
             <div id="discussing-block" class="d-flex flex-column content-block">
-                <div id="header-of-disc" class="d-flex justify-content-between">
+                <div id="header-of-discussions" class="d-flex justify-content-between">
                     <h3>Обсуждения:</h3>
-                    <div id="disc-buttons" class="d-flex justify-content-between flex-wrap">
-                        <button id="btn-create-disc" type="button" class="btn btn-dark">Cоздать обсуждение</button>
-                        <div class="dropdown">
-                            <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
-                                Новые
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                                <li><a class="dropdown-item active" href="#">Старые</a></li>
-                                <li><a class="dropdown-item" href="#">Макс. кол-во сообщений</a></li>
-                                <li><a class="dropdown-item" href="#">Мин. кол-во сообщений</a></li>
-                            </ul>
-                        </div>
+                    <div id="discussion-buttons" class="d-flex justify-content-between flex-wrap">
+                        <button id="btn-create-discussion" type="button" class="btn btn-dark">Cоздать обсуждение</button>
+                        <select class="shadow-none form-select" id="selectSort" aria-label="SortingDisc">
+                            <option value="1">Новые</option>
+                            <option value="2">Старые</option>
+                            <option value="3">Max сообщений</option>
+                            <option value="4">Min сообщений</option>
+                        </select>
                     </div>
                 </div>
-                <table id="table-disc" class="table">
-                    <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Название</th>
-                        <th scope="col">Пользователь</th>
-                        <th scope="col">Дата</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table id="table-discussion" class="table">
+                        <thead>
+                        <tr class="d-flex">
+                            <th class="col-1">№</th>
+                            <th class="col-5">Название</th>
+                            <th class="col-3">Пользователь</th>
+                            <th class="col-3">Дата</th>
+                        </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
             </div>
         </div>
         <div id="favorites-block"></div>
@@ -76,22 +89,4 @@
     © Все права защищены
 </footer>
 </body>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title></title>
-    <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="~/css/topics.css" rel="stylesheet">
-    <link href="~/css/for_all_pages.css" rel="stylesheet">
-    <script src="~/js/General.js"></script>
-    <script src="~/js/handlers/Navigation.js"></script>
-    <script src="~/js/handlers/DefaultEventsForButtons.js"></script>
-    <script src="~/js/handlers/AuthUser.js"></script>
-    <script src="~/js/handlers/AddToFavorites.js"></script>
-    <script src="~/js/handlers/LoadCurrentTopic.js"></script>
-    <script src="~/js/handlers/CreateDiscussion.js"></script>
-    <script src="~/js/handlers/LoadDiscussionForCurrentTopic.js"></script>
-    <script src="~/js/orderOfHandlers/ForTopic.js"></script>
-    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-</head>
 </html>

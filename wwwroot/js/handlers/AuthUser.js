@@ -1,96 +1,24 @@
 ﻿async function authUser() {
-    return await fetch("../api/User/GetAuthUser");
+    return await fetch("../api/users/auth");
 }
 
 function setLoginInHeader(data) {
     document.getElementById("btn-auth").remove();
     document.getElementById("btn-reg").remove();
 
-    let login = document.createElement("div");
-    login.className = "login-name";
-    login.innerText = data.login;
-    document.getElementById("my-nav-bar2").appendChild(login);
-}
-
-function setFavorites(selectedDiscussions, selectedTopics, favoritesBlock) {
-    favoritesBlock.className = "content-block";
-    favoritesBlock.innerHTML = '<h3 class=\"text-center\">Избранное</h3><hr>\n' +
-        '            <div id=\"links-for-favorites\">\n' +
-        '            </div>';
+    let loginMenu = document.createElement("div");
+    loginMenu.className = "dropdown";
+    loginMenu.innerHTML = '<div class="dropdown">' +
+        '            <button class="btn btn-dark dropdown-toggle" type="button" id="loginMenu" data-bs-toggle="dropdown" aria-expanded="false">' +
+        '                ' + data.login +
+        '            </button>' +
+        '            <ul class="dropdown-menu login-menu" aria-labelledby="dropdownLoginMenuButton">' +
+        '                <li><a class="dropdown-item" href="/profile">Профиль</a></li>' +
+        '                <li><a class="dropdown-item" href="/logout">Выйти</a></li>' +
+        '            </ul>' +
+        '        </div>'
     
-    if (selectedDiscussions) {
-        let listOfDisc = document.createElement("ul");
-        listOfDisc.innerText = "Обсуждения";
-
-        for (let favoriteDisc of selectedDiscussions) {
-            let linkOnDisc = document.createElement("a");
-            linkOnDisc.href = "/discussion/&id=" + favoriteDisc.discussionId;
-            linkOnDisc.innerText = favoriteDisc.name;
-
-            listOfDisc.appendChild(document.createElement("li").appendChild(linkOnDisc));
-        }
-
-        favoritesBlock.getElementById("links-for-favorites").appendChild(listOfDisc);
-    }
-    
-    if (selectedTopics) {
-        let listOfTopics = document.createElement("ul");
-        listOfTopics.innerText = "Обсуждения";
-
-        for (let favoriteTopic of selectedTopics) {
-            let linkOnDisc = document.createElement("a");
-            linkOnDisc.href = "/discussion/&id=" + favoriteTopic.topicId;
-            linkOnDisc.innerText = favoriteTopic.name;
-
-            listOfTopics.appendChild(document.createElement("li").appendChild(linkOnDisc));
-        }
-
-        favoritesBlock.getElementById("links-for-favorites").appendChild(listOfTopics);
-    }
-}
-
-function enableCreateDisc(btnCreatingDisc) {
-    btnCreatingDisc.removeEventListener("click", redirectOnLoginPage);
-
-    btnCreatingDisc.setAttribute("data-bs-toggle", "modal");
-    btnCreatingDisc.setAttribute("data-bs-target", "#ModalForCreatingDisc");
-    
-    let modal = document.createElement("div");
-    modal.className = "modal fade";
-    modal.id = "ModalForCreatingDisc";
-    modal.innerHTML = '<div class="modal-dialog modal-dialog-centered">\n' +
-        '        <div class="modal-content">\n' +
-        '            <div class="modal-header">\n' +
-        '                <h5 class="modal-title" id="ModalForCreatingDiscTitle">Создание обсуждения</h5>\n' +
-        '                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>\n' +
-        '            </div>\n' +
-        '            <div class="modal-body">\n' +
-        '                <form id="create-disc" class="d-flex flex-column">\n' +
-        '                    <div class="name-of-new-disc">\n' +
-        '                        <label for="nameOfNewDisc">Напишите название:</label>\n' +
-        '                        <input type="text" id="nameOfNewDisc" class="form-control">\n' +
-        '                    </div>\n' +
-        '                    <div class="question-of-new-disc">\n' +
-        '                        <label for="questionForDisc">Задайте ваш вопрос:</label>\n' +
-        '                        <textarea id="questionOfNewDisc" class="form-control"></textarea>\n' +
-        '                    </div>\n' +
-        '                    <div class="select-topic-for-new-disc">\n' +
-        '                        <label for="chooseTopic">Выберете раздел:</label>\n' +
-        '                        <select class="form-select" id="selectTopic">\n' +
-        '                        </select>\n' +
-        '                    </div>\n' +
-        '                </form>\n' +
-        '            </div>\n' +
-        '            <div class="modal-footer">\n' +
-        '                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Закрыть</button>\n' +
-        '                <button type="submit" class="btn btn-dark" form="create-disc">Создать</button>\n' +
-        '            </div>\n' +
-        '        </div>\n' +
-        '    </div>\n' +
-        '</div>';
-
-    document.body.append(modal);
-    new bootstrap.Modal(modal);
+    document.getElementById("my-nav-bar2").appendChild(loginMenu);
 }
 
 async function handlerAuthUser() {
@@ -101,19 +29,56 @@ async function handlerAuthUser() {
 
         setLoginInHeader(dataUser);
         
-        let favorites = document.getElementById("favorites-block");
-        if (favorites) {
-            setFavorites(dataUser.selectedDiscussions, dataUser.selectedTopics, favorites);
+        let favoritesBlock = document.getElementById("favorites-block");
+        if (favoritesBlock) {
+            handlerSettingFavoriteBlock(favoritesBlock, dataUser.selectedTopics, dataUser.selectedDiscussions);
+            handlerEditingFavorites(dataUser.userId, dataUser.selectedTopics, dataUser.selectedDiscussions, favoritesBlock);
         }
         
-        let btnCreatingDisc = document.getElementById("btn-create-disc");
+        let topicId = window.location.pathname.split("/").at(2);
+        if (topicId !== undefined && window.location.pathname.split("/").at(1) === "topics") {
+            let divForButtons = document.createElement("div");
+            divForButtons.id = "buttons-for-topic-discussion-header";
+            document.getElementById("header-of-topic").appendChild(divForButtons);
+
+            await handlerEditTopic(dataUser.userId, topicId);
+            let checkbox = addButtonAddToFavorites();
+            handlerAddTopicToFavorites(checkbox, dataUser.userId, Number(topicId), dataUser.selectedTopics, favoritesBlock);
+        }
+
+        let discussionId = window.location.pathname.split("/").at(2);
+        if (discussionId !== undefined && window.location.pathname.split("/").at(1) === "discussions") {
+            let divForButtons = document.createElement("div");
+            divForButtons.id = "buttons-for-topic-discussion-header";
+            document.getElementById("header-of-discussion").appendChild(divForButtons);
+
+            await handlerEditDiscussion(dataUser.userId, discussionId);
+            let checkbox = addButtonAddToFavorites();
+            handlerAddDiscussionToFavorites(checkbox, dataUser.userId, Number(topicId), dataUser.selectedDiscussions, favoritesBlock);
+        }
+        
+        let btnAddNewTopic = document.getElementById("btn-add-new-topic");
+        if (btnAddNewTopic) {
+            await handlerCreateTopic(dataUser.userId, btnAddNewTopic);
+        }
+        
+        let btnCreatingDisc = document.getElementById("btn-create-discussion");
         if (btnCreatingDisc) {
-            enableCreateDisc(btnCreatingDisc);
+            await handlerCreateDisc(dataUser.userId, btnCreatingDisc);
         }
         
-        let formCreateDisc = document.getElementById("create-disc");
-        if (formCreateDisc) {
-            await handlerCreateDisc(formCreateDisc, dataUser.userId);
+        let formSendMessage = document.getElementById("send-message");
+        if (formSendMessage) {
+            await handlerAddMessages(dataUser.userId, formSendMessage)
         }
+        
+        if (window.location.href.split("/").at(3) === "profile") {
+            handlerEditingFavorites(dataUser.userId, dataUser.selectedTopics, dataUser.selectedDiscussions);
+            handlerLoadDataForProfile(dataUser.login, dataUser.dateOfRegistration.slice(0, 10), dataUser.description);
+            await handlerEditProfile(dataUser);
+        }
+        
+        return dataUser.userId;
     }
+    return null;
 }

@@ -22,81 +22,66 @@
     grid-column: 1;
 }
 
-label[for="btn-add-to-favorites"] {
-    height: 40px;
-    width: 40px;
-    background-color: #222121;
-    color: #DBDBDB;
-    border-radius: 5px;
-    border-color: black;
-    font-style: normal;
-    padding: 9px;
-}
-
-label[for="btn-add-to-favorites"] > svg {
-    display: block;
-}
-
-.checkbox-temporary-mark > svg {
-    fill: #DBDBDB;
-    animation-name: ch;
-    animation-duration: 0.5s;
-}
-
-.checkbox-checked > svg {
-    fill: red;
-}
-
-.checkbox-unchecked {
-    fill: #DBDBDB;
-}
-.checkbox-unchecked:hover > svg {
-    fill: red;
-}
-
-@keyframes ch {
-    0% {fill: red}
-    50% {fill: red}
-    100% {fill: #DBDBDB}
-}
-
 #list-of-topics {
     display: grid;
     grid-template-rows: repeat(auto-fill, minmax(50px, auto));
     grid-template-columns: repeat(auto-fill, minmax(150px, auto));
-    grid-gap: 5px;
-    vertical-align: center;
+    grid-gap: 15px;
     text-align: center;
+    max-height: 300px;
+    overflow-y: auto;
 }
 
 .link-on-topics {
-    margin-right: 15px;
-    margin-bottom: 10px;
     font-size: 0.9rem;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
 }
 
 #discussing-block {
     font-size: 0.8rem;
     grid-row: 3;
     grid-column: 1;
+    min-width: min-content;
 }
 
-#header-of-disc {
+#header-of-discussions {
     margin-bottom: 20px;
 }
 
-#header-of-desc > h3 {
+#header-of-discussions > h3 {
     max-width: 20%;
     align-self: center;
 }
 
-#disc-buttons {
+#discussions-buttons {
     max-width: 60%;
     align-content: center;
 }
 
-#btn-create-disc {
+#btn-create-discussion {
     margin-right: 30px;
+}
+
+#selectSort {
+    box-shadow: #FFFFFF;
+    color: aliceblue;
+    background-color: #222121;
+    border-width: 1px;
+    border-radius: 10px;
+    border-color: black;
+    font-style: normal;
+    max-width: max-content;
+}
+
+#selectSort > option {
+    color: aliceblue;
+    background-color: #222121;
+}
+
+#selectSort:hover {
+    background-color: #FFFFFF;
+    color: black;
 }
 
 .dropdown-menu {
@@ -108,38 +93,49 @@ ul.dropdown-menu > li > a {
     color: aliceblue;
 }
 
-#table-disc {
+#table-discussion {
     background-color: #222121;
     border-radius: 10px;
     color: aliceblue;
 }
 
-#table-disc > tbody > tr:hover {
+#table-discussion > tbody > tr > td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#table-discussion > tbody > tr:hover {
     background-color: #323030;
 }
 
-.modal-content {
-    background-color: #2A2A2A;
-    border-radius: 15px;
-    border-width: 1px;
-    border-color: black;
-    box-shadow: 1px 0 5px black, -1px 0 5px black;
-    text-align: justify;
-    font-size: 1.1rem;
-}
-
-.name-of-new-disc, .question-of-new-disc,
-.select-topic-for-new-disc {
+.name-of-new-topic,
+.description-for-new-topic {
     margin-bottom: 30px;
 }
 
-.name-of-new-disc > label, .question-of-new-disc > label, 
-.select-topic-for-new-disc > label {
+.name-of-new-topic > label,
+.description-for-new-topic > label {
     margin-bottom: 10px;
 }
 
-.question-of-new-disc > textarea {
-    max-height: 250px;
-    min-height: 80px;
+.edit-topic-name,
+.edit-description-for-topic {
+    margin-bottom: 30px;
 }
 
+.edit-topic-name > label,
+.edit-description-for-topic > label {
+    margin-bottom: 10px;
+}
+
+.name-of-new-discussion, 
+.description-of-new-discussion,
+.select-topic-for-new-discussion {
+    margin-bottom: 30px;
+}
+
+.name-of-new-discussion > label,
+.description-of-new-discussion > label,
+.select-topic-for-new-discussion > label {
+    margin-bottom: 10px;
+}

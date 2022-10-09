@@ -13,7 +13,11 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.Property(u => u.TypeOfUserId).HasDefaultValue(1);
         builder.Property(u => u.Description).HasDefaultValue("");
         builder.HasIndex(u => u.Login).IsUnique(true);
-
+        
+        builder
+            .HasMany<Topic>(u => u.Topics)
+            .WithOne(d => d.User);
+        
         builder
             .HasMany<Discussion>(u => u.Discussions)
             .WithOne(d => d.User);

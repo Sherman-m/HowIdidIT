@@ -1,34 +1,37 @@
 ﻿using HowIdidIT.Data.DTOs;
 using HowIdidIT.Data.Models;
+using HowIdidIT.Data.Services.ServiceImplementations;
 using HowIdidIT.Data.Services.ServiceInterfaces;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 
 namespace HowIdidIT.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class DiscussionController : ControllerBase
+public class DiscussionsController : ControllerBase
 {
     private readonly IDiscussionService _discussionService;
 
-    public DiscussionController(IDiscussionService discussionService)
+    public DiscussionsController(IDiscussionService discussionService)
     {
         _discussionService = discussionService;
     }
 
-    [HttpGet("GetAllDiscussions")]
+    [HttpGet]
     public async Task<ActionResult<IEnumerable<Discussion>>> GetAllDiscussions()
     {
         return await _discussionService.GetAllDiscussions();
     }
-    
-    [HttpGet("GetAllDiscussionsForTopic")]
-    public async Task<ActionResult<IEnumerable<Discussion>>> GetAllDiscussionsForTopic(int topicId)
+
+    [HttpGet("{discussionId:int}/messages")]
+    public async Task<ActionResult<IEnumerable<Message>>> GetAllMessagesForDiscussion(int discussionId,
+        [FromServices] IMessageService messageService)
     {
-        return await _discussionService.GetAllDiscussionsForTopic(topicId);
+        return await messageService.GetAllMessagesForDiscussion(discussionId);
     }
 
-    [HttpGet("GetDiscussionById")]
+    [HttpGet("{id:int}")]
     public async Task<ActionResult<Discussion>> GetDiscussionById(int id)
     {
         var result = await _discussionService.GetDiscussionById(id);
@@ -40,7 +43,7 @@ public class DiscussionController : ControllerBase
         return Ok(result);
     }
     
-    [HttpPost("AddDiscussion")]
+    [HttpPost]
     public async Task<ActionResult<Discussion>> AddDiscussion([FromBody] DiscussionDto discussionDto)
     {
         var result = await _discussionService.AddDiscussion(discussionDto);
@@ -52,7 +55,7 @@ public class DiscussionController : ControllerBase
         return Ok(result);
     }
 
-    [HttpPut("UpdateDiscussionById")]
+    [HttpPut("{id:int}")]
     public async Task<ActionResult<Discussion>> UpdateDiscussionById(int id, [FromBody] DiscussionDto discussionDto)
     {
         var result = await _discussionService.UpdateDiscussionById(id, discussionDto);
@@ -63,8 +66,21 @@ public class DiscussionController : ControllerBase
 
         return Ok(result);
     }
+    
+    [HttpPut("{id:int}/edit")]
+    public async Task<ActionResult<Discussion>> UpdateDataDiscussion(int id, JObject jObject)
+    {
+        var bodyRequest = jObject.ToObject<Dictionary<string, string>>();
+        if (bodyRequest == null) return BadRequest();
 
-    [HttpDelete("DeleteDiscussionById")]
+        var result = 
+            await _discussionService.UpdateDiscussionData(id, bodyRequest["name"], bodyRequest["description"]);
+        if (result == null) return BadRequest();
+
+        return Ok(result);
+    }
+
+    [HttpDelete("{id:int}")]
     public async Task<ActionResult> DeleteDiscussionById(int id)
     {
         var result = await _discussionService.DeleteDiscussionById(id);

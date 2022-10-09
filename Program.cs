@@ -1,12 +1,9 @@
 using HowIdidIT;
-using HowIdidIT.Controllers;
 using HowIdidIT.Data.DBConfiguration;
 using HowIdidIT.Data.Services.ServiceImplementations;
 using HowIdidIT.Data.Services.ServiceInterfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.CookiePolicy;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);

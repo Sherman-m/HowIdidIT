@@ -20,7 +20,16 @@ public class DiscussionService : IDiscussionService
         var result = await _context.Discussions
             .Include(t => t.Topic)
             .Include(u => u.User)
-            .Include(m => m.Messages)
+            .ToListAsync();
+        return await Task.FromResult(result);
+    }
+    
+    public async Task<List<Discussion>> GetAllDiscussionsForTopic(int topicId)
+    {
+        var result = await _context.Discussions
+            .Include(t => t.Topic)
+            .Include(u => u.User)
+            .Where(t => t.TopicId == topicId)
             .ToListAsync();
         return await Task.FromResult(result);
     }
@@ -35,23 +44,12 @@ public class DiscussionService : IDiscussionService
         return await Task.FromResult(result);
     }
 
-    public async Task<List<Discussion>> GetAllDiscussionsForTopic(int topicId)
-    {
-        var result = await _context.Discussions
-            .Include(t => t.Topic)
-            .Include(u => u.User)
-            .Include(m => m.Messages)
-            .Where(t => t.TopicId == topicId)
-            .ToListAsync();
-        return await Task.FromResult(result);
-    }
-    
     public async Task<Discussion?> AddDiscussion(DiscussionDto discussionDto)
     {
         var discussion = new Discussion()
         {
             Name = discussionDto.Name,
-            Question = discussionDto.Question,
+            Description = discussionDto.Description,
             TopicId = discussionDto.TopicId,
             UserId = discussionDto.UserId
         };
@@ -71,37 +69,54 @@ public class DiscussionService : IDiscussionService
     public async Task<Discussion?> UpdateDiscussionById(int id, DiscussionDto discussionDto)
     {
         var result = await _context.Discussions.FirstOrDefaultAsync(mid => mid.DiscussionId == id);
-        if (result != null)
-        {
-            result.Name = discussionDto.Name;
-            result.Question = discussionDto.Question;
-            result.TopicId = discussionDto.TopicId;
+        if (result == null) return null;
+        
+        result.Name = discussionDto.Name;
+        result.Description = discussionDto.Description;
+        result.TopicId = discussionDto.TopicId;
 
-            try
-            {
-                var m = _context.Discussions.Update(result);
-                await _context.SaveChangesAsync();
-                return await Task.FromResult(m.Entity);
-            }
-            catch
-            {
-                return null;
-            }
+        try
+        {
+            var m = _context.Discussions.Update(result);
+            await _context.SaveChangesAsync();
+            return await Task.FromResult(m.Entity);
+        }
+        catch
+        {
+            return null;
         }
 
-        return null;
+    }
+    
+    public async Task<Discussion?> UpdateDiscussionData(int id, string name, string description)
+    {
+        var result = await _context.Discussions.FirstOrDefaultAsync(d => d.DiscussionId == id);
+        if (result == null) return null;
+
+        result.Name = name;
+        result.Description = description;
+
+        try
+        {
+            _context.Discussions.Update(result);
+            _context.Entry(result).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+            return await Task.FromResult(result);
+        }
+        catch
+        {
+            return null;
+        }
     }
 
     public async Task<bool> DeleteDiscussionById(int id)
     {
         var result = await _context.Discussions.FirstOrDefaultAsync(mid => mid.DiscussionId == id);
-        if (result != null)
-        {
-            _context.Discussions.Remove(result);
-            await _context.SaveChangesAsync();
-            return true;
-        }
+        if (result == null) return false;
+        
+        _context.Discussions.Remove(result);
+        await _context.SaveChangesAsync();
+        return true;
 
-        return false;
     }
 }

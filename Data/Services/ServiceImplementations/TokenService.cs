@@ -12,6 +12,7 @@ public class TokenService : ITokenService
     {
         var claims = new List<Claim>
         {
+            new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
             new Claim(ClaimTypes.Name, user.Login),
             new Claim(ClaimTypes.Actor, user.TypeOfUser.Name)
         };
@@ -30,5 +31,10 @@ public class TokenService : ITokenService
             {
                 MaxAge = TimeSpan.FromMinutes(60)
             });
+    }
+
+    public void DeleteJwtToken(HttpContext context)
+    {
+        context.Response.Cookies.Delete(".AspNetCore.Application.Id");
     }
 }

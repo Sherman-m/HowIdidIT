@@ -17,9 +17,16 @@ public class MessageService : IMessageService
 
     public async Task<List<Message>> GetAllMessages()
     {
+        var result = await _context.Messages.ToListAsync();
+        return await Task.FromResult(result);
+    }
+
+    public async Task<List<Message>> GetAllMessagesForDiscussion(int discussionId)
+    {
         var result = await _context.Messages
             .Include(u => u.User)
             .Include(d => d.Discussion)
+            .Where(d => d.DiscussionId == discussionId)
             .ToListAsync();
         return await Task.FromResult(result);
     }
@@ -32,7 +39,7 @@ public class MessageService : IMessageService
             .FirstOrDefaultAsync(mid => mid.MessageId == id);
         return await Task.FromResult(result);
     }
-    
+
     public async Task<Message?> AddMessage(MessageDto messageDto)
     {
         var message = new Message()
@@ -57,23 +64,40 @@ public class MessageService : IMessageService
     public async Task<Message?> UpdateMessageById(int id, MessageDto messageDto)
     {
         var result = await _context.Messages.FirstOrDefaultAsync(mid => mid.MessageId == id);
-        if (result != null)
+        if (result == null) return null;
+        result.Text = messageDto.Text;
+
+        try
         {
-            result.Text = messageDto.Text;
-
-            try
-            {
-                var m = _context.Messages.Update(result);
-                await _context.SaveChangesAsync();
-                return await Task.FromResult(m.Entity);
-            }
-            catch
-            {
-                return null;
-            }
+            _context.Messages.Update(result);
+            await _context.SaveChangesAsync();
+            return await Task.FromResult(result);
         }
+        catch
+        {
+            return null;
+        }
+    }
 
-        return null;
+    public async Task<Message?> UpdateMessageData(int id, string text)
+    {
+        var result = await _context.Messages
+            .Include(u => u.User)
+            .Include(d => d.Discussion)
+            .FirstOrDefaultAsync(m => m.MessageId == id);
+        if (result == null) return null;
+
+        result.Text = text;
+        try
+        {
+            _context.Messages.Update(result);
+            await _context.SaveChangesAsync();
+            return await Task.FromResult(result);
+        }
+        catch
+        {
+            return null;
+        }
     }
 
     public async Task<bool> DeleteMessageById(int id)

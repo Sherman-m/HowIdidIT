@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/css/users.css" rel="stylesheet">
+    <link href="~/css/for_all_pages.css" rel="stylesheet">
+    <script src="~/js/General.js"></script>
+    <script src="~/js/handlers/Navigation.js"></script>
+    <script src="~/js/handlers/DefaultEventsForButtons.js"></script>
+    <script src="~/js/handlers/AuthUser.js"></script>
+    <script src="~/js/handlers/LoadDataForUser.js"></script>
+    <script src="~/js/orderOfHandlers/ForUser.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+</head>
+<body class="background text-font">
+<header class="d-flex flex-wrap justify-content-between">
+    <div id="my-nav-bar1" class="d-flex flex-wrap align-items-center justify-content-around">
+        <a href="/" class="logo">HowIdidIT</a>
+        <a href="/" class="pages">Главная</a>
+        <a href="/topics" class="pages">Разделы</a>
+    </div>
+    <div id="my-nav-bar2" class="d-flex flex-wrap align-items-center justify-content-around">
+        <form id="form-search">
+            <input type="search" class="form-control" placeholder="Поиск..." aria-label="Search">
+        </form>
+        <button id="btn-auth" class="btn btn-dark">Авторизация</button>
+        <button id="btn-reg" class="btn btn-dark">Регистрация</button>
+    </div>
+</header>
+<main>
+    <div id="navigation">
+        <a href="/">
+            <img src="~/pictures/home_icon.png" height=20 alt="Главная">Главная
+        </a>
+        >>
+        <a href="/topics">Разделы</a>
+        >>
+    </div>
+    <div id="user-block" class="content-block d-flex flex-column">
+        <div id="user-data-block" class="d-flex">
+            <div id="avatar-block">
+                <img src="~/pictures/avatar.png" width="170" height="170" alt="userAvatar">
+            </div>
+            <div id="login-part" class="d-flex flex-column justify-content-between">
+                <h3 id="user-login"></h3>
+                <p id="date-of-registration"></p>
+            </div>
+        </div><hr>
+        <div id="description-part">
+            <h3>Описание:</h3>
+            <p id="user-description"></p>
+        </div>
+    </div>
+</main>
+<footer class="d-flex justify-content-around align-items-center">
+    © Все права защищены
+</footer>
+</body>
+</html>

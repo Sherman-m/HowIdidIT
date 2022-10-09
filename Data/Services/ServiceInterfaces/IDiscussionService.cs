@@ -10,5 +10,6 @@ public interface IDiscussionService
     Task<List<Discussion>> GetAllDiscussionsForTopic(int topicId); 
     Task<Discussion?> AddDiscussion(DiscussionDto discussionDto);
     Task<Discussion?> UpdateDiscussionById(int id, DiscussionDto discussionDto);
+    Task<Discussion?> UpdateDiscussionData(int id, string name, string description);
     Task<bool> DeleteDiscussionById(int id);
 }

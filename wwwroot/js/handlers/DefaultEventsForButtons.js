@@ -18,10 +18,20 @@ function handlerDefaultEventsForButtons() {
     if (btnRegister) {
         btnRegister.addEventListener("click", redirectOnRegistrationPage);
     }
+    
+    let btnAddNewTopic = document.getElementById("btn-add-new-topic");
+    if (btnAddNewTopic) {
+        btnAddNewTopic.addEventListener("click", redirectOnLoginPage);
+    }
 
-    let btnCreateDisc = document.getElementById("btn-create-disc");
+    let btnCreateDisc = document.getElementById("btn-create-discussion");
     if (btnCreateDisc) {
         btnCreateDisc.addEventListener("click", redirectOnLoginPage);
+    }
+    
+    let formSendMessage = document.getElementById("send-message");
+    if (formSendMessage) {
+        formSendMessage.addEventListener("submit", redirectOnLoginPage);
     }
 }
 
