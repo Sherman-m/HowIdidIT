@@ -70,7 +70,7 @@ async function handlerEditMessage(userId, messageId, entireMessage) {
             formEditMessage.messageContent.value = dataMessage.text;
             
             OnInputForElement(formEditMessage.messageContent);
-            customTextarea();
+            customTextarea();;
             
             formEditMessage.addEventListener("submit", async function (event) {
                 dataMessage = await handlerUpdateMessage(event, dataMessage, entireMessage.children[0]);
