@@ -32,6 +32,14 @@ public class UserService : IUserService
             .FirstOrDefaultAsync(u => u.UserId == id);
         return await Task.FromResult(result);
     }
+    
+    public async Task<User?> GetUserByLogin(string login)
+    {
+        var result = await _context.Users
+            .Include(t => t.TypeOfUser)
+            .FirstOrDefaultAsync(u => u.Login == login);
+        return await Task.FromResult(result);
+    }
 
     public async Task<User?> GetAuthUser(int id)
     {
@@ -203,6 +211,32 @@ public class UserService : IUserService
         result.Salt = GenSalt();
         result.Password = ComputeHmacSha1(
             Encoding.Default.GetBytes(newPassword + result.Salt),
+            Encoding.Default.GetBytes("my_key")
+        );
+
+        try
+        {
+            _context.Users.Update(result);
+            _context.Entry(result).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+            return await Task.FromResult(result);
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    public async Task<User?> RecoverUserPassword(int id, string password)
+    {
+        var result = await _context.Users
+            .Include(t => t.TypeOfUser)
+            .FirstOrDefaultAsync(u => u.UserId == id);
+        if (result == null) return null;
+
+        result.Salt = GenSalt();
+        result.Password = ComputeHmacSha1(
+            Encoding.Default.GetBytes(password + result.Salt),
             Encoding.Default.GetBytes("my_key")
         );
 

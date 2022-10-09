@@ -71,11 +71,10 @@ public class PagesController : Controller
         return View("~/Views/User.cshtml");
     }
     
-    [Route("/change_password")]
-    public IActionResult ChangePasswordPage()
+    [Authorize]
+    [Route("/users/{id:int}/change-password")]
+    public IActionResult ChangePasswordPage(int id)
     {
-        if (User.Identity!.IsAuthenticated)
-            return Redirect("/");
         return View("~/Views/ChangePassword.cshtml");
     }
     

@@ -69,6 +69,20 @@ public class UsersController : ControllerBase
 
     }
     
+    [HttpPost("recover-password")]
+    public async Task<ActionResult<User>> GetUserByLogin(JObject jObject, [FromServices] ITokenService tokenService)
+    {
+        var bodyRequest = jObject.ToObject<Dictionary<string, string>>();
+        if (bodyRequest == null) return BadRequest();
+        
+        Console.WriteLine(bodyRequest["login"]);
+        var result = await _userService.GetUserByLogin(bodyRequest["login"]);
+        if (result == null) return NotFound();
+        
+        tokenService.CreateJwtToken(HttpContext, result);
+        return Ok(result);
+    }
+    
     [Authorize]
     [HttpPut("{userId:int}/selected-topics/{topicId:int}")]
     public async Task<ActionResult<User>> AddTopicToUser(int userId, int topicId)
@@ -133,6 +147,21 @@ public class UsersController : ControllerBase
         if (result == null) return BadRequest();
         
         tokenService.CreateJwtToken(HttpContext, result);
+
+        return Ok(result);
+    }
+    
+    [Authorize]
+    [HttpPut("{id:int}/recover-password")]
+    public async Task<ActionResult<User>> RecoverUserPassword(int id, JObject jObject)
+    {
+        var bodyRequest = jObject.ToObject<Dictionary<string, string>>();
+        if (bodyRequest == null) return BadRequest();
+
+        var result =
+            await _userService.RecoverUserPassword(id, bodyRequest["password"]);
+        
+        if (result == null) return BadRequest();
 
         return Ok(result);
     }
