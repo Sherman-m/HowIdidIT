@@ -69,6 +69,9 @@ async function handlerEditMessage(userId, messageId, entireMessage) {
             
             formEditMessage.messageContent.value = dataMessage.text;
             
+            OnInputForElement(formEditMessage.messageContent);
+            customTextarea();
+            
             formEditMessage.addEventListener("submit", async function (event) {
                 dataMessage = await handlerUpdateMessage(event, dataMessage, entireMessage.children[0]);
                 document.getElementById("disc-block").replaceChild(formSendMessage, formEditMessage);
@@ -83,7 +86,6 @@ async function handlerEditMessage(userId, messageId, entireMessage) {
 
             let formSendMessage = formEditMessage.cloneNode(true);
             document.getElementById("disc-block").replaceChild(formSendMessage, formEditMessage);
-
             formSendMessage.addEventListener("submit", async (event) =>
                 await handlerAddMessage(event, userId, formSendMessage)
             );

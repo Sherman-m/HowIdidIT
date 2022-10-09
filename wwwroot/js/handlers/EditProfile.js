@@ -47,6 +47,8 @@ async function handlerUpdateUserFrontSide(event, userId) {
         notification.className = "notification";
         notification.innerText = "Данные были успешно изменены"
         event.target.appendChild(notification);
+        
+        await handlerEditProfile(updateUserFrontSide);
     }
 }
 

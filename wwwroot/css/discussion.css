@@ -93,6 +93,15 @@
     max-height: 500px;
 }
 
+.edit-discussion-name,
+.edit-description-for-discussion {
+    margin-bottom: 30px;
+}
+
+.edit-discussion-name > label,
+.edit-description-for-discussion > label {
+    margin-bottom: 10px;
+}
 
 
 

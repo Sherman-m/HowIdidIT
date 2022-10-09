@@ -17,7 +17,7 @@ function addModalForCreatingTopic() {
     modal.innerHTML = '<div class="modal-dialog modal-dialog-centered">\n' +
         '        <div class="modal-content">\n' +
         '            <div class="modal-header">\n' +
-        '                <h5 class="modal-title" id="ModalForCreatingDiscussionTitle">Создание обсуждения</h5>\n' +
+        '                <h5 class="modal-title" id="ModalForCreatingTopicTitle">Создание раздела</h5>\n' +
         '                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>\n' +
         '            </div>\n' +
         '            <div class="modal-body">\n' +

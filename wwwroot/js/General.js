@@ -26,6 +26,17 @@ function OnInput() {
     }
 }
 
+function OnInputForElement(el) {
+    if (el.scrollHeight < 300) {
+        el.style.overflowY = "hidden";
+        el.style.height = 0;
+        el.style.height = (el.scrollHeight) + "px";
+    } else {
+        el.style.height = "300px";
+        el.style.overflowY = "scroll";
+    }
+}
+
 function addToFavorites(checkbox) {
     let label = document.querySelector("label[for='isFavorite']")
     if (checkbox.checked) {

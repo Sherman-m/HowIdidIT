@@ -94,11 +94,11 @@ function addModalForDeletingTopic() {
 
 function enableEditTopic(dataTopic, form) {
     clearWarnings();
-    if (form.editNameOfTopic !== dataTopic.name || form.editDescriptionOfTopic !== dataTopic.description) {
-        document.getElementById("save-update-topic").removeAttribute("disabled");
+    if (form.editNameOfTopic.value !== dataTopic.name || form.editDescriptionOfTopic.value !== dataTopic.description) {
+        form["save-update-topic"].removeAttribute("disabled");
     }
     else {
-        document.getElementById("save-update-topic").setAttribute("disabled", true);
+        form["save-update-topic"].setAttribute("disabled", true);
     }
 }
 

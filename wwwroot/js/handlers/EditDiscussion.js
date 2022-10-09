@@ -40,7 +40,7 @@ function addModalForUpdatingDiscussion() {
     modal.innerHTML = '<div class="modal-dialog modal-dialog-centered">\n' +
         '        <div class="modal-content">\n' +
         '            <div class="modal-header">\n' +
-        '                <h5 class="modal-title" id="ModalForEditingDiscussionTitle">Изменение раздела</h5>\n' +
+        '                <h5 class="modal-title" id="ModalForEditingDiscussionTitle">Изменение обсуждения</h5>\n' +
         '                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>\n' +
         '            </div>\n' +
         '            <div class="modal-body">\n' +
@@ -94,7 +94,7 @@ function addModalForDeletingDiscussion() {
 
 function enableEditDiscussion(dataDiscussion, form) {
     clearWarnings();
-    if (form.editNameOfDiscussion !== dataDiscussion.name || form.editDescriptionOfDiscussion !== dataDiscussion.description) {
+    if (form.editNameOfDiscussion.value !== dataDiscussion.name || form.editDescriptionOfDiscussion.value !== dataDiscussion.description) {
         document.getElementById("save-update-discussion").removeAttribute("disabled");
     }
     else {
