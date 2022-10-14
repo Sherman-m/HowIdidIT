@@ -1,7 +1,7 @@
 ﻿async function main() {
     handlerDefaultEventsForButtons();
-    let userId = await handlerAuthUser();
-    await handlerLoadCurrentTopic(userId);
+    await handlerAuthUser();
+    await handlerLoadCurrentTopic();
 
     let selectSort = document.getElementById("selectSort");
     selectSort.addEventListener("change", async function(event) {
